@@ -23,18 +23,22 @@ public class main {
             switch (opcion) {
                 case "1", "2":
                     continue;
+                case "9": vendedoresIU.IU(scanner);
+                    continue;
                 case "10":
                     break menuLoop;
             }
         } while (true);
-        System.out.println("Hasta luego :)");
+        System.out.println("Hasta luego 👋");
     }
 
     private static String getOpciones() {
         return "Selecciona una de las siguientes opciones\n"
                 + "1. Realizar compra\n"
                 + "2....\n"
-                + "3....\n"
+                + "9 Gestión vendedores\n"
                 + "10. Para cerrar la aplicación";
     }
+
+
 }
