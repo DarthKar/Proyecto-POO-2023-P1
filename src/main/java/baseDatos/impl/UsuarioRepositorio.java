@@ -8,21 +8,22 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class UsuarioRepositorio {
-    public void agregarVendedor(Vendedor vendedor){
+
+    public static void guardar(Vendedor vendedor) {
         if (Objects.isNull(vendedor))
             return;
-        Repositorio.getVendedores().add(vendedor);
+        Repositorio.guardar(vendedor);
     }
 
-    public void eliminar(long id){
-        List<Vendedor> vendedores = Repositorio.getVendedores();
-        Optional<Vendedor> vendedor = vendedores.stream().filter(v -> v.getId() == id).findFirst();
-        vendedor.ifPresent(vendedores::remove);
+    public static Optional<Vendedor> obtenerPorId(long id) {
+        return Repositorio.obtenerVendedorPorId(id);
     }
 
-    public Optional<Vendedor> obtenerPorId(long id){
-        List<Vendedor> vendedores = Repositorio.getVendedores();
-        return vendedores.stream().filter(v -> v.getId() == id).findFirst();
+    public static List<Vendedor> obtener() {
+        return Repositorio.obtenerVendedores();
     }
 
+    public static void eliminar(long id) {
+        Repositorio.eliminarVendedor(id);
+    }
 }

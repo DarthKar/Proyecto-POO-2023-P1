@@ -1,20 +1,55 @@
 package baseDatos.impl;
 
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
-public abstract class Repositorio {
+public class Repositorio {
 
     private static BaseDatos baseDatos;
     public static final String FILE = "basedatos.txt";
     private static final String PATH = System.getProperty("user.dir") + "\\temp\\%s";
 
-    protected static void guardar() {
+    static {
+        leer();
+    }
+
+    protected static void guardar(Vendedor vendedor) {
+        OptionalInt pos = IntStream.range(0, baseDatos.getVendedores().size())
+                .filter(i -> vendedor.getId() == baseDatos.getVendedores().get(i).getId())
+                .findFirst();
+
+        if (pos.isEmpty()) {
+            baseDatos.getVendedores().add(vendedor);
+        }
+        else{
+            baseDatos.getVendedores().set(pos.getAsInt(), vendedor);
+        }
+        guardarArchivo();
+    }
+
+    protected static Optional<Vendedor> obtenerVendedorPorId(long id) {
+        return baseDatos.getVendedores().stream()
+                .filter(v -> v.getId() == id).findFirst();
+    }
+
+    protected static List<Vendedor> obtenerVendedores() {
+        return baseDatos.getVendedores();
+    }
+
+    protected static void eliminarVendedor(long id) {
+        baseDatos.getVendedores().remove(obtenerVendedorPorId(id).orElseThrow(() -> new IllegalArgumentException("No existe el vendedor")));
+    }
+
+    private static void guardarArchivo() {
         try {
             FileOutputStream f = new FileOutputStream(PATH.formatted(FILE));
             ObjectOutputStream objectInputStream = new ObjectOutputStream(f);
@@ -25,8 +60,9 @@ public abstract class Repositorio {
     }
 
     protected static void leer() {
-        if(crearDirectorio() || verificarArchivo()){
+        if (crearDirectorio() || crearArchivo()) {
             baseDatos = new BaseDatos();
+            guardarArchivo();
             return;
         }
 
@@ -41,15 +77,14 @@ public abstract class Repositorio {
         }
     }
 
-    public static boolean verificarArchivo() {
-        return new File(PATH.formatted(FILE)).exists();
+    private static boolean crearArchivo() {
+        return !new File(PATH.formatted(FILE)).exists();
     }
 
-    public static boolean crearDirectorio() {
+    private static boolean crearDirectorio() {
         try {
-            Path path = Paths.get(PATH.formatted(FILE));
-            if (Files.exists(path))
-                return false;
+            Path path = Paths.get(PATH.formatted(StringUtils.EMPTY));
+            if (Files.exists(path)) return false;
             Files.createDirectory(path);
             return true;
         } catch (IOException e) {
@@ -57,7 +92,5 @@ public abstract class Repositorio {
         }
     }
 
-    public static List<Vendedor> getVendedores() {
-        return baseDatos.getVendedores();
-    }
+
 }
