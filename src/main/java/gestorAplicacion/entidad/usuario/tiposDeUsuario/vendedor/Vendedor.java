@@ -1,6 +1,7 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor;
 
 import gestorAplicacion.entidad.usuario.Usuario;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.opinion.OpinionVendedor;
 
 import java.util.ArrayList;
 import java.util.List;

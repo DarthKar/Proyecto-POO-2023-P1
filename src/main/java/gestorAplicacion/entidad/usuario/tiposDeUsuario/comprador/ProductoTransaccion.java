@@ -1,4 +1,4 @@
-package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden;
+package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.ProductoVendedor;
 

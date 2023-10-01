@@ -1,7 +1,8 @@
-package gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor;
+package gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.opinion;
 
 import gestorAplicacion.entidad.Opinion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 
 public class OpinionVendedor extends Opinion {
     private Comprador comprador;

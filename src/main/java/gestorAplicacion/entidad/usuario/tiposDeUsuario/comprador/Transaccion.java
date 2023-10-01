@@ -1,11 +1,11 @@
-package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden;
+package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class Transaccion implements Serializable {
 
@@ -25,7 +25,7 @@ public abstract class Transaccion implements Serializable {
         return productosTransaccion;
     }
 
-    public abstract void agregarProducto(ProductoTransaccion productoTransaccion, int cantidad);
-    public abstract void removerProducto(ProductoTransaccion productoTransaccion, int cantidad);
+    protected abstract void agregarProducto(ProductoTransaccion productoTransaccion, int cantidad);
+    protected abstract void removerProducto(ProductoTransaccion productoTransaccion, int cantidad);
 
 }

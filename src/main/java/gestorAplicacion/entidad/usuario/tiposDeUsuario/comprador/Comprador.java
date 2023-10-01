@@ -1,9 +1,9 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
 import gestorAplicacion.entidad.usuario.Usuario;
-import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.carrito.Carrito;
-import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.devolucion.Devolucion;
-import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.orden.Orden;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Carrito;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Devolucion;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Orden;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Comprador extends Usuario {
         return devoluciones;
     }
 
-    public void setDevoluciones(List<Devolucion> devoluciones) {
+    public void addDevoluciones(List<Devolucion> devoluciones) {
         this.devoluciones = devoluciones;
     }
 

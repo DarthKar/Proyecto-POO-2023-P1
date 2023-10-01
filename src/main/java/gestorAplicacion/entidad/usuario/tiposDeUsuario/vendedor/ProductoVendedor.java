@@ -7,12 +7,14 @@ public class ProductoVendedor {
     private Producto producto;
     private int inventario;
     private float precio;
+    private boolean oculto;
 
     public ProductoVendedor(Vendedor vendedor, Producto producto, int inventario, float precio) {
         this.vendedor = vendedor;
         this.producto = producto;
         this.inventario = inventario;
         this.precio = precio;
+        this.oculto = false;
     }
 
     public Vendedor getVendedor() {
@@ -27,7 +29,7 @@ public class ProductoVendedor {
         return inventario;
     }
 
-    public void setInventario(int inventario) {
+    protected void setInventario(int inventario) {
         this.inventario = inventario;
     }
 
@@ -35,7 +37,15 @@ public class ProductoVendedor {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    protected void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public boolean isOculto() {
+        return oculto;
+    }
+
+    protected void setOculto(boolean oculto) {
+        this.oculto = oculto;
     }
 }
