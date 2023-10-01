@@ -1,9 +1,10 @@
 package gestorAplicacion.entidad.producto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Producto {
+public class Producto implements Serializable {
 
     private Long id;
     private String nombre;
