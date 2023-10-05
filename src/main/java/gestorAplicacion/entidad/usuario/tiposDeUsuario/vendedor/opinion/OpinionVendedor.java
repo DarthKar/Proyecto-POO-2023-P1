@@ -18,6 +18,22 @@ public class OpinionVendedor extends Opinion {
         return comprador;
     }
 
+    public void setComprador(Comprador comprador) {
+        this.comprador = comprador;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+    @Override
+    public void setOpinion(String opinion) {
+        this.opinion = opinion;
+    }
+    @Override
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
+    
     public Vendedor getVendedor() {
         return vendedor;
     }
