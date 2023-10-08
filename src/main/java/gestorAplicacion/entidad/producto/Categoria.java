@@ -1,5 +1,12 @@
 package gestorAplicacion.entidad.producto;
 
 public enum Categoria {
-    //TODO: Agregar categorias
+    // Enum de categorias MP
+    ELECTRONICA,
+    ROPA,
+    HOGAR,
+    ALIMENTOS,
+    JUGUETES,
+    COSMETICOS,
+    OTROS
 }
