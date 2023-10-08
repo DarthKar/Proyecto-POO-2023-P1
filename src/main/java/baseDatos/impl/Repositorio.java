@@ -36,6 +36,9 @@ public class Repositorio {
         guardarArchivo();
     }
 
+
+    
+
     protected static Optional<Vendedor> obtenerVendedorPorId(long id) {
         return baseDatos.getVendedores().stream()
                 .filter(v -> v.getId() == id).findFirst();
