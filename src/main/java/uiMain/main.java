@@ -21,8 +21,9 @@ public class main {
             System.out.println(getOpciones());
             String opcion = scanner.nextLine().trim();
             switch (opcion) {
-                case "1", "2":
+                case "1":
                     continue;
+                case "2" : productosIU.IU(scanner);
                 case "9": vendedoresIU.IU(scanner);
                     continue;
                 case "10":
