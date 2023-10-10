@@ -6,17 +6,29 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 
 public class Orden extends Transaccion {
 
+    boolean tieneDevoluciones;
+
     public Orden(Comprador comprador) {
         super(comprador);
     }
 
-    @Override
-    protected void agregarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
-        //TODO: Realizar implementación
+    public boolean isTieneDevoluciones() {
+        return tieneDevoluciones;
+    }
+
+    public void setTieneDevoluciones(boolean tieneDevoluciones) {
+        this.tieneDevoluciones = tieneDevoluciones;
     }
 
     @Override
-    protected void removerProducto(ProductoTransaccion productoTransaccion, int cantidad) {
+    public void agregarProducto(ProductoTransaccion productoTransaccion) {
+        //TODO: Implementar validaciones de inventario.
+        productosTransaccion.add(productoTransaccion);
+    }
+
+    @Override
+    public void removerProducto(ProductoTransaccion productoTransaccion) {
         //TODO: Realizar implementación
     }
+
 }

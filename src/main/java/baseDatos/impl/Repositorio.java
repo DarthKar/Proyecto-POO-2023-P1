@@ -1,5 +1,6 @@
 package baseDatos.impl;
 
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,9 +30,21 @@ public class Repositorio {
 
         if (pos.isEmpty()) {
             baseDatos.getVendedores().add(vendedor);
-        }
-        else{
+        } else {
             baseDatos.getVendedores().set(pos.getAsInt(), vendedor);
+        }
+        guardarArchivo();
+    }
+
+    protected static void guardar(Comprador comprador) {
+        OptionalInt pos = IntStream.range(0, baseDatos.getVendedores().size())
+                .filter(i -> comprador.getId() == baseDatos.getVendedores().get(i).getId())
+                .findFirst();
+
+        if (pos.isEmpty()) {
+            baseDatos.getCompradores().add(comprador);
+        } else {
+            baseDatos.getCompradores().set(pos.getAsInt(), comprador);
         }
         guardarArchivo();
     }
@@ -47,6 +60,18 @@ public class Repositorio {
 
     protected static void eliminarVendedor(long id) {
         baseDatos.getVendedores().remove(obtenerVendedorPorId(id).orElseThrow(() -> new IllegalArgumentException("No existe el vendedor")));
+    }
+
+    protected static List<Comprador> obtenerCompradores() {
+        return baseDatos.getCompradores();
+    }
+
+    protected static Optional<Comprador> obtenerCompradorPorId(long id) {
+        return baseDatos.getCompradores().stream().filter(c -> c.getId() == id).findAny();
+    }
+
+    protected static void eliminarComprador(long id) {
+        baseDatos.getCompradores().remove(obtenerCompradorPorId(id).orElseThrow(() -> new IllegalArgumentException("No existe el comprador")));
     }
 
     private static void guardarArchivo() {

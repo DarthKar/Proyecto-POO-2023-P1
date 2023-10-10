@@ -9,6 +9,8 @@ import java.util.List;
 
 public abstract class Transaccion implements Serializable {
 
+    protected long id;
+
     protected Comprador comprador;
     protected List<ProductoTransaccion> productosTransaccion;
 
@@ -25,7 +27,23 @@ public abstract class Transaccion implements Serializable {
         return productosTransaccion;
     }
 
-    protected abstract void agregarProducto(ProductoTransaccion productoTransaccion, int cantidad);
-    protected abstract void removerProducto(ProductoTransaccion productoTransaccion, int cantidad);
+    public long getId() {
+        return id;
+    }
+
+    public abstract void agregarProducto(ProductoTransaccion productoTransaccion);
+    public abstract void removerProducto(ProductoTransaccion productoTransaccion);
+
+
+    public List<ProductoTransaccion> obtenerProductosPorCantidad(int min){
+        return obtenerProductosPorCantidad(min, Integer.MAX_VALUE);
+    }
+
+    public List<ProductoTransaccion> obtenerProductosPorCantidad(int min, int max){
+        return productosTransaccion.stream()
+                .filter(productoTransaccion ->  productoTransaccion.getCantidad() >= min && productoTransaccion.getCantidad() < max)
+                .toList();
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package gestorAplicacion.entidad.producto;
 
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Producto implements Serializable {
     private String nombre;
     private Categoria categoria;
     private List<OpinionProducto> opinion;
+    private List<Publicacion> publicaciones;
     private List<Comprador> compradores;
     private List<Comprador> resenadores;
 
@@ -22,6 +25,7 @@ public class Producto implements Serializable {
         this.categoria = categoria;
         this.opinion = new ArrayList<>();
         this.compradores= new ArrayList<>();
+        this.publicaciones = new ArrayList<>();
     }
     
     public void addOpinionProducto(OpinionProducto resena){
@@ -32,7 +36,7 @@ public class Producto implements Serializable {
     }
     
     public boolean existeResena(Comprador comprador){
-        return resenadores.contains(comprador);                  // Creacion del metodo ExisteResena que comprueba si ya hay una reseña
+        return resenadores.contains(comprador);                  // Creacion del metodo ExisteResena que comprueba si ya hay una reseï¿½a
    
     }
     
@@ -45,12 +49,21 @@ public class Producto implements Serializable {
         return nombre;
     }
 
+
     public Categoria getCategoria() {
         return categoria;
     }
 
     public List<OpinionProducto> getOpiniones() {
         return opinion;
+    }
+
+    public List<Publicacion> getPublicaciones() {
+        return publicaciones;
+    }
+
+    public void agregarPublicacion(Publicacion publicacion){
+        publicaciones.add(publicacion);
     }
     
     public void setId(Long id) {
@@ -73,7 +86,6 @@ public class Producto implements Serializable {
         return compradores;
     }
     
-
     public List<Comprador> getResenadores() {
         return resenadores;
     }
@@ -88,5 +100,5 @@ public class Producto implements Serializable {
     public void setResenadores(List<Comprador> resenadores) {
         this.resenadores = resenadores;
     }
-   
+
 }

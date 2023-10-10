@@ -23,6 +23,8 @@ public class main {
             switch (opcion) {
                 case "1", "2":
                     continue;
+                case "3": CompradoresUI.IU(scanner);
+                    continue;
                 case "9": vendedoresIU.IU(scanner);
                     continue;
                 case "10":
@@ -36,6 +38,7 @@ public class main {
         return "Selecciona una de las siguientes opciones\n"
                 + "1. Realizar compra\n"
                 + "2....\n"
+                + "3 Menú compradores\n"
                 + "9 Gestión vendedores\n"
                 + "10. Para cerrar la aplicación";
     }

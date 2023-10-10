@@ -1,18 +1,20 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
-import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.ProductoVendedor;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 
-public class ProductoTransaccion {
-    protected ProductoVendedor productoVendedor;
+import java.io.Serializable;
+
+public class ProductoTransaccion implements Serializable {
+    protected Publicacion publicacion;
     protected int cantidad;
 
-    public ProductoTransaccion(ProductoVendedor productoVendedor, int cantidad) {
-        this.productoVendedor = productoVendedor;
+    public ProductoTransaccion(Publicacion publicacion, int cantidad) {
+        this.publicacion = publicacion;
         this.cantidad = cantidad;
     }
 
-    public ProductoVendedor getProductoVendedor() {
-        return productoVendedor;
+    public Publicacion getPublicacion() {
+        return publicacion;
     }
 
     public int getCantidad() {

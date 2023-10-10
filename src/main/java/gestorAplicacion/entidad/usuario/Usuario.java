@@ -1,8 +1,13 @@
 package gestorAplicacion.entidad.usuario;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 public class Usuario implements Serializable {
+
+
     protected long id;
     protected String nombre;
     protected String apellido;
@@ -35,6 +40,10 @@ public class Usuario implements Serializable {
         return apellido;
     }
 
+    public String getNombreCompleto(){
+        return (nombre + " " + apellido).trim();
+    }
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
@@ -46,4 +55,7 @@ public class Usuario implements Serializable {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+
+
 }
