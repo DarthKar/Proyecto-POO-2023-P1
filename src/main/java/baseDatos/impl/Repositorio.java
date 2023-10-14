@@ -95,9 +95,7 @@ public class Repositorio {
             FileInputStream f = new FileInputStream(PATH.formatted(FILE));
             ObjectInputStream objectInputStream = new ObjectInputStream(f);
             baseDatos = (BaseDatos) objectInputStream.readObject();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,5 +1,6 @@
 package uiMain;
 
+import baseDatos.impl.Repositorio;
 import gestorAplicacion.casoDeUso.*;
 
 import java.util.Scanner;
@@ -7,15 +8,8 @@ import java.util.Scanner;
 public class main {
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static final ComprarCDU comprarCDU = new ComprarCDU();
-    private static final ContabilidadCDU contabilidadCDU = new ContabilidadCDU();
-    private static final DevolucionCDU devolucionCDU = new DevolucionCDU();
-    private static final OpinionCDU opinionCDU = new OpinionCDU();
-    private static final RecomendacionCDU recomendacionCDU = new RecomendacionCDU();
-
-
     public static void main(String[] args) {
-        System.out.println(System.getProperty("user.dir"));
+
         System.out.println("Bienvenido a e-commerce XYZ");
         menuLoop : do {
             System.out.println(getOpciones());

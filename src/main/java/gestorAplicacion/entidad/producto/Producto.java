@@ -101,4 +101,7 @@ public class Producto implements Serializable {
         this.resenadores = resenadores;
     }
 
+    public boolean isPerecedero(){
+        return categoria.isPerecedero();
+    }
 }

@@ -28,24 +28,49 @@ public class Devolucion extends Transaccion {
     public void removerProducto(ProductoTransaccion productoTransaccion) {
         productoTransaccion.getPublicacion().aumentarInventario(productoTransaccion.getCantidad());
         productosTransaccion.remove(productoTransaccion);
-        orden.setTieneDevoluciones(productosTransaccion.isEmpty());
+        orden.setTieneDevoluciones(!productosTransaccion.isEmpty());
     }
 
     @Override
     public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
         Publicacion publicacion = productoTransaccion.getPublicacion();
 
-        int diferencia = productoTransaccion.getCantidad() - cantidad;
+        if (cantidad == 0) {
+            removerProducto(productoTransaccion);
+            return;
+        }
 
-        publicacion.aumentarInventario(diferencia);
+        if (cantidad > productoTransaccion.getCantidad()) {
+            int diferencia = cantidad - productoTransaccion.getCantidad();
+            publicacion.reducirInventario(diferencia);
+        } else {
+            int diferencia = productoTransaccion.getCantidad() - cantidad;
+            publicacion.aumentarInventario(diferencia);
+        }
+
         productoTransaccion.setCantidad(cantidad);
     }
 
-    public Orden getOrden(){
+    public Orden getOrden() {
         return orden;
     }
 
     public void setOrden(Orden orden) {
         this.orden = orden;
+    }
+
+    public List<ProductoTransaccion> getProductosDevolucion(){
+        return orden.getProductosTransaccion().stream()
+                .filter(productoOrden ->
+                        !productoOrden.getPublicacion().getProducto().isPerecedero() &&
+                        productosTransaccion.parallelStream()
+                                .noneMatch(productoDevolucion -> productoOrden.getPublicacion().equals(productoDevolucion.getPublicacion())))
+                .toList();
+    }
+
+    public ProductoTransaccion getOrdenProductoTransacction(Publicacion publicacion){
+        return orden.getProductosTransaccion().stream()
+                .filter(productoOrden -> productoOrden.getPublicacion().equals(publicacion))
+                .findAny().get();
     }
 }

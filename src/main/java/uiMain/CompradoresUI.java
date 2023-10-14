@@ -32,19 +32,25 @@ public class CompradoresUI extends Validaciones {
         menuBuscarComprador:
         do {
             System.out.println(getOpciones());
-            String opcion = scanner.nextLine().trim();
+            int opcion;
+            try{
+                opcion = validarOpcionMenu(scanner.nextLine(), 1, 4);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                continue;
+            }
 
             switch (opcion) {
-                case "1":
+                case 1:
                     comprar();
                     continue;
-                case "2":
+                case 2:
                     realizarDevolucion();
                     continue;
-                case "3":
+                case 3:
                     listarOrdenes(compradorActual.getOrdenes());
                     continue;
-                case "4":
+                case 4:
                     break menuBuscarComprador;
                 default:
                     System.out.println("Ha elegido una opción invalida.");
@@ -84,12 +90,17 @@ public class CompradoresUI extends Validaciones {
     private static void realizarDevolucion() {
         Devolucion devolucion = new Devolucion(compradorActual);
         try {
-            Orden orden = listarOrdenesEleccion(compradorActual.getOrdenesValidasParaDevolucion());
-            devolucion.setOrden(orden);
+            Optional<Orden> ordenOptional = listarOrdenesEleccion(compradorActual.getOrdenesValidasParaDevolucion());
+            if(ordenOptional.isEmpty()){
+                System.out.println("No ha elegido una opción valida");
+                return;
+            }
+
+            devolucion.setOrden(ordenOptional.get());
             menuDevolucion:
             do {
-                System.out.println(getOpcionesDevolucion());
-                switch (validarOpcionMenu(scanner.nextLine(), 0, 4)) {
+                System.out.println(getOpcionesDevolucion(devolucion));
+                switch (validarOpcionMenu(scanner.nextLine(), 0, 5)) {
                     case 1:
                         elegirProductoADevolver(devolucion);
                         break;
@@ -101,16 +112,31 @@ public class CompradoresUI extends Validaciones {
                         break;
                     case 4:
                         break menuDevolucion;
+                    case 5:
+                        deshacerDevolucion(devolucion);
+                        break menuDevolucion;
+                    default:
+                        System.out.println("Ha elegido una opción invalida");
                 }
-
             } while (true);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        compradorActual.agregarDevolucion(devolucion);
+    }
+
+    private static void deshacerDevolucion(Devolucion devolucion) {
+        devolucion.getProductosTransaccion().forEach(devolucion::removerProducto);
     }
 
     private static void elegirProductoADevolver(Devolucion devolucion) {
-        List<ProductoTransaccion> listaProductos = new ArrayList<>(devolucion.getOrden().obtenerProductosPorCantidad(1));
+        List<ProductoTransaccion> listaProductos = new ArrayList<>(devolucion.getProductosDevolucion());
+
+        if (listaProductos.isEmpty()) {
+            System.out.println("No ha seleccionado ningun producto para devolver - Presione enter para continuar");
+            return;
+        }
+
         do {
             Optional<ProductoTransaccion> productoTransaccion = elegirProductoTransaccion(listaProductos);
             if (productoTransaccion.isEmpty()) {
@@ -118,17 +144,17 @@ public class CompradoresUI extends Validaciones {
                 scanner.nextLine();
                 continue;
             }
-            int cantidadADevolver = menuCantidadADevolver(productoTransaccion.get(), false);
+            int cantidadADevolver = menuCantidadADevolver(productoTransaccion.get().getPublicacion().getProducto().getNombre(), 1, productoTransaccion.get().getCantidad());
             devolucion.agregarProducto(new ProductoTransaccion(productoTransaccion.get().getPublicacion(), cantidadADevolver));
             listaProductos.remove(productoTransaccion.get());
 
             if (listaProductos.isEmpty()) {
-                System.out.println("Ya no es posible agregar más productos");
+                System.out.println("No hay más productos elegibles que cumplan el criterio de devolución - Presiona enter para continuar");
+                scanner.nextLine();
                 break;
             }
 
             System.out.printf("Para continuar agregando más productos de la orden: %s escribe 'sí'.%n", devolucion.getOrden().getId());
-            System.out.println("Si regresa, no podrá devolver más productos de esta orden.");
             String input = scanner.nextLine();
             if (!Objects.equals(input, "sí") && !Objects.equals(input, "si"))
                 break;
@@ -136,6 +162,11 @@ public class CompradoresUI extends Validaciones {
     }
 
     private static void modificarProductoADevolver(Devolucion devolucion) {
+        if (devolucion.getProductosTransaccion().isEmpty()) {
+            System.out.println("No ha seleccionado ningun producto para devolver - Presione enter para continuar");
+            return;
+        }
+
         do {
             Optional<ProductoTransaccion> productoTransaccion = elegirProductoTransaccion(devolucion.getProductosTransaccion());
 
@@ -145,20 +176,17 @@ public class CompradoresUI extends Validaciones {
                 continue;
             }
 
-            int cantidadADevolver = menuCantidadADevolver(productoTransaccion.get(), true);
+            ProductoTransaccion productoOrden = devolucion.getOrdenProductoTransacction(productoTransaccion.get().getPublicacion());
+            int cantidadADevolver = menuCantidadADevolver(productoOrden.getPublicacion().getProducto().getNombre(), 0, productoOrden.getCantidad());
 
-            if (cantidadADevolver == 0) {
-                devolucion.removerProducto(productoTransaccion.get());
-            } else {
-                devolucion.modificarProducto(productoTransaccion.get(), cantidadADevolver);
-            }
+            devolucion.modificarProducto(productoTransaccion.get(), cantidadADevolver);
 
             if (devolucion.getProductosTransaccion().isEmpty()) {
                 System.out.println("Ya no es posible agregar más productos");
                 break;
             }
 
-            System.out.printf("Para continuar modificando más productos de la de devolución: %s escribe 'sí.", devolucion.getOrden().getId());
+            System.out.printf("Para continuar modificando más productos de la de devolución: %s escribe 'sí.%n", devolucion.getOrden().getId());
             String input = scanner.nextLine();
             if (!Objects.equals(input, "sí") && !Objects.equals(input, "si"))
                 break;
@@ -167,21 +195,23 @@ public class CompradoresUI extends Validaciones {
 
     }
 
-    private static int menuCantidadADevolver(ProductoTransaccion productoTransaccion, boolean esModificacion) {
-        int min = esModificacion ? 0 : 1;
-        System.out.printf("Escriba la cantidad que desea devolver del producto %s. Hay disponible %s%n",
-                productoTransaccion.getPublicacion().getProducto().getNombre(),
-                productoTransaccion.getCantidad());
+    private static int menuCantidadADevolver(String nombreProducto, int min, int max) {
+        System.out.printf("Escriba la cantidad que desea devolver del producto %s. Puede devolver hasta %s%n",
+                nombreProducto,
+                max);
 
-        return validarCantidad(scanner.nextLine(), min, productoTransaccion.getCantidad());
+        return validarCantidad(scanner.nextLine(), min, max);
     }
 
-    private static Orden listarOrdenesEleccion(List<Orden> ordenes) {
+    private static Optional<Orden> listarOrdenesEleccion(List<Orden> ordenes) {
         listarOrdenes(ordenes);
         System.out.println("Selecciona el número de orden");
-        //TODO: Agregar validación número
-        int orden = Integer.parseInt(scanner.nextLine()) - 1;
-        return compradorActual.getOrdenes().get(orden);
+
+        int eleccion = Integer.parseInt(scanner.nextLine()) - 1;
+        if (eleccion >= 0 && eleccion < ordenes.size()) {
+            return Optional.of(ordenes.get(eleccion));
+        }
+        return Optional.empty();
     }
 
     private static void listarProductos(List<ProductoTransaccion> productosTransaccion) {
@@ -219,12 +249,15 @@ public class CompradoresUI extends Validaciones {
                 + "4. Regresar\n";
     }
 
-    private static String getOpcionesDevolucion() {
-        return "Selecciona una de las siguientes opciones\n"
+    private static String getOpcionesDevolucion(Devolucion devolucion) {
+        return "Actualmente ha seleccionado %s articulos para devolver\n".formatted(devolucion.getProductosTransaccion().size())
+                + "Selecciona una de las siguientes opciones\n"
                 + "1. Elegir productos a devolver\n"
                 + "2. Deshacer productos a devolver\n"
-                + "4. Listar productos a devolver"
-                + "3. Finalizar";
+                + "3. Listar productos a devolver\n"
+                + "4. Guardar\n"
+                + "5. Deshacer cambios y regresar";
+
     }
 
     private static void comprar() {

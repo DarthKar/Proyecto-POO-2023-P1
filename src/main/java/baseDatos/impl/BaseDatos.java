@@ -149,27 +149,29 @@ public class BaseDatos implements Serializable {
         });
 
         compradores.forEach(comprador -> {
-            int cantidadCompras = RandomUtils.nextInt(0, 3);
-            Orden orden = new Orden(comprador);
-            IntStream.range(0, cantidadCompras).forEach(i -> {
+            int cantidadOrdenes = RandomUtils.nextInt(1,9);
+            IntStream.range(0,cantidadOrdenes).forEach(i -> {
+                Orden orden = new Orden(comprador);
+                int cantidadArticulos = RandomUtils.nextInt(1, 4);
+                IntStream.range(0, cantidadArticulos).forEach(j -> {
 
-                int productoAleatorio = RandomUtils.nextInt(0, productos.size());
+                    int productoAleatorio = RandomUtils.nextInt(0, productos.size());
 
-                Producto producto = productos.get(productoAleatorio);
+                    Producto producto = productos.get(productoAleatorio);
 
-                int publicacionAleatoria = RandomUtils.nextInt(0, producto.getPublicaciones().size());
-                Publicacion publicacion = producto.getPublicaciones().get(publicacionAleatoria);
+                    int publicacionAleatoria = RandomUtils.nextInt(0, producto.getPublicaciones().size());
+                    Publicacion publicacion = producto.getPublicaciones().get(publicacionAleatoria);
 
-                int cantidadAleatoria = RandomUtils.nextInt(1, 10);
+                    int cantidadAleatoria = RandomUtils.nextInt(1, 10);
 
-                ProductoTransaccion productoTransaccion = new ProductoTransaccion(publicacion, cantidadAleatoria);
+                    ProductoTransaccion productoTransaccion = new ProductoTransaccion(publicacion, cantidadAleatoria);
 
-                orden.agregarProducto(productoTransaccion);
+                    orden.agregarProducto(productoTransaccion);
 
+                });
+                comprador.agregarOrden(orden);
             });
-            comprador.agregarOrden(orden);
         });
-
     }
 
 }

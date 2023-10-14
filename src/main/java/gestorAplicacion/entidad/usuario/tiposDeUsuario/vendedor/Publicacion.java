@@ -39,10 +39,16 @@ public class Publicacion implements Serializable {
     }
 
     public void aumentarInventario(int cantidad){
+        if(cantidad <= 0){
+            throw new IllegalArgumentException("La cantidad ingresada no es valida");
+        }
         inventario += cantidad;
     }
 
     public void reducirInventario(int cantidad){
+        if(cantidad <= 0){
+            throw new IllegalArgumentException("La cantidad ingresada no es valida");
+        }
         inventario -= cantidad;
     }
 
@@ -61,4 +67,6 @@ public class Publicacion implements Serializable {
     protected void setOculto(boolean oculto) {
         this.oculto = oculto;
     }
+
+
 }

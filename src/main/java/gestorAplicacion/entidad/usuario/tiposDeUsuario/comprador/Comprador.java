@@ -1,6 +1,7 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
 import baseDatos.impl.CompradorRepositorio;
+import baseDatos.impl.UsuarioRepositorio;
 import gestorAplicacion.entidad.Opinion; // Import para usar Ambas listas
 import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.Usuario;
@@ -10,6 +11,8 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Orden;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class Comprador extends Usuario {
     private Membresia membresia;
@@ -68,7 +71,10 @@ public class Comprador extends Usuario {
     }
 
     public void agregarDevolucion(Devolucion devolucion) {
-        devoluciones.add(devolucion);
+        if(!devolucion.getProductosTransaccion().isEmpty()){
+            devoluciones.add(devolucion);
+            CompradorRepositorio.guardar(this);
+        }
     }
 
     public Carrito getCarrito() {
@@ -98,6 +104,14 @@ public class Comprador extends Usuario {
     }
 
     public List<Orden> getOrdenesValidasParaDevolucion() {
-        return ordenes.stream().filter(orden -> !orden.isTieneDevoluciones()).toList();
+        return ordenes.stream().filter(orden ->
+            !orden.isTieneDevoluciones()
+                    && orden.getProductosTransaccion()
+                    .stream()
+                    .anyMatch(productoTransaccion -> !productoTransaccion.getPublicacion().getProducto().getCategoria().isPerecedero()))
+        .toList();
     }
+
+
+
 }
