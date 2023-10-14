@@ -1,5 +1,6 @@
 package baseDatos.impl;
 
+import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import org.apache.commons.lang3.StringUtils;
@@ -50,6 +51,19 @@ public class Repositorio {
         guardarArchivo();
     }
 
+    public static void guardar(Producto producto) {
+        OptionalInt pos = IntStream.range(0, baseDatos.getProductos().size())
+                .filter(i -> producto.getId() == baseDatos.getProductos().get(i).getId())
+                .findFirst();
+
+        if (pos.isEmpty()) {
+            baseDatos.getProductos().add(producto);
+        } else {
+            baseDatos.getProductos().set(pos.getAsInt(), producto);
+        }
+        guardarArchivo();
+    }
+
     protected static Optional<Vendedor> obtenerVendedorPorId(long id) {
         return baseDatos.getVendedores().stream()
                 .filter(v -> v.getId() == id).findFirst();
@@ -69,6 +83,14 @@ public class Repositorio {
 
     protected static Optional<Comprador> obtenerCompradorPorId(long id) {
         return baseDatos.getCompradores().stream().filter(c -> c.getId() == id).findAny();
+    }
+
+    public static Optional<Producto> obtenerProducto(long id) {
+        return baseDatos.getProductos().stream().filter(c -> c.getId() == id).findAny();
+    }
+
+    public static List<Producto> obtenerProductos() {
+        return baseDatos.getProductos();
     }
 
     protected static void eliminarComprador(long id) {

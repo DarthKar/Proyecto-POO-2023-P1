@@ -19,7 +19,6 @@ public class BaseDatos implements Serializable {
 
     private List<Vendedor> vendedores;
     private List<Comprador> compradores;
-
     private List<Producto> productos;
 
     public BaseDatos() {
@@ -35,6 +34,10 @@ public class BaseDatos implements Serializable {
 
     public List<Comprador> getCompradores() {
         return compradores;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
     }
 
     private void valoresPorDefecto() {
