@@ -30,7 +30,8 @@ public class Repositorio {
 
         if (pos.isEmpty()) {
             baseDatos.getVendedores().add(vendedor);
-        } else {
+        }
+        else{
             baseDatos.getVendedores().set(pos.getAsInt(), vendedor);
         }
         guardarArchivo();
