@@ -34,6 +34,7 @@ public abstract class Transaccion implements Serializable {
     public abstract void agregarProducto(ProductoTransaccion productoTransaccion);
     public abstract void removerProducto(ProductoTransaccion productoTransaccion);
 
+    public abstract void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad);
 
     public List<ProductoTransaccion> obtenerProductosPorCantidad(int min){
         return obtenerProductosPorCantidad(min, Integer.MAX_VALUE);

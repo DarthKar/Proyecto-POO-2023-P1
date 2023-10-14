@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 public class Validaciones {
 
     private static final String MENSAJE_ID_NO_ES_NUMERO = "Id debe ser un numero";
+    private static final String OPCION_MENU_INVALIDO = "La opción %s elegida, no es una opción valida para este menú.";
+    private static final String CANTIDAD_INVALIDA = "La cantidad ingresada no es valida.";
     private static final String MENSAJE_EMAIL_NO_VALIDO = "El email ingresado no es valido.";
     private static final String MENSAJE_ID_YA_EXISTE_EN_BD = "El id ingresado ya existe en la base de datos. Para modificar usa la función de modificar vendedor";
     private static final String MENSAJE_TODOS_LOS_CAMPOS_SON_OBLIGATORIOS = "Todos los campos son obligatorios";
@@ -35,6 +37,30 @@ public class Validaciones {
         if (StringUtils.isBlank(idStr) || StringUtils.isBlank(nombre)
                 || StringUtils.isBlank(apellido) || StringUtils.isBlank(correo))
             throw new IllegalArgumentException(MENSAJE_TODOS_LOS_CAMPOS_SON_OBLIGATORIOS);
+    }
+
+    protected static int validarOpcionMenu(String valor, int min, int max){
+        try{
+            int valorInt = Integer.parseInt(valor);
+            if(valorInt >= min && valorInt <= max){
+                return valorInt;
+            }
+            throw new Exception();
+        } catch (Exception e){
+            throw new IllegalArgumentException(OPCION_MENU_INVALIDO.formatted(valor));
+        }
+    }
+
+    protected static int validarCantidad(String valor, int min, int max){
+        try{
+            int valorInt = Integer.parseInt(valor);
+            if(valorInt >= min && valorInt <= max){
+                return valorInt;
+            }
+            throw new Exception();
+        } catch (Exception e){
+            throw new IllegalArgumentException(CANTIDAD_INVALIDA);
+        }
     }
 
 }

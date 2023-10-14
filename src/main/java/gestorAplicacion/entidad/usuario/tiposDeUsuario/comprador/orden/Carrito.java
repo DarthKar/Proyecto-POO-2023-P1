@@ -20,4 +20,9 @@ public class Carrito extends Transaccion {
     public void removerProducto(ProductoTransaccion productoTransaccion) {
         //TODO: Realizar implementación
     }
+
+    @Override
+    public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
+
+    }
 }

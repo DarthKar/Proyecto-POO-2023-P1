@@ -38,6 +38,14 @@ public class Publicacion implements Serializable {
         this.inventario = inventario;
     }
 
+    public void aumentarInventario(int cantidad){
+        inventario += cantidad;
+    }
+
+    public void reducirInventario(int cantidad){
+        inventario -= cantidad;
+    }
+
     public float getPrecio() {
         return precio;
     }

@@ -31,4 +31,9 @@ public class Orden extends Transaccion {
         //TODO: Realizar implementación
     }
 
+    @Override
+    public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
+        //TODO: Realizar implementación
+    }
+
 }

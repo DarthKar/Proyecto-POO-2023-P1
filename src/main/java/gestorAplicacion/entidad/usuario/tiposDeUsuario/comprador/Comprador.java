@@ -96,4 +96,8 @@ public class Comprador extends Usuario {
     public void agregarOrden(Orden orden) {
         ordenes.add(orden);
     }
+
+    public List<Orden> getOrdenesValidasParaDevolucion() {
+        return ordenes.stream().filter(orden -> !orden.isTieneDevoluciones()).toList();
+    }
 }
