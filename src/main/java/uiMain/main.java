@@ -33,6 +33,7 @@ public class main {
                 + "1. Realizar compra\n"
                 + "2....\n"
                 + "3 Menú compradores\n"
+                + "4. Opinar \n"
                 + "9 Gestión vendedores\n"
                 + "10. Para cerrar la aplicación";
     }
