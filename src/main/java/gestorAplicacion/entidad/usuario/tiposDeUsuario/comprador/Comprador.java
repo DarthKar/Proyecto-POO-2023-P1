@@ -111,4 +111,16 @@ public class Comprador extends Usuario {
                     .anyMatch(productoTransaccion -> !productoTransaccion.getPublicacion().getProducto().getCategoria().isPerecedero()))
         .toList();
     }
+    public static Comprador masComprador() {
+    	int tamanoOrdenes=0;
+    	Comprador mascomprador=null;
+    	for(Comprador comprador: CompradorRepositorio.obtener()) {
+    		if (comprador.getOrdenes().size()>tamanoOrdenes) {
+    			tamanoOrdenes=comprador.getOrdenes().size();
+    			mascomprador=comprador;
+    		}
+    		
+    	}
+    return mascomprador;
+    }
 }
