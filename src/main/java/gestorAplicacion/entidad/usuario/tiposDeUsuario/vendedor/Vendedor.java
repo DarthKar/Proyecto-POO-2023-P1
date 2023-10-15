@@ -1,5 +1,6 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor;
 
+import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.Usuario;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.opinion.OpinionVendedor;
@@ -7,31 +8,31 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.opinion.OpinionV
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Vendedor extends Usuario {
 
-    private List<ProductoVendedor> productosVendedor;
+    private List<Publicacion> publicaciones;
     private List<OpinionVendedor> opinionesVendedor;
     private List<Comprador> compradores;
     private List<Comprador> resenadores;
 
-
     public Vendedor(long id, String nombre, String apellido, String correo) {
         super(id, nombre, apellido, correo);
-        this.productosVendedor = new ArrayList<>();
+        this.publicaciones = new ArrayList<>();
         this.opinionesVendedor = new ArrayList<>();
         this.compradores = new ArrayList<>(); // Nuevo array para verificar si el comprador que va a crear una opinion si ha comprado en esa tienda
         
     }
 
-    public List<ProductoVendedor> getProductoVendedor() {
-        return productosVendedor;
+    public List<Publicacion> getProductoVendedor() {
+        return publicaciones;
     }
 
-    public void addProductoVendedor(ProductoVendedor productoVendedor) {
-        if(Objects.isNull(productoVendedor))
+    protected void agregarPublicacion(Publicacion publicacion) {
+        if(Objects.isNull(publicacion))
             return;
-        productosVendedor.add(productoVendedor);
+        publicaciones.add(publicacion);
     }
 
     public List<OpinionVendedor> getOpinionVendedor() {
@@ -45,7 +46,7 @@ public class Vendedor extends Usuario {
     }
     
       public boolean existeResena(Comprador comprador){
-        return resenadores.contains(comprador);                  // Creacion del metodo ExisteResena que comprueba si ya hay una reseña
+        return resenadores.contains(comprador);                  // Creacion del metodo ExisteResena que comprueba si ya hay una reseï¿½a
    
     }
     
@@ -53,8 +54,8 @@ public class Vendedor extends Usuario {
         return compradores;                                 // Getter y setter para esas listas
     }                                                                      
 
-    public void setProductosVendedor(List<ProductoVendedor> productosVendedor) {
-        this.productosVendedor = productosVendedor;
+    public void setPublicaciones(List<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
     }
 
     public void setOpinionesVendedor(List<OpinionVendedor> opinionesVendedor) {
@@ -72,6 +73,12 @@ public class Vendedor extends Usuario {
     public List<Comprador> getResenadores() {
         return resenadores;
     }
-    
-    
+
+    public void crearPublicacion(Producto producto, int inventario, float precio){
+       Optional<Publicacion> publicacionOptional = publicaciones.stream().filter(publicacion -> publicacion.getProducto().equals(producto)).findAny();
+       if (publicacionOptional.isPresent()){
+           throw new IllegalArgumentException("Ya existe una publicaciÃ³n creada con el producto %s".formatted(producto.getNombre()));
+       }
+       new Publicacion(this, producto, inventario, precio);
+    }
 }

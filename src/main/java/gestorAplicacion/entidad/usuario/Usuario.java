@@ -3,6 +3,7 @@ package gestorAplicacion.entidad.usuario;
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
+
     protected long id;
     protected String nombre;
     protected String apellido;
@@ -33,6 +34,10 @@ public class Usuario implements Serializable {
 
     public String getApellido() {
         return apellido;
+    }
+
+    public String getNombreCompleto(){
+        return (nombre + " " + apellido).trim();
     }
 
     public void setApellido(String apellido) {

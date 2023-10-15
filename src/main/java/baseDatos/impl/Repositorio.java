@@ -1,5 +1,7 @@
 package baseDatos.impl;
 
+import gestorAplicacion.entidad.producto.Producto;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +16,7 @@ import java.util.stream.IntStream;
 
 public class Repositorio {
 
-    public static BaseDatos baseDatos;
+    private static BaseDatos baseDatos;
     public static final String FILE = "basedatos.txt";
     private static final String PATH = System.getProperty("user.dir") + "\\temp\\%s";
 
@@ -36,8 +38,31 @@ public class Repositorio {
         guardarArchivo();
     }
 
+    protected static void guardar(Comprador comprador) {
+        OptionalInt pos = IntStream.range(0, baseDatos.getVendedores().size())
+                .filter(i -> comprador.getId() == baseDatos.getVendedores().get(i).getId())
+                .findFirst();
 
-    
+        if (pos.isEmpty()) {
+            baseDatos.getCompradores().add(comprador);
+        } else {
+            baseDatos.getCompradores().set(pos.getAsInt(), comprador);
+        }
+        guardarArchivo();
+    }
+
+    public static void guardar(Producto producto) {
+        OptionalInt pos = IntStream.range(0, baseDatos.getProductos().size())
+                .filter(i -> producto.getId() == baseDatos.getProductos().get(i).getId())
+                .findFirst();
+
+        if (pos.isEmpty()) {
+            baseDatos.getProductos().add(producto);
+        } else {
+            baseDatos.getProductos().set(pos.getAsInt(), producto);
+        }
+        guardarArchivo();
+    }
 
     protected static Optional<Vendedor> obtenerVendedorPorId(long id) {
         return baseDatos.getVendedores().stream()
@@ -50,6 +75,26 @@ public class Repositorio {
 
     protected static void eliminarVendedor(long id) {
         baseDatos.getVendedores().remove(obtenerVendedorPorId(id).orElseThrow(() -> new IllegalArgumentException("No existe el vendedor")));
+    }
+
+    protected static List<Comprador> obtenerCompradores() {
+        return baseDatos.getCompradores();
+    }
+
+    protected static Optional<Comprador> obtenerCompradorPorId(long id) {
+        return baseDatos.getCompradores().stream().filter(c -> c.getId() == id).findAny();
+    }
+
+    public static Optional<Producto> obtenerProducto(long id) {
+        return baseDatos.getProductos().stream().filter(c -> c.getId() == id).findAny();
+    }
+
+    public static List<Producto> obtenerProductos() {
+        return baseDatos.getProductos();
+    }
+
+    protected static void eliminarComprador(long id) {
+        baseDatos.getCompradores().remove(obtenerCompradorPorId(id).orElseThrow(() -> new IllegalArgumentException("No existe el comprador")));
     }
 
     private static void guardarArchivo() {
@@ -73,9 +118,7 @@ public class Repositorio {
             FileInputStream f = new FileInputStream(PATH.formatted(FILE));
             ObjectInputStream objectInputStream = new ObjectInputStream(f);
             baseDatos = (BaseDatos) objectInputStream.readObject();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

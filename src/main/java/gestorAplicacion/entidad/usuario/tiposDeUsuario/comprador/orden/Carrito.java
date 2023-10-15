@@ -12,12 +12,17 @@ public class Carrito extends Transaccion {
     }
 
     @Override
-    protected void agregarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
+    public void agregarProducto(ProductoTransaccion productoTransaccion) {
         //TODO: Realizar implementación
     }
 
     @Override
-    protected void removerProducto(ProductoTransaccion productoTransaccion, int cantidad) {
+    public void removerProducto(ProductoTransaccion productoTransaccion) {
         //TODO: Realizar implementación
+    }
+
+    @Override
+    public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
+
     }
 }
