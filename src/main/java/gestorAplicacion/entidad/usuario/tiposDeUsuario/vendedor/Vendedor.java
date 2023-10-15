@@ -17,7 +17,6 @@ public class Vendedor extends Usuario {
     private List<Comprador> compradores;
     private List<Comprador> resenadores;
 
-
     public Vendedor(long id, String nombre, String apellido, String correo) {
         super(id, nombre, apellido, correo);
         this.publicaciones = new ArrayList<>();
@@ -29,8 +28,6 @@ public class Vendedor extends Usuario {
     public List<Publicacion> getProductoVendedor() {
         return publicaciones;
     }
-
-
 
     protected void agregarPublicacion(Publicacion publicacion) {
         if(Objects.isNull(publicacion))
@@ -84,5 +81,4 @@ public class Vendedor extends Usuario {
        }
        new Publicacion(this, producto, inventario, precio);
     }
-    
 }

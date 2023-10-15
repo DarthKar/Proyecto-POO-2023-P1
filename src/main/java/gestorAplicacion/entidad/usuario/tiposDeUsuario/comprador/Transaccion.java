@@ -33,8 +33,6 @@ public abstract class Transaccion implements Serializable {
 
     public abstract void agregarProducto(ProductoTransaccion productoTransaccion);
     public abstract void removerProducto(ProductoTransaccion productoTransaccion);
-
     public abstract void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad);
-
 
 }

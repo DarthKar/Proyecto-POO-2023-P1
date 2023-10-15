@@ -111,7 +111,4 @@ public class Comprador extends Usuario {
                     .anyMatch(productoTransaccion -> !productoTransaccion.getPublicacion().getProducto().getCategoria().isPerecedero()))
         .toList();
     }
-
-
-
 }

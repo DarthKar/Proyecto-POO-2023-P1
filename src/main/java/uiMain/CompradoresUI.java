@@ -262,6 +262,4 @@ public class CompradoresUI extends Validaciones {
 
     private static void comprar() {
     }
-
-
 }

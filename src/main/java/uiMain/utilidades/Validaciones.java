@@ -62,5 +62,4 @@ public class Validaciones {
             throw new IllegalArgumentException(CANTIDAD_INVALIDA);
         }
     }
-
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Devolucion extends Transaccion {
-    Orden orden;
+    private Orden orden;
 
     public Devolucion(Comprador comprador) {
         super(comprador);
