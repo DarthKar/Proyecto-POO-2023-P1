@@ -12,9 +12,10 @@ public abstract class Transaccion implements Serializable {
     protected long id;
 
     protected Comprador comprador;
-    protected List<ProductoTransaccion> productosTransaccion;
+    protected  List<ProductoTransaccion> productosTransaccion;
 
-    public Transaccion(Comprador comprador) {
+    public Transaccion(long id, Comprador comprador) {
+        this.id = id;
         this.comprador = comprador;
         productosTransaccion = new ArrayList<>();
     }

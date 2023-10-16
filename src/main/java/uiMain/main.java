@@ -2,6 +2,7 @@ package uiMain;
 
 import baseDatos.impl.Repositorio;
 import gestorAplicacion.casoDeUso.*;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Carrito;
 
 import java.util.Scanner;
 
@@ -9,13 +10,13 @@ public class main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        
         System.out.println("Bienvenido a e-commerce XYZ");
         menuLoop : do {
             System.out.println(getOpciones());
             String opcion = scanner.nextLine().trim();
-            switch (opcion) {
-                case "1", "2":
+            switch (opcion) { 
+                case "1": productosIU.IU(scanner);
                     continue;
                 case "3": CompradoresUI.IU(scanner);
                     continue;
