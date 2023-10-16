@@ -19,6 +19,8 @@ public class main {
                     continue;
                 case "3": CompradoresUI.IU(scanner);
                     continue;
+                case "4":
+                	continue;
                 case "9": vendedoresIU.IU(scanner);
                     continue;
                 case "10":
@@ -33,6 +35,7 @@ public class main {
                 + "1. Realizar compra\n"
                 + "2....\n"
                 + "3 Menú compradores\n"
+                +"4 Estadisticas\n"
                 + "9 Gestión vendedores\n"
                 + "10. Para cerrar la aplicación";
     }
