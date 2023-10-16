@@ -112,6 +112,7 @@ public class BaseDatos implements Serializable {
             compradores.add(new Comprador(33L, "Juan", "López", "juan@example.com", Membresia.BRONCE));
             compradores.add(new Comprador(34L, "María", "Sánchez", "maria@example.com", Membresia.ORO));
             compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA));
+            compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO));
 
             vendedores.add(new Vendedor(1L, "Juan", "Pérez", "juan@example.com"));
             vendedores.add(new Vendedor(2L, "María", "López", "maria@example.com"));
@@ -148,7 +149,6 @@ public class BaseDatos implements Serializable {
             vendedores.add(new Vendedor(33L, "Carlos", "López", "carlos@example.com"));
             vendedores.add(new Vendedor(34L, "Ana", "Martínez", "ana@example.com"));
             vendedores.add(new Vendedor(35L, "Pedro", "Sánchez", "pedro@example.com"));
-
 
         vendedores.forEach(vendedor -> {
             int cantidadPublicaciones = RandomUtils.nextInt(5, 11);

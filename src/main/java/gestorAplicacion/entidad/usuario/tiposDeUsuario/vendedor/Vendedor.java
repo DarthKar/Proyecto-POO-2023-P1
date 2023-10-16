@@ -35,7 +35,7 @@ public class Vendedor extends Usuario {
         publicaciones.add(publicacion);
     }
 
-    public List<OpinionVendedor> getOpinionVendedor() {
+    public List<OpinionVendedor> getOpinion() {
         return opinionesVendedor;
     }
 

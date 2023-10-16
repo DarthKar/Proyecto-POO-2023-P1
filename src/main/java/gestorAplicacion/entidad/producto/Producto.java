@@ -1,7 +1,7 @@
 package gestorAplicacion.entidad.producto;
 
 import baseDatos.impl.ProductoRepositorio;
-import baseDatos.impl.Repositorio;
+
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 
@@ -109,5 +109,12 @@ public class Producto implements Serializable {
 
     public static List<Producto> getProductos(){
         return ProductoRepositorio.getProductos();
+    }
+     public void agregarComprador(Comprador comprador) {
+        compradores.add(comprador);
+    }
+
+    public void agregarResenador(Comprador resenador) {
+        resenadores.add(resenador);
     }
 }
