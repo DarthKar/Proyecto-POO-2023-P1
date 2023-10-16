@@ -179,22 +179,22 @@ public class Comprador extends Usuario {
 
         final List<Producto> productosMasComprados = cantidadDeComprasProductos.entrySet()
                 .stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(3).map(Map.Entry::getKey).toList();
 
         final List<Publicacion> publicacionesMasCompradas = cantidadDeComprasPublicacion.entrySet()
                 .stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(3).map(Map.Entry::getKey).toList();
 
         final List<Vendedor> vendedoresMasComprados = cantidadDeComprasVendedor.entrySet()
                 .stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(3).map(Map.Entry::getKey).toList();
 
         final List<Categoria> categoriasMasCompradas = cantidadDeComprasCategoria.entrySet()
                 .stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(3).map(Map.Entry::getKey).toList();
 
 
@@ -224,7 +224,7 @@ public class Comprador extends Usuario {
 
             Optional<Map.Entry<Publicacion, Integer>> publicacionRecomendada = tempPublicaciones.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByValue())
+                    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                     .limit(1)
                     .findFirst();
 
@@ -234,7 +234,7 @@ public class Comprador extends Usuario {
         });
 
         return puntuacionPublicaciones.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(numeroPublicaciones)
                 .map(Map.Entry::getKey)
                 .toList();
