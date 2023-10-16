@@ -11,12 +11,14 @@ public class Publicacion implements Serializable {
     private int inventario;
     private float precio;
     private boolean oculto;
+    private float coste;
 
-    public Publicacion(Vendedor vendedor, Producto producto, int inventario, float precio) {
+    public Publicacion(Vendedor vendedor, Producto producto, int inventario, float precio,float coste) {
         this.vendedor = vendedor;
         this.producto = producto;
         this.inventario = inventario;
         this.precio = precio;
+        this.coste=coste;
         this.oculto = false;
         vendedor.agregarPublicacion(this);
         producto.agregarPublicacion(this);
@@ -32,6 +34,13 @@ public class Publicacion implements Serializable {
 
     public int getInventario() {
         return inventario;
+    }
+    public float getCoste() {
+    	return coste;
+    }
+    
+    public void setCoste(float coste) {
+    	this.coste=coste;
     }
 
     protected void setInventario(int inventario) {
@@ -67,6 +76,13 @@ public class Publicacion implements Serializable {
     protected void setOculto(boolean oculto) {
         this.oculto = oculto;
     }
+
+public float utilidadProducto() {
+	return (this.precio - this.coste);
+	
+
+}
+
 
 
 }
