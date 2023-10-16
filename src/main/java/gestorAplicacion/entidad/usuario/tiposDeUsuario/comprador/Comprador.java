@@ -211,6 +211,11 @@ public class Comprador extends Usuario {
                 if (publicacionesMasCompradas.contains(publicacion)) {
                     puntuacionPublicacion += 10;
                 }
+
+                if(ultimaOrden.productosTransaccion.stream()
+                        .anyMatch(productoTransaccion -> productoTransaccion.getPublicacion().equals(publicacion))){
+                    puntuacionPublicacion+=4;
+                }
                 tempPublicaciones.put(publicacion, puntuacionPublicacion);
             });
 
