@@ -34,10 +34,11 @@ public class main {
         return "Selecciona una de las siguientes opciones\n"
                 + "1. Realizar compra\n"
                 + "2....\n"
-                + "3 Menu compradores\n"
+                + "3 Menú compradores\n"
                 + "4. Opinar \n"
-                + "9 Gestion vendedores\n"
-                + "10. Para cerrar la aplicacion";
+                + "5. Estadisticas\n"
+                + "9 Gestión vendedores\n"
+                + "10. Para cerrar la aplicación";
     }
 
 
