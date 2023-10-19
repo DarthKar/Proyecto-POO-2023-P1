@@ -12,8 +12,8 @@ import java.util.List;
 public class Devolucion extends Transaccion {
     private Orden orden;
 
-    public Devolucion(Comprador comprador) {
-        super(comprador);
+    public Devolucion(long id,Comprador comprador) {
+        super(id,comprador);
     }
 
     @Override

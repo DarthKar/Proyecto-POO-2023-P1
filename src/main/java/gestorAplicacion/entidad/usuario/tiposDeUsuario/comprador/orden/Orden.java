@@ -8,8 +8,8 @@ public class Orden extends Transaccion {
 
     boolean tieneDevoluciones;
 
-    public Orden(Comprador comprador) {
-        super(comprador);
+    public Orden(Long id,Comprador comprador) {
+        super(id, comprador);
     }
 
     public boolean isTieneDevoluciones() {
@@ -18,6 +18,10 @@ public class Orden extends Transaccion {
 
     public void setTieneDevoluciones(boolean tieneDevoluciones) {
         this.tieneDevoluciones = tieneDevoluciones;
+    }
+    
+    public String mostrarOrden(){
+        return"Comprado por: "+ this.comprador.getNombreCompleto()+" \nid de la compra : "+this.id+"\n-------------------------------";    //metodo para mostrar una orden individualmente 
     }
 
     @Override
