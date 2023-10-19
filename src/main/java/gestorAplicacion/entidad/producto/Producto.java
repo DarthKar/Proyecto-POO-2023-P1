@@ -118,18 +118,12 @@ public class Producto implements Serializable {
     public void agregarResenador(Comprador resenador) {
         resenadores.add(resenador);
     }
-}
+
 
 	public static List<Producto> getProductos(){
 		return ProductoRepositorio.getProductos();
 	}
            
-        compradores.add(comprador);
-    }
-
-    public void agregarResenador(Comprador resenador) {
-        resenadores.add(resenador);
-    }
 	
 	public static Producto productoMasVendido() {
 		Map<Producto,Integer> producto=new HashMap<>();
