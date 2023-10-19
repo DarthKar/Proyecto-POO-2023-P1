@@ -117,7 +117,7 @@ public class Producto implements Serializable {
 	}
 
 	
-	public Producto productoMasVendido() {
+	public static Producto productoMasVendido() {
 		Map<Producto,Integer> producto=new HashMap<>();
 		for(Comprador comprador:CompradorRepositorio.obtener()) {
 			for (Orden orden:comprador.getOrdenes()) {  // cambiarlo por transaccion
