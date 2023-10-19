@@ -115,7 +115,14 @@ public class Producto implements Serializable {
 	public static List<Producto> getProductos(){
 		return ProductoRepositorio.getProductos();
 	}
+           
+          public void agregarComprador(Comprador comprador) {
+        compradores.add(comprador);
+    }
 
+    public void agregarResenador(Comprador resenador) {
+        resenadores.add(resenador);
+    }
 	
 	public Producto productoMasVendido() {
 		Map<Producto,Integer> producto=new HashMap<>();
@@ -149,6 +156,9 @@ public class Producto implements Serializable {
 		
 	}
 
-	
+   
 }
+
+	
+
 
