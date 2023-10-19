@@ -11,6 +11,7 @@ public class main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         System.out.println("Bienvenido a e-commerce XYZ");
 
         menuLoop : do {
@@ -21,8 +22,13 @@ public class main {
                     continue;
                 case "3": CompradoresUI.IU(scanner);
                     continue;
+
                 case "4": opinionUI.IU(scanner);
                     continue;
+                      
+                case "5":Estadistica.interfaz(scanner);
+                continue;
+            	
                 case "9": vendedoresIU.IU(scanner);
                     continue;
                 case "10":
