@@ -35,7 +35,7 @@ public class Vendedor extends Usuario {
         publicaciones.add(publicacion);
     }
 
-    public List<OpinionVendedor> getOpinionVendedor() {
+    public List<OpinionVendedor> getOpinion() {
         return opinionesVendedor;
     }
 
@@ -52,7 +52,11 @@ public class Vendedor extends Usuario {
     
     public List<Comprador> getCompradores(){
         return compradores;                                 // Getter y setter para esas listas
-    }                                                                      
+    }                 
+    
+    public List<Publicacion> getPublicaciones(){                    //Getter para la lista de publicaciones del respectivo vendedor
+        return this.publicaciones;
+    }
 
     public void setPublicaciones(List<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;

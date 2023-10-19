@@ -2,7 +2,7 @@ package gestorAplicacion.entidad.producto;
 
 import baseDatos.impl.CompradorRepositorio;
 import baseDatos.impl.ProductoRepositorio;
-import baseDatos.impl.Repositorio;
+
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Orden;
@@ -111,11 +111,25 @@ public class Producto implements Serializable {
 	public boolean isPerecedero(){
 		return categoria.isPerecedero();
 	}
+     public void agregarComprador(Comprador comprador) {
+        compradores.add(comprador);
+    }
+
+    public void agregarResenador(Comprador resenador) {
+        resenadores.add(resenador);
+    }
+}
 
 	public static List<Producto> getProductos(){
 		return ProductoRepositorio.getProductos();
 	}
+           
+        compradores.add(comprador);
+    }
 
+    public void agregarResenador(Comprador resenador) {
+        resenadores.add(resenador);
+    }
 	
 	public static Producto productoMasVendido() {
 		Map<Producto,Integer> producto=new HashMap<>();
@@ -149,6 +163,6 @@ public class Producto implements Serializable {
 		
 	}
 
-	
+   
 }
 

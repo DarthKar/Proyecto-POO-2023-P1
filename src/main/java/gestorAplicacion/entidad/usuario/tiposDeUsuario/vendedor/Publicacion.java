@@ -68,7 +68,11 @@ public class Publicacion implements Serializable {
     protected void setOculto(boolean oculto) {
         this.oculto = oculto;
     }
-
+    
+    public String mostrarPublicacion(){
+        return "Vendedor: "+this.getVendedor()+"\nProducto: "+this.getProducto()+"\nInventario: "
+                +this.getInventario()+"\nPrecio: "+this.getPrecio();                                                                //Metodo para mostrar las publicaciones en un formato
+    }
 
 
 

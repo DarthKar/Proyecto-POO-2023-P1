@@ -7,6 +7,7 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Devolucion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Orden;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import uiMain.utilidades.Validaciones;
 
@@ -45,17 +46,25 @@ public class CompradoresUI extends Validaciones {
                     comprar();
                     continue;
                 case 2:
-                    realizarDevolucion();
+                    productosRecomendados();
                     continue;
                 case 3:
-                    listarOrdenes(compradorActual.getOrdenes());
+                    realizarDevolucion();
                     continue;
                 case 4:
+                    listarOrdenes(compradorActual.getOrdenes());
+                    continue;
+                case 5:
                     break menuBuscarComprador;
                 default:
                     System.out.println("Ha elegido una opción invalida.");
             }
         } while (true);
+    }
+
+    private static void productosRecomendados() {
+        List<Publicacion> publicaciones = compradorActual.getPublicacionesRecomendadas(5);
+        publicaciones.forEach(publicacion -> System.out.println(publicacion.getProducto().getNombre()));
     }
 
     private static Comprador buscarComprador() {
@@ -244,9 +253,10 @@ public class CompradoresUI extends Validaciones {
     private static String getOpciones() {
         return "Selecciona una de las siguientes opciones\n"
                 + "1. Comprar\n"
-                + "2. Realizar devolución\n"
-                + "3. Listar Ordenes\n"
-                + "4. Regresar\n";
+                + "2. Productos recomendados\n"
+                + "3. Realizar devolución\n"
+                + "4. Listar Ordenes\n"
+                + "5. Regresar\n";
     }
 
     private static String getOpcionesDevolucion(Devolucion devolucion) {
