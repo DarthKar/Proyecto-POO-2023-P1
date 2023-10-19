@@ -25,8 +25,12 @@ public class ProductoTransaccion implements Serializable {
         this.cantidad = cantidad;
     }
     
+    public float getSubTotal(){
+        return this.getCantidad()*this.getPublicacion().getPrecio();           //metodo para obtener el subtotal individual de un producto en una transaccion
+    }
+    
     public String mostrarEspProducto(){
         return "Nombre: "+this.getPublicacion().getProducto().getNombre()+"\nCantidad: "+this.getCantidad()+"\nPrecio: "+this.getPublicacion().getPrecio()
-                +"\nSubtotal: "+(this.getCantidad()*this.getPublicacion().getPrecio());
+                +"\nSubtotal: "+this.getSubTotal();
     }
 }

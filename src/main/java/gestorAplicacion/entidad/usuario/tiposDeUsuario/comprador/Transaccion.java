@@ -1,5 +1,6 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
+import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 
@@ -27,9 +28,21 @@ public abstract class Transaccion implements Serializable {
     public List<ProductoTransaccion> getProductosTransaccion() {
         return productosTransaccion;
     }
+    
+    public void setProductosTransaccion(List<ProductoTransaccion> productoTra) {       //metodo que uso para asignarle a las ordenes la misma lista de productos que el carrito de compras
+        this.productosTransaccion = productoTra;
+    }
 
     public long getId() {
         return id;
+    }
+    
+    public final float calcularTotal(){
+        float Total = 0;
+        for(ProductoTransaccion proTran : productosTransaccion){                    //metodo para obtener el total de una transaccion o bien del  carrito
+            Total += proTran.getSubTotal();
+        }
+        return Total;
     }
 
     public abstract void agregarProducto(ProductoTransaccion productoTransaccion);

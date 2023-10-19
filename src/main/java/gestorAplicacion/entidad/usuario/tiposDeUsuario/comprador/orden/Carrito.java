@@ -10,6 +10,7 @@ public class Carrito extends Transaccion {
     public Carrito(Long id, Comprador comprador) {
         super(id,comprador);
     }
+    
 
     @Override
     public void agregarProducto(ProductoTransaccion productoTransaccion) {
@@ -19,7 +20,7 @@ public class Carrito extends Transaccion {
     }
 
     @Override
-    public void removerProducto(ProductoTransaccion productoTransaccion,int cantidad) {                 //implentado para remover productos a la lista en transaccion
+    public void removerProducto(ProductoTransaccion productoTransaccion) {                 //implentado para remover productos a la lista en transaccion
         for (int i = 0; i<productoTransaccion.getCantidad();i++){
             if (productosTransaccion.contains(productoTransaccion)){
             this.productosTransaccion.remove(productoTransaccion);
@@ -29,6 +30,6 @@ public class Carrito extends Transaccion {
 
     @Override
     public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
-        
+        productoTransaccion.setCantidad(cantidad);                                                                           //implementado para modifcar la cantidad de un producto en especifico
     }
 }
