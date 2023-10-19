@@ -24,4 +24,9 @@ public class ProductoTransaccion implements Serializable {
     public void setCantidad(int cantidad){
         this.cantidad = cantidad;
     }
+    
+    public String mostrarEspProducto(){
+        return "Nombre: "+this.getPublicacion().getProducto().getNombre()+"\nCantidad: "+this.getCantidad()+"\nPrecio: "+this.getPublicacion().getPrecio()
+                +"\nSubtotal: "+(this.getCantidad()*this.getPublicacion().getPrecio());
+    }
 }
