@@ -34,6 +34,7 @@ public class Publicacion implements Serializable {
         return inventario;
     }
 
+
     protected void setInventario(int inventario) {
         this.inventario = inventario;
     }
@@ -72,5 +73,8 @@ public class Publicacion implements Serializable {
         return "Vendedor: "+this.getVendedor()+"\nProducto: "+this.getProducto()+"\nInventario: "
                 +this.getInventario()+"\nPrecio: "+this.getPrecio()+"\n------------------------------------------";                                                                //Metodo para mostrar las publicaciones en un formato
     }
+
+
+
 
 }

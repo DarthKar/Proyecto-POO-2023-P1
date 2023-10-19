@@ -20,7 +20,7 @@ public class OpinionProducto extends Opinion {
     public void setComprador(Comprador comprador) {
         this.comprador = comprador;
     }
-    @Override
+     @Override
     public void setOpinion(String opinion) {
         this.opinion = opinion;
     }

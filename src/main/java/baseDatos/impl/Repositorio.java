@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 
 public class Repositorio {
 
-    private static BaseDatos baseDatos;
+    public static BaseDatos baseDatos;
     public static final String FILE = "basedatos.txt";
     private static final String PATH = System.getProperty("user.dir") + "\\temp\\%s";
 
@@ -124,7 +124,7 @@ public class Repositorio {
     }
 
     private static boolean crearArchivo() {
-        return !new File(PATH.formatted(FILE)).exists();
+        return !new File(PATH.formatted(FILE)).exists(); 
     }
 
     private static boolean crearDirectorio() {
