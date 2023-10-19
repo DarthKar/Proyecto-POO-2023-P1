@@ -13,6 +13,13 @@ public static void interfaz(Scanner scanner) {
 	do {
          System.out.println(getOpciones());
          int opcion;
+         int opcion2;
+         try{
+             opcion2 = validarOpcionMenu(scanner.nextLine(), 1, 4);
+         } catch (IllegalArgumentException e){
+             System.out.println(e.getMessage());
+             continue;
+         }
          try{
              opcion = validarOpcionMenu(scanner.nextLine(), 1, 4);
          } catch (IllegalArgumentException e){
@@ -22,8 +29,16 @@ public static void interfaz(Scanner scanner) {
 
          switch (opcion) {
              case 1:
-                 productoMasVendido();
-                 continue;
+            	 System.out.println("Bienvenido a las estadisticas generales del E-commerce, ingrese el numero de la estadistica que desea visualizar");             //  productoMasVendido();
+                 switch(opcion2) {
+                 case 1:
+                	 System.out.println("1. Ventas totales en el e-commerce");
+                	 break;
+                 case 2:
+                	 System.out.println("Cantidad total de devoluciones");
+                	 continue;
+                 }
+            	 continue;
              default:
                  System.out.println("Ha elegido una opción invalida.");
          }
@@ -37,6 +52,6 @@ private static void productoMasVendido() {
 }
 private static String getOpciones() {
 	// TODO Auto-generated method stub
-	return "1. Producto mas vendido" ;
+	return "1. Estadisticas generales" ;
 }
 }
