@@ -7,7 +7,7 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 
 public class Carrito extends Transaccion {
 
-    public Carrito(Long id, Comprador comprador) {
+    public Carrito(long id, Comprador comprador) {
         super(id,comprador);
     }
     

@@ -1,7 +1,5 @@
 package uiMain;
 
-import de.vandermeer.asciitable.AsciiTable;
-import gestorAplicacion.casoDeUso.UsuarioCDU;
 import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import baseDatos.impl.UsuarioRepositorio;
@@ -16,7 +14,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Objects;
-import static uiMain.CompradoresUI.compradorActual;
 
 public class productosIU extends Validaciones{
     static Comprador compradorActual;
@@ -25,11 +22,11 @@ public class productosIU extends Validaciones{
     protected static void IU(Scanner scanner) {
         productosIU.scanner = scanner;
         compradorActual = null;
-        
+
         do {
             compradorActual = buscarComprador();
         } while (Objects.isNull(compradorActual));
-        
+
         Carrito carrito = compradorActual.getCarrito();
         menuProductoLoop:
         do {
@@ -195,9 +192,9 @@ public class productosIU extends Validaciones{
                 + "10. Volver al menu principal\n";
     }
     
-    
-    
-    
+
+
+
     private static String opciones_5() {
         return "Que desea modificar?\n"
                 + "1. Modificar cantidad de productos\n"
@@ -205,35 +202,35 @@ public class productosIU extends Validaciones{
                 + "10. Volver al menu principal\n";
     }
     
-    
-    
+
+
     private static String opciones_6(){
         return "Desea crear esta orden(Esto vaciara el carrito)"
                 + "1. Si\n"
                 + "2. No\n";
     }
-    
-    
-    
-    
+
+
+
+
     private static String opcionesPago() {
         return "¿Desea agregar fondos antes de proseguir con el pago?\n"
                 + "1. Si\n"
                 + "2. No\n";
     }
-    
-    
-    
-    
+
+
+
+
     private static String opcionesPago1() {
         return "Desea proceder con el pago\n"
                 + "1. Si\n"
                 + "2. No\n";
     }
-    
-     
-    
-    
+
+
+
+
     private static Comprador buscarComprador() {
         System.out.println("Ingresa id de comprador");
         String id = scanner.nextLine();

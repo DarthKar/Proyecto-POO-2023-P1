@@ -97,7 +97,7 @@ public class CompradoresUI extends Validaciones {
     }
 
     private static void realizarDevolucion() {
-        Devolucion devolucion = new Devolucion(compradorActual);
+        Devolucion devolucion = new Devolucion(0L, compradorActual);
         try {
             Optional<Orden> ordenOptional = listarOrdenesEleccion(compradorActual.getOrdenesValidasParaDevolucion());
             if(ordenOptional.isEmpty()){

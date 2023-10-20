@@ -19,9 +19,9 @@ public class Orden extends Transaccion {
     public void setTieneDevoluciones(boolean tieneDevoluciones) {
         this.tieneDevoluciones = tieneDevoluciones;
     }
-    
+
     public String mostrarOrden(){
-        return"Comprado por: "+ this.comprador.getNombreCompleto()+" \nid de la compra : "+this.id+"\n-------------------------------";    //metodo para mostrar una orden individualmente 
+        return"Comprado por: "+ this.comprador.getNombreCompleto()+" \nid de la compra : "+this.id+"\n-------------------------------";    //metodo para mostrar una orden individualmente
     }
 
     @Override

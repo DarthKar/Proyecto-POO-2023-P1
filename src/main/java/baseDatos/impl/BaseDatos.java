@@ -172,7 +172,7 @@ public class BaseDatos implements Serializable {
         compradores.forEach(comprador -> {
             int cantidadOrdenes = RandomUtils.nextInt(1,9);
             IntStream.range(0,cantidadOrdenes).forEach(i -> {
-                Orden orden = new Orden(comprador);
+                Orden orden = new Orden((long) i,comprador);
                 int cantidadArticulos = RandomUtils.nextInt(1, 4);
                 IntStream.range(0, cantidadArticulos).forEach(j -> {
 

@@ -289,5 +289,7 @@ public class Comprador extends Usuario {
                 .map(Map.Entry::getKey)
                 .toList();
     }
+    
+    
 
 }
