@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class productosIU extends Repositorio {
-    static Carrito carrito = new Carrito(234L,Repositorio.obtenerCompradores().get(23));
+    static Carrito carrito = new Carrito(Repositorio.obtenerCompradores().get(23));
     static ArrayList<Publicacion> puaux = new ArrayList<>();
     protected static void IU(Scanner scanner) {
         menuProductoLoop:

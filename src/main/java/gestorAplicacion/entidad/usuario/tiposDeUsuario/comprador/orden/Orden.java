@@ -9,7 +9,7 @@ public class Orden extends Transaccion {
     boolean tieneDevoluciones;
 
     public Orden(Comprador comprador) {
-        super(comprador);
+        super(123,comprador);
     }
 
     public boolean isTieneDevoluciones() {
