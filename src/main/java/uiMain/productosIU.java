@@ -37,6 +37,7 @@ public class productosIU extends Validaciones {
                 continue;
             }
             switch (opcion) {
+                
                 case 1:
                     for (int i = 0; i < Producto.getProductos().size(); i++) {
                         System.out.println((i + 1) + ". " + Producto.getProductos().get(i).getNombre());
@@ -61,6 +62,7 @@ public class productosIU extends Validaciones {
                     }
                     carrito.agregarProducto(compraPR);
                     continue;
+                
                 case 3:
                     System.out.println("Elija el producto que desea comprar");
                     int select = Integer.parseInt(scanner.nextLine().trim());
@@ -84,6 +86,7 @@ public class productosIU extends Validaciones {
                     ProductoTransaccion compra = new ProductoTransaccion(puaux.get(select1), cantidadDeseada);
                     carrito.agregarProducto(compra);
                     continue;
+                
                 case 4:
                     System.out.println("Elija el producto que desea eliminar del carrito");
                     int select2 = Integer.parseInt(scanner.nextLine().trim());
@@ -95,6 +98,7 @@ public class productosIU extends Validaciones {
                         carrito.getProductosTransaccion().get(select2).setCantidad(carrito.getProductosTransaccion().get(select2).getCantidad() - cantidadEl);
                     }
                     continue;
+                
                 case 5:
                     int contador1 = 1;
                     for (ProductoTransaccion productosTransaccion : carrito.getProductosTransaccion()) {
@@ -102,6 +106,7 @@ public class productosIU extends Validaciones {
                         contador1++;
                     }
                     continue;
+               
                 case 6:
                     System.out.println(opciones_5());
                     String opcion2 = scanner.nextLine().trim();
@@ -124,6 +129,7 @@ public class productosIU extends Validaciones {
                     }
 
                     continue;
+                
                 case 7:
                     System.out.println("Detalles de la orden de compra");
                     Random random = new Random();
@@ -139,17 +145,20 @@ public class productosIU extends Validaciones {
                     System.out.println(opciones_6());
                     String opcion3 = scanner.nextLine().trim();
                     switch (opcion3) {
+                        
                         case "1":
                             compradorActual.agregarOrden(ordencompra);
                             System.out.println("Orden creada con exito, regresando al menu de compra");
                             System.out.println("El id es: " + ordencompra.getId() + " guardelo para el pago");
                             carrito.getProductosTransaccion().clear();
                             break;
+                       
                         case "2":
                             System.out.println("No se ha creado la orden, regresando al menú de compra");
                             break;
                     }
                     continue;
+                
                 case 8:
                     int contador3 = 1;
                     for (Orden or : compradorActual.getOrdenes()) {
@@ -194,7 +203,7 @@ public class productosIU extends Validaciones {
                             break;
                     }
                     return;
-                case 10:
+                case 9:
                     return;
                 default:
                     System.out.println("Has elegido una opción invalida. Regresando al menú");
@@ -213,7 +222,7 @@ public class productosIU extends Validaciones {
                 + "6. Modificar carrito\n"
                 + "7. Crear orden de compra"
                 + "8. Realizar pago"
-                + "10. Volver al menu principal\n";
+                + "9. Volver al menu principal\n";
     }
 
 
@@ -221,7 +230,7 @@ public class productosIU extends Validaciones {
         return "Que desea modificar?\n"
                 + "1. Modificar cantidad de productos\n"
                 + "2. Vaciar carrito completamente\n"
-                + "10. Volver al menu principal\n";
+                + "3. Volver al menu principal\n";
     }
 
 
