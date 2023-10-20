@@ -186,6 +186,7 @@ public class productosIU extends Validaciones {
                     System.out.println(opcionesPago1());
                     String opcion5 = scanner.nextLine().trim();
                     switch (opcion5) {
+                        
                         case "1":
                             if (compradorActual.getSaldo() < totalpagar) {
                                 System.out.println("El saldo es insuficiente");
@@ -195,14 +196,19 @@ public class productosIU extends Validaciones {
                             for (ProductoTransaccion prod : ordenpagar.getProductosTransaccion()) {
                                 prod.getPublicacion().getProducto().getCompradores().add(compradorActual);
                             }
+                            for (ProductoTransaccion comprado : ordenpagar.getProductosTransaccion()) {
+                                compradorActual.agregarProductoComprado(comprado);
+                            }
                             System.out.println("Pago realizado con exito");
                             System.out.println("Total pagado: " + totalpagar);
                             break;
+                        
                         case "2":
                             System.out.println("Cancelando....");
                             break;
                     }
                     return;
+                
                 case 9:
                     return;
                 default:
