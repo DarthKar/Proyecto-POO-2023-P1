@@ -86,7 +86,7 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    public void setComprodores(List compradores) {
+    public void setComprodores(List<Comprador> compradores) {
         this.compradores = compradores;
     }
 
