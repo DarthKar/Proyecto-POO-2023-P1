@@ -137,6 +137,16 @@ public class Opinion {
         }return "No se pudo realizar la accion";
             
     }
+    @Override
+    public String toString(){
+        return "Autor: "+this.getCreador()+"\n\n"
+                
+                +"Comentario: "+this.getOpinion()+"\n"
+                
+                +"Valoracion: "+this.getValoracion();
+                
+        
+    }
 }
 
     
