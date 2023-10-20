@@ -9,6 +9,7 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransac
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Orden;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Producto implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nombre;
