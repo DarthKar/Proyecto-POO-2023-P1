@@ -10,6 +10,7 @@ public class Carrito extends Transaccion {
     public Carrito(Comprador comprador) {
         super(324,comprador);
     }
+    
 
     @Override
     public void agregarProducto(ProductoTransaccion productoTransaccion) {
@@ -29,6 +30,6 @@ public class Carrito extends Transaccion {
 
     @Override
     public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
-        
+        productoTransaccion.setCantidad(cantidad);                                                                           //implementado para modifcar la cantidad de un producto en especifico
     }
 }

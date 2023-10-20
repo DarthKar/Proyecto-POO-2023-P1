@@ -41,6 +41,7 @@ public class BaseDatos implements Serializable {
     }
 
     private void valoresPorDefecto() {
+
             productos.add(new Producto(1L, "Arroz", Categoria.ALIMENTOS));
             productos.add(new Producto(2L, "Televisor", Categoria.ELECTRONICA));
             productos.add(new Producto(3L, "Camiseta", Categoria.ROPA));
@@ -77,42 +78,42 @@ public class BaseDatos implements Serializable {
             productos.add(new Producto(34L, "Leche", Categoria.ALIMENTOS));
             productos.add(new Producto(35L, "Portátil", Categoria.ELECTRONICA));
 
-            compradores.add(new Comprador(1L, "Pedro", "Moreno", "pedro@example.com", Membresia.ORO));
-            compradores.add(new Comprador(2L, "Ana", "López", "ana@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(3L, "Juan", "Gómez", "juan@example.com", Membresia.BASICA));
-            compradores.add(new Comprador(4L, "María", "Rodríguez", "maria@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(5L, "Sofía", "Martínez", "sofia@example.com", Membresia.NINGUNA));
-            compradores.add(new Comprador(6L, "Carlos", "Pérez", "carlos@example.com", Membresia.ORO));
-            compradores.add(new Comprador(7L, "Laura", "Fernández", "laura@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(8L, "Diego", "Hernández", "diego@example.com", Membresia.BASICA));
-            compradores.add(new Comprador(9L, "Isabel", "Díaz", "isabel@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(10L, "Luis", "García", "luis@example.com", Membresia.NINGUNA));
-            compradores.add(new Comprador(11L, "Alejandro", "González", "alejandro@example.com", Membresia.ORO));
-            compradores.add(new Comprador(12L, "Elena", "Torres", "elena@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(13L, "Miguel", "Ruiz", "miguel@example.com", Membresia.BASICA));
-            compradores.add(new Comprador(14L, "Carmen", "Sánchez", "carmen@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(15L, "Andrea", "Lara", "andrea@example.com", Membresia.NINGUNA));
-            compradores.add(new Comprador(16L, "Ricardo", "Vargas", "ricardo@example.com", Membresia.ORO));
-            compradores.add(new Comprador(17L, "Natalia", "Pérez", "natalia@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(18L, "Daniel", "Gómez", "daniel@example.com", Membresia.BASICA));
-            compradores.add(new Comprador(19L, "Lucía", "Hernández", "lucia@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(20L, "Javier", "Soto", "javier@example.com", Membresia.NINGUNA));
-            compradores.add(new Comprador(21L, "Natalia", "López", "natalia@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(22L, "Pablo", "Martínez", "pablo@example.com", Membresia.BASICA));
-            compradores.add(new Comprador(23L, "Valeria", "Gutiérrez", "valeria@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(24L, "Sara", "Jiménez", "sara@example.com", Membresia.NINGUNA));
-            compradores.add(new Comprador(25L, "Juan", "Torres", "juan@example.com", Membresia.ORO));
-            compradores.add(new Comprador(26L, "María", "Gómez", "maria@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(27L, "Lucas", "Díaz", "lucas@example.com", Membresia.BASICA));
-            compradores.add(new Comprador(28L, "Valentina", "Fernández", "valentina@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(29L, "Gabriel", "Pérez", "gabriel@example.com", Membresia.NINGUNA));
-            compradores.add(new Comprador(30L, "Sofía", "Moreno", "sofia@example.com", Membresia.ORO));
-            compradores.add(new Comprador(31L, "Pedro", "Moreno", "pedro@example.com", Membresia.ORO));
-            compradores.add(new Comprador(32L, "Ana", "González", "ana@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(33L, "Juan", "López", "juan@example.com", Membresia.BRONCE));
-            compradores.add(new Comprador(34L, "María", "Sánchez", "maria@example.com", Membresia.ORO));
-            compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA));
-            compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO));
+            compradores.add(new Comprador(1L, "Pedro", "Moreno", "pedro@example.com", Membresia.ORO,234));
+            compradores.add(new Comprador(2L, "Ana", "López", "ana@example.com", Membresia.PLATA,456));
+            compradores.add(new Comprador(3L, "Juan", "Gómez", "juan@example.com", Membresia.BASICA,123));
+            compradores.add(new Comprador(4L, "María", "Rodríguez", "maria@example.com", Membresia.BRONCE,67));
+            compradores.add(new Comprador(5L, "Sofía", "Martínez", "sofia@example.com", Membresia.NINGUNA,87));
+            compradores.add(new Comprador(6L, "Carlos", "Pérez", "carlos@example.com", Membresia.ORO,89));
+            compradores.add(new Comprador(7L, "Laura", "Fernández", "laura@example.com", Membresia.PLATA,122));
+            compradores.add(new Comprador(8L, "Diego", "Hernández", "diego@example.com", Membresia.BASICA,111));
+            compradores.add(new Comprador(9L, "Isabel", "Díaz", "isabel@example.com", Membresia.BRONCE,102));
+            compradores.add(new Comprador(10L, "Luis", "García", "luis@example.com", Membresia.NINGUNA,334));
+            compradores.add(new Comprador(11L, "Alejandro", "González", "alejandro@example.com", Membresia.ORO,34));
+            compradores.add(new Comprador(12L, "Elena", "Torres", "elena@example.com", Membresia.PLATA,12));
+            compradores.add(new Comprador(13L, "Miguel", "Ruiz", "miguel@example.com", Membresia.BASICA,34));
+            compradores.add(new Comprador(14L, "Carmen", "Sánchez", "carmen@example.com", Membresia.BRONCE,345));
+            compradores.add(new Comprador(15L, "Andrea", "Lara", "andrea@example.com", Membresia.NINGUNA,234));
+            compradores.add(new Comprador(16L, "Ricardo", "Vargas", "ricardo@example.com", Membresia.ORO,123));
+            compradores.add(new Comprador(17L, "Natalia", "Pérez", "natalia@example.com", Membresia.PLATA,103));
+            compradores.add(new Comprador(18L, "Daniel", "Gómez", "daniel@example.com", Membresia.BASICA,167));
+            compradores.add(new Comprador(19L, "Lucía", "Hernández", "lucia@example.com", Membresia.BRONCE,178));
+            compradores.add(new Comprador(20L, "Javier", "Soto", "javier@example.com", Membresia.NINGUNA,78));
+            compradores.add(new Comprador(21L, "Natalia", "López", "natalia@example.com", Membresia.PLATA,789));
+            compradores.add(new Comprador(22L, "Pablo", "Martínez", "pablo@example.com", Membresia.BASICA,56));
+            compradores.add(new Comprador(23L, "Valeria", "Gutiérrez", "valeria@example.com", Membresia.BRONCE,90));
+            compradores.add(new Comprador(24L, "Sara", "Jiménez", "sara@example.com", Membresia.NINGUNA,89));
+            compradores.add(new Comprador(25L, "Juan", "Torres", "juan@example.com", Membresia.ORO,123));
+            compradores.add(new Comprador(26L, "María", "Gómez", "maria@example.com", Membresia.PLATA,78));
+            compradores.add(new Comprador(27L, "Lucas", "Díaz", "lucas@example.com", Membresia.BASICA,86));
+            compradores.add(new Comprador(28L, "Valentina", "Fernández", "valentina@example.com", Membresia.BRONCE,126));
+            compradores.add(new Comprador(29L, "Gabriel", "Pérez", "gabriel@example.com", Membresia.NINGUNA,67));
+            compradores.add(new Comprador(30L, "Sofía", "Moreno", "sofia@example.com", Membresia.ORO,456));
+            compradores.add(new Comprador(31L, "Pedro", "Moreno", "pedro@example.com", Membresia.ORO,678));
+            compradores.add(new Comprador(32L, "Ana", "González", "ana@example.com", Membresia.PLATA,90));
+            compradores.add(new Comprador(33L, "Juan", "López", "juan@example.com", Membresia.BRONCE,145));
+            compradores.add(new Comprador(34L, "María", "Sánchez", "maria@example.com", Membresia.ORO,167));
+            compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA,189));
+            compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
 
             vendedores.add(new Vendedor(1L, "Juan", "Pérez", "juan@example.com"));
             vendedores.add(new Vendedor(2L, "María", "López", "maria@example.com"));
@@ -149,6 +150,7 @@ public class BaseDatos implements Serializable {
             vendedores.add(new Vendedor(33L, "Carlos", "López", "carlos@example.com"));
             vendedores.add(new Vendedor(34L, "Ana", "Martínez", "ana@example.com"));
             vendedores.add(new Vendedor(35L, "Pedro", "Sánchez", "pedro@example.com"));
+
 
         vendedores.forEach(vendedor -> {
             int cantidadPublicaciones = RandomUtils.nextInt(5, 11);

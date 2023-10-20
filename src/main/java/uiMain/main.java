@@ -40,7 +40,7 @@ public class main {
 
     private static String getOpciones() {
         return "Selecciona una de las siguientes opciones\n"
-                + "1. Realizar compra\n"
+                + "1. Realizar compra\n" 
                 + "2....\n"
                 + "3 Menú compradores\n"
                 + "4. Opinar \n"

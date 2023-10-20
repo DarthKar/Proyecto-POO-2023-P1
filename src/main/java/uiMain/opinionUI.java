@@ -42,14 +42,22 @@ public class opinionUI extends Repositorio {
                     String opcion2 = scanner.nextLine().trim();
                     
                     if (opcion2.equals(1)) {
+                        
                         editarOpinionProducto(scanner);
+                        
                     }
+                    
                     if (opcion2.equals(2)) {
+                        
                         editarOpinionVendedor(scanner);
+                        
                     }
+                    
                     if(opcion2.equals(3)){
+                        
                         continue;
                     }
+                    
                     continue;
                     
                 case "3":
@@ -58,14 +66,43 @@ public class opinionUI extends Repositorio {
                     String opcion3 = scanner.nextLine().trim();
                     
                     if (opcion3.equals(1)){
+                        
                         borrarOpinionProducto(scanner);  
+                        
                     }
+                    
                     if (opcion3.equals(2)){
+                        
                         borrarOpinionVendedor(scanner);
+                        
                     }  
                     continue;
                     
                 case "4":
+                    System.out.println(getVerOpinionOpc());
+                    
+                    String opcion4 = scanner.nextLine().trim();
+                    
+                    if (opcion4.equals(1)){
+                        
+                        verOpinionProducto(scanner);
+                        
+                    }
+                    
+                    if (opcion4.equals(2)){
+                        
+                        verOpinionVendedor(scanner);
+                        
+                    }
+                    
+                    if (opcion4.equals(3)){
+                        
+                        
+                        continue;
+                    }
+                    continue;
+                    
+                case "5":
                     
                     break menuOpinionLoop;
                 default:
@@ -82,7 +119,8 @@ public class opinionUI extends Repositorio {
                 + "1. Crear opinion\n"
                 + "2. Editar una resena\n"
                 + "3. Borrar una resena\n"
-                + "4. Regresar al menu principal";
+                + "4. Ver opiniones\n"
+                + "5. Regresar al menu principal";
 
     }
     
@@ -114,7 +152,13 @@ public class opinionUI extends Repositorio {
                 + "2. Borrar resenar de un vendedor\n"
                 + "3. Regresar";
     }
-
+    
+    private static String getVerOpinionOpc(){
+        return "Selecciona una de las siguientes opciones\n"
+                + "1. Ver resenas de un producto\n"
+                + "2. Ver resenas de un vendedor\n"
+                + "3. Regresar";
+    }
     
     
     
@@ -492,4 +536,76 @@ public class opinionUI extends Repositorio {
         }
         
      }
+     
+     private static void verOpinionProducto(Scanner scanner){
+         System.out.println("Ingresa el codigo del producto del cual quieres ver opiniones");
+         String codigo = scanner.nextLine();
+         List<Producto> bdP = baseDatos.getProductos();
+         boolean productoEncontrado= false;
+         
+         long codigoNuevo=0;
+         
+         try{
+             
+             codigoNuevo = Long.parseLong(codigo);
+             
+         } catch(NumberFormatException e ) {
+             System.out.println("Error Ingresa un codigo de producto valido");
+             
+         }
+         
+         for (Producto producto : bdP){
+             if(producto.getId()==codigoNuevo){
+                  productoEncontrado=true;
+                if(producto.getOpiniones().isEmpty()==false){ 
+                    
+                for(OpinionProducto op: producto.getOpiniones()){ 
+                    
+                    System.out.println(op.toString());
+                    
+                }if(producto.getOpiniones().isEmpty()){
+                    System.out.println("El producto aun no tiene resenas");
+                }   
+             }if(!productoEncontrado){
+                 System.out.println("Error: No se ha encontrado el producto que buscas");
+             }
+         }
+         }
+     }
+     private static void verOpinionVendedor(Scanner scanner){
+         System.out.println("Ingresa el codigo del producto del cual quieres ver opiniones");
+         String codigo = scanner.nextLine();
+         List<Vendedor> bdV = baseDatos.getVendedores();
+         boolean vendedorEncontrado= false;
+         
+         long codigoNuevo=0;
+         
+         try{
+             
+             codigoNuevo = Long.parseLong(codigo);
+             
+         } catch(NumberFormatException e ) {
+             System.out.println("Error Ingresa un codigo de producto valido");
+             
+         }
+         
+         for (Vendedor vendedor : bdV){
+             if(vendedor.getId()==codigoNuevo){
+                  vendedorEncontrado=true;
+               if(vendedor.getOpinion().isEmpty()==(false)){
+                   
+                for(OpinionVendedor op: vendedor.getOpinion()){ 
+                   
+                    System.out.println(op.toString());
+                    
+                }   
+             }if(vendedor.getOpinion().isEmpty()){
+                 System.out.println("El vendedor aun no tiene resenas  ");
+             }
+         }if(!vendedorEncontrado){
+             System.out.println("Error: No se ha encontrado el vendedor que buscas");
+            }
+         
+        }
+    }
 }
