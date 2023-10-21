@@ -3,6 +3,7 @@ package uiMain;
 import java.util.Scanner;
 
 import gestorAplicacion.entidad.producto.Producto;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import uiMain.utilidades.Validaciones;
 
 public class Estadistica extends Validaciones {
@@ -24,9 +25,10 @@ public class Estadistica extends Validaciones {
 			switch (opcion) {
 			case 1:
 				menuEstadisticasGenerales();
-				continue;
+				break generales;
 			case 2:
-				
+				menuEstadisticasCompradores();
+				break generales;
 			case 3:
 				break generales;		
 			default:
@@ -63,10 +65,56 @@ public class Estadistica extends Validaciones {
 		} while (true);
 
 	}
+	
+	private static void menuEstadisticasCompradores() {
+		estadisticasCompradores:do {
+			System.out.println("Bienvenido a las estadisticas de los compradores, ingrese el numero de la estadistica que desea visualizar");
+			System.out.println(opcionesEstadisticaCompradores());
+			int opcion;
+			try {
+				opcion = validarOpcionMenu(scanner.nextLine(), 1, 3);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
+
+			switch (opcion) {
+			case 1:
+				totalComprador();
+				break estadisticasCompradores;
+			case 2:
+				break estadisticasCompradores;
+			case 5:
+				break estadisticasCompradores;
+			default:
+				System.out.println("Ha elegido una opción invalida.");
+			}
+		} while (true);
+
+	}
+	
+	
+	
+	private static String opcionesEstadisticaCompradores() {
+		// TODO Auto-generated method stub
+		return 
+				
+		"1. Usuario mas comprador por producto\n"+
+		"2. Usuario mas comprador por valor\n"+
+		"3. Membresia mas comprada";
+	}
+
 	private static void totalVentas() {
 		float ventas=Producto.ventasTotales();
 		System.out.println("El e-commerce genero %s".formatted(ventas));
 		
+		
+	}
+	
+	private static void totalComprador() {
+		//String compras=null;
+		String compras=Comprador.masComprador();
+		System.out.println("El Usuario con la factura mas alta es %s".formatted(compras));
 	}
 
 	private static String opcionesEstadistica() {
@@ -87,6 +135,7 @@ public class Estadistica extends Validaciones {
 
 	private static String getOpciones() {
 		// TODO Auto-generated method stub
-		return "1. Estadisticas generales";
+		return "1. Estadisticas Generales\n"+
+		"2. Estadisticas Compradores";
 	}
 }
