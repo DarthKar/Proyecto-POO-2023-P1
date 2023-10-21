@@ -137,5 +137,6 @@ public class Estadistica extends Validaciones {
 		// TODO Auto-generated method stub
 		return "1. Estadisticas Generales\n"+
 		"2. Estadisticas Compradores";
+	
 	}
 }
