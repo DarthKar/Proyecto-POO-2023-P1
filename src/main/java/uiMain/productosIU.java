@@ -40,7 +40,7 @@ public class productosIU extends Validaciones {
 
                 case 1:
                     for (int i = 0; i < Producto.getProductos().size(); i++) {
-                        System.out.println((i + 1) + ". " + Producto.getProductos().get(i).getNombre());
+                        System.out.println((i + 1) + ". " + Producto.getProductos().get(i).getNombre()+"\n");
                     }
                     continue;
                 case 2:
@@ -67,9 +67,13 @@ public class productosIU extends Validaciones {
 
                     ProductoTransaccion compraPR = new ProductoTransaccion(publicacionPR, cantidadPR);
                     carrito.agregarProducto(compraPR);
+                    System.out.println("\n");
                     continue;
 
                 case 3:
+                    for (int i = 0; i < Producto.getProductos().size(); i++) {
+                        System.out.println((i + 1) + ". " + Producto.getProductos().get(i).getNombre()+"\n");
+                    }
                     System.out.println("Elija el producto que desea comprar");
                     int select = Integer.parseInt(scanner.nextLine().trim());
                     System.out.println("Cuantas unidades desea comprar");
@@ -95,12 +99,18 @@ public class productosIU extends Validaciones {
                     }
                     ProductoTransaccion compra = new ProductoTransaccion(puaux.get(select1 - 1), cantidadDeseada);
                     carrito.agregarProducto(compra);
+                    System.out.println("Producto agregado correctamente al carrito\n");
                     continue;
 
                 case 4:
                     if(carrito.getProductosTransaccion().isEmpty()){
                         System.out.println("No ha agregado ningún producto al carrito");
                         continue;
+                    }
+                    int contador1 = 1;
+                    for (ProductoTransaccion productosTransaccion : carrito.getProductosTransaccion()) {
+                        System.out.println(contador1 + ". " + productosTransaccion.mostrarEspProducto());
+                        contador1++;
                     }
                     System.out.println("Elija el producto que desea eliminar del carrito");
                     int select2 = Integer.parseInt(scanner.nextLine().trim());
@@ -116,13 +126,14 @@ public class productosIU extends Validaciones {
                     } else {
                         productoTransaccion.setCantidad(productoTransaccion.getCantidad() - cantidadEl);
                     }
+                    System.out.println("Producto eliminado correctamente del carrito\n");
                     continue;
 
                 case 5:
-                    int contador1 = 1;
+                    int contador11 = 1;
                     for (ProductoTransaccion productosTransaccion : carrito.getProductosTransaccion()) {
-                        System.out.println(contador1 + ". " + productosTransaccion.mostrarEspProducto());
-                        contador1++;
+                        System.out.println(contador11 + ". " + productosTransaccion.mostrarEspProducto());
+                        contador11++;
                     }
                     continue;
 
