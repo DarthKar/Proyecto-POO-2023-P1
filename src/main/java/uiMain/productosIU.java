@@ -78,7 +78,7 @@ public class productosIU extends Validaciones {
                     int select = Integer.parseInt(scanner.nextLine().trim());
                     System.out.println("Cuantas unidades desea comprar");
                     int cantidadDeseada = Integer.parseInt(scanner.nextLine().trim());
-                    int contador = 1;
+                    int contador = 0;
                     for (Vendedor ven : UsuarioRepositorio.obtener()) {
                         for (Publicacion pu : ven.getPublicaciones()) {
                             if (pu.getProducto() == Producto.getProductos().get(select) && pu.getInventario() > cantidadDeseada) {
