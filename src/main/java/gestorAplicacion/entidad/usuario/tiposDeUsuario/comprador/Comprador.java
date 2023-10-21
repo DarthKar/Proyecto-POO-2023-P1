@@ -29,6 +29,7 @@ public class Comprador extends Usuario {
     private List<Orden> ordenes;
     private List<Devolucion> devoluciones;
     private Carrito carrito;
+    private List<ProductoTransaccion> productosComprados;
     private List<Opinion> resenasDeProductos; //Se guardaran aqui las rese�as a productos
     private List<Opinion> resenasDeTiendas; //Se guardaran Rese�as De Productos
     private float saldo; //atributo para poder justificar el metodo de pago en la funcionalidad 1
@@ -42,7 +43,16 @@ public class Comprador extends Usuario {
         carrito = new Carrito(id, this);
         resenasDeProductos = new ArrayList<>(); // Se crean Ambas listas Para Rese�as hechas a tiendas y productos
         resenasDeTiendas = new ArrayList<>();
+        productosComprados = new ArrayList<>();
 
+    }
+    
+    public List<ProductoTransaccion> getproductosComprados() {
+        return productosComprados;
+    }
+    
+    public void agregarProductoComprado(ProductoTransaccion productocomprado){
+        productosComprados.add(productocomprado);
     }
 
     public List<Opinion> getResenasDeProductos() {

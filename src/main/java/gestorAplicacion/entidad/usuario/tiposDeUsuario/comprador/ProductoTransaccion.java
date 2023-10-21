@@ -2,9 +2,14 @@ package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador;
 
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class ProductoTransaccion implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+    
     protected Publicacion publicacion;
     protected int cantidad;
 

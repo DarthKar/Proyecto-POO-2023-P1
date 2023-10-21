@@ -10,12 +10,16 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import org.apache.commons.lang3.RandomUtils;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class BaseDatos implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private List<Vendedor> vendedores;
     private List<Comprador> compradores;

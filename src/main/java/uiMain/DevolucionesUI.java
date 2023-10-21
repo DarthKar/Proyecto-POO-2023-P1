@@ -14,13 +14,13 @@ import uiMain.utilidades.Validaciones;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CompradoresUI extends Validaciones {
+public class DevolucionesUI extends Validaciones {
 
     static Comprador compradorActual;
     private static Scanner scanner;
 
     protected static void IU(Scanner scanner) {
-        CompradoresUI.scanner = scanner;
+        DevolucionesUI.scanner = scanner;
         compradorActual = null;
 
         System.out.println("Bienvenido al módulo de comprador 😎");
@@ -29,42 +29,7 @@ public class CompradoresUI extends Validaciones {
         } while (Objects.isNull(compradorActual));
 
         System.out.printf("Bienvenido %s %s%n", compradorActual.getNombre(), compradorActual.getApellido());
-
-        menuBuscarComprador:
-        do {
-            System.out.println(getOpciones());
-            int opcion;
-            try{
-                opcion = validarOpcionMenu(scanner.nextLine(), 1, 4);
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-                continue;
-            }
-
-            switch (opcion) {
-                case 1:
-                    comprar();
-                    continue;
-                case 2:
-                    productosRecomendados();
-                    continue;
-                case 3:
-                    realizarDevolucion();
-                    continue;
-                case 4:
-                    listarOrdenes(compradorActual.getOrdenes());
-                    continue;
-                case 5:
-                    break menuBuscarComprador;
-                default:
-                    System.out.println("Ha elegido una opción invalida.");
-            }
-        } while (true);
-    }
-
-    private static void productosRecomendados() {
-        List<Publicacion> publicaciones = compradorActual.getPublicacionesRecomendadas(5);
-        publicaciones.forEach(publicacion -> System.out.println(publicacion.getProducto().getNombre()));
+        realizarDevolucion();
     }
 
     private static Comprador buscarComprador() {
@@ -100,7 +65,7 @@ public class CompradoresUI extends Validaciones {
         Devolucion devolucion = new Devolucion(0L, compradorActual);
         try {
             Optional<Orden> ordenOptional = listarOrdenesEleccion(compradorActual.getOrdenesValidasParaDevolucion());
-            if(ordenOptional.isEmpty()){
+            if (ordenOptional.isEmpty()) {
                 System.out.println("No ha elegido una opción valida");
                 return;
             }
