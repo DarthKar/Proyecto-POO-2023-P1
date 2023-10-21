@@ -175,8 +175,9 @@ public class Producto implements Serializable {
 		return valorVentas;
 	}
 
-	public static float productoMasCaro() {
+	public static String productoMasCaro() {
 		float productoMasCaro = 0;
+		String productoCaro=null;
 		for (Comprador comprador : CompradorRepositorio.obtener()) {
 			for (Orden orden : comprador.getOrdenes()) {
 				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
@@ -184,17 +185,19 @@ public class Producto implements Serializable {
 						;
 					{
 						productoMasCaro = productoTransaccion.getPublicacion().getPrecio();
+						productoCaro=productoTransaccion.getPublicacion().getProducto().getNombre();
 
 					}
 				}
 
 			}
 		}
-		return productoMasCaro;
+		return (productoMasCaro+" que vale "+productoCaro);
 	}
 
-	public static float productoMasBarato() {
+	public static String productoMasBarato() {
 		float productoMasBarato = Float.MAX_VALUE;
+		String productoBarato=null;
 		for (Comprador comprador : CompradorRepositorio.obtener()) {
 			for (Orden orden : comprador.getOrdenes()) {
 				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
@@ -202,36 +205,16 @@ public class Producto implements Serializable {
 						;
 					{
 						productoMasBarato = productoTransaccion.getPublicacion().getPrecio();
+						productoBarato=productoTransaccion.getPublicacion().getProducto().getNombre();
 
 					}
 				}
 
 			}
 		}
-		return productoMasBarato;
+		return (productoBarato+" que vale "+ productoMasBarato);
 	}
 
-	public static Membresia encontrarElementoMasRepetido(Membresia[] membresias) {
-		if (membresias == null || membresias.length == 0) {
-			return null; // Manejo de caso especial si el arreglo está vacío o es nulo
-		}
-
-		Membresia elementoMasRepetido = null;
-		int maxRepeticiones = 0;
-
-		for (Membresia membresia : Membresia.values()) {
-			int repeticiones = 0;
-			for (Membresia m : membresias) {
-				if (m == membresia) {
-					repeticiones++;
-				}
-			}
-			if (repeticiones > maxRepeticiones) {
-				maxRepeticiones = repeticiones;
-				elementoMasRepetido = membresia;
-			}
-		}
-
-		return elementoMasRepetido;
-	}
+	
+		
 }
