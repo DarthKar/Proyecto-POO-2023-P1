@@ -136,7 +136,8 @@ public class Estadistica extends Validaciones {
 	private static String getOpciones() {
 		// TODO Auto-generated method stub
 		return "1. Estadisticas Generales\n"+
-		"2. Estadisticas Compradores";
-	
+		"2. Estadisticas Compradores\n"+
+	    "3.Estadisticas vendedores ";
+		
 	}
 }
