@@ -174,7 +174,21 @@ public class Producto implements Serializable {
 
         return ProductoMasVendido;
 
+<<<<<<< HEAD
+	public static String productoMasCaro() {
+		float productoMasCaro = 0;
+		String productoCaro=null;
+		for (Comprador comprador : CompradorRepositorio.obtener()) {
+			for (Orden orden : comprador.getOrdenes()) {
+				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+					if (productoMasCaro < (productoTransaccion.getPublicacion().getPrecio()))
+						;
+					{
+						productoMasCaro = productoTransaccion.getPublicacion().getPrecio();
+						productoCaro=productoTransaccion.getPublicacion().getProducto().getNombre();
+=======
     }
+>>>>>>> 54d5f3f9c2e1fc018a8be6efb7064eb455f3fdea
 
     public static float ventasTotales() {
         float valorVentas = 0;
@@ -185,6 +199,24 @@ public class Producto implements Serializable {
                             * productoTransaccion.getCantidad());
                 }
 
+<<<<<<< HEAD
+			}
+		}
+		return (productoMasCaro+" que vale "+productoCaro);
+	}
+
+	public static String productoMasBarato() {
+		float productoMasBarato = Float.MAX_VALUE;
+		String productoBarato=null;
+		for (Comprador comprador : CompradorRepositorio.obtener()) {
+			for (Orden orden : comprador.getOrdenes()) {
+				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+					if (productoMasBarato > (productoTransaccion.getPublicacion().getPrecio()))
+						;
+					{
+						productoMasBarato = productoTransaccion.getPublicacion().getPrecio();
+						productoBarato=productoTransaccion.getPublicacion().getProducto().getNombre();
+=======
             }
         }
         return valorVentas;
@@ -199,10 +231,20 @@ public class Producto implements Serializable {
                         ;
                     {
                         productoMasCaro = productoTransaccion.getPublicacion().getPrecio();
+>>>>>>> 54d5f3f9c2e1fc018a8be6efb7064eb455f3fdea
 
                     }
                 }
 
+<<<<<<< HEAD
+			}
+		}
+		return (productoBarato+" que vale "+ productoMasBarato);
+	}
+
+	
+		
+=======
             }
         }
         return productoMasCaro;
@@ -249,4 +291,5 @@ public class Producto implements Serializable {
 
         return elementoMasRepetido;
     }
+>>>>>>> 54d5f3f9c2e1fc018a8be6efb7064eb455f3fdea
 }

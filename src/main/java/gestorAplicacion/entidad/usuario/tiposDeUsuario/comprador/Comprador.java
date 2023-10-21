@@ -301,6 +301,55 @@ public class Comprador extends Usuario {
                 .toList();
     }
     
-    
+    public static Membresia MembresiaMasComprada() {
+        int Ninguna = 0;
+        int Oro = 0;
+        int Plata = 0;
+        int Bronce = 0;
+        int Basica = 0;
 
+        for (Comprador comprador : CompradorRepositorio.obtener()) {
+            Membresia comparar = comprador.getMembresia();
+            switch (comparar) {
+                case NINGUNA:
+                    Ninguna++;
+                    break;
+                case BASICA:
+                    Basica++;
+                    break;
+                case BRONCE:
+                    Bronce++;
+                    break;
+                case PLATA:
+                    Plata++;
+                    break;
+                case ORO:
+                    Oro++;
+                    break;
+            }
+        }
+
+        // Encuentra la membresía más común
+        Membresia membresiaMasComun = Membresia.NINGUNA;
+        int maxCompras = Ninguna;
+
+        if (Basica > maxCompras) {
+            membresiaMasComun = Membresia.BASICA;
+            maxCompras = Basica;
+        }
+        if (Bronce > maxCompras) {
+            membresiaMasComun = Membresia.BRONCE;
+            maxCompras = Bronce;
+        }
+        if (Plata > maxCompras) {
+            membresiaMasComun = Membresia.PLATA;
+            maxCompras = Plata;
+        }
+        if (Oro > maxCompras) {
+            membresiaMasComun = Membresia.ORO;
+        }
+
+        return membresiaMasComun;
+    }
 }
+
