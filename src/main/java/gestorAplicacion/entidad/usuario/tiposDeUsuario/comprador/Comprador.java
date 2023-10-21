@@ -174,7 +174,7 @@ public class Comprador extends Usuario {
                 .toList();
     }
 
-    public static Comprador masComprador() {
+    public static String masComprador() {
         int tamanoOrdenes = 0;
         Comprador mascomprador = null;
         for (Comprador comprador : CompradorRepositorio.obtener()) {
@@ -184,8 +184,9 @@ public class Comprador extends Usuario {
             }
 
         }
-        return mascomprador;
+        return (mascomprador.getNombre()+" "+ mascomprador.getApellido()+" con el ID "+mascomprador.getId()+" y con el correo electronico "+mascomprador.getCorreo());
     }
+  
 
 
     public List<Publicacion> getPublicacionesRecomendadas(int numeroPublicaciones) {
