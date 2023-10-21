@@ -10,6 +10,14 @@ public class Carrito extends Transaccion {
     public Carrito(long id, Comprador comprador) {
         super(id, comprador);
     }
+    
+    public void mostrarCarrito(Carrito carrito){
+        int contador1 = 1;
+        for (ProductoTransaccion productosTransaccion : carrito.getProductosTransaccion()) {
+            System.out.println(contador1 + ". " + productosTransaccion.mostrarEspProducto());
+            contador1++;
+         }
+    }
 
 
     @Override

@@ -36,6 +36,6 @@ public class ProductoTransaccion implements Serializable {
     
     public String mostrarEspProducto(){
         return "Nombre: "+this.getPublicacion().getProducto().getNombre()+"\nCantidad: "+this.getCantidad()+"\nPrecio: "+this.getPublicacion().getPrecio()
-                +"\nSubtotal: "+this.getSubTotal();
+                +"\nSubtotal: "+this.getSubTotal()+"\n-----------------------------------------\n";
     }
 }

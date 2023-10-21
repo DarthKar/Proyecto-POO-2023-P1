@@ -107,11 +107,8 @@ public class productosIU extends Validaciones {
                         System.out.println("No ha agregado ningún producto al carrito");
                         continue;
                     }
-                    int contador1 = 1;
-                    for (ProductoTransaccion productosTransaccion : carrito.getProductosTransaccion()) {
-                        System.out.println(contador1 + ". " + productosTransaccion.mostrarEspProducto());
-                        contador1++;
-                    }
+                    carrito.mostrarCarrito(carrito);
+                    System.out.println("\n");
                     System.out.println("Elija el producto que desea eliminar del carrito");
                     int select2 = Integer.parseInt(scanner.nextLine().trim());
                     if (select2 <= 0 || select2 > carrito.getProductosTransaccion().size()){
@@ -130,11 +127,7 @@ public class productosIU extends Validaciones {
                     continue;
 
                 case 5:
-                    int contador11 = 1;
-                    for (ProductoTransaccion productosTransaccion : carrito.getProductosTransaccion()) {
-                        System.out.println(contador11 + ". " + productosTransaccion.mostrarEspProducto());
-                        contador11++;
-                    }
+                    carrito.mostrarCarrito(carrito);
                     continue;
 
                 case 6:
@@ -142,6 +135,7 @@ public class productosIU extends Validaciones {
                     String opcion2 = scanner.nextLine().trim();
                     switch (opcion2) {
                         case "1":
+                            carrito.mostrarCarrito(carrito);
                             System.out.println("Seleccione que producto desea modificar");
                             int select3 = Integer.parseInt(scanner.nextLine().trim());
                             int Ncantidad = Integer.parseInt(scanner.nextLine().trim());
@@ -264,7 +258,7 @@ public class productosIU extends Validaciones {
 
     private static String opciones_5() {
         return "Que desea modificar?\n"
-                + "1. Modificar cantidad de productos\n"
+                + "1. Modificar cantidad de un producto\n"
                 + "2. Vaciar carrito completamente\n"
                 + "3. Volver al menu principal\n";
     }
