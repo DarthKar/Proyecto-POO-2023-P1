@@ -9,6 +9,7 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransac
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden.Orden;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +19,16 @@ import java.util.Objects;
 
 public class Producto implements Serializable {
 
-	private Long id;
-	private String nombre;
-	private Categoria categoria;
-	private List<OpinionProducto> opinion;
-	private List<Publicacion> publicaciones;
-	private List<Comprador> compradores;
-	private List<Comprador> resenadores;
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+    private String nombre;
+    private Categoria categoria;
+    private List<OpinionProducto> opinion;
+    private List<Publicacion> publicaciones;
+    private List<Comprador> compradores;
+    private List<Comprador> resenadores;
 
 	public Producto(Long id, String nombre, Categoria categoria) {
 		this.id = id;
@@ -79,6 +83,7 @@ public class Producto implements Serializable {
 		this.nombre = nombre;
 	}
 
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
@@ -126,112 +131,122 @@ public class Producto implements Serializable {
 	}
 
 	
+    public void agregarPublicacion(Publicacion publicacion) {
+        publicaciones.add(publicacion);
+    }
 
-	
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public static Producto productoMasVendido() {
-		Map<Producto, Integer> producto = new HashMap<>();
-		for (Comprador comprador : CompradorRepositorio.obtener()) {
-			for (Orden orden : comprador.getOrdenes()) { // cambiarlo por transaccion
-				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
-					if (producto.containsKey(productoTransaccion.getPublicacion().getProducto()))
-						producto.merge(productoTransaccion.getPublicacion().getProducto(), 1, Integer::sum);
-					else
-						producto.put(productoTransaccion.getPublicacion().getProducto(), 1);
 
-				}
+    public static Producto productoMasVendido() {
+        Map<Producto, Integer> producto = new HashMap<>();
+        for (Comprador comprador : CompradorRepositorio.obtener()) {
+            for (Orden orden : comprador.getOrdenes()) { // cambiarlo por transaccion
+                for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+                    if (producto.containsKey(productoTransaccion.getPublicacion().getProducto()))
+                        producto.merge(productoTransaccion.getPublicacion().getProducto(), 1, Integer::sum);
+                    else
+                        producto.put(productoTransaccion.getPublicacion().getProducto(), 1);
 
-			}
 
-		}
+                }
 
-		Producto ProductoMasVendido = null;
-		int valor = 0;
-		for (Map.Entry<Producto, Integer> entry : producto.entrySet()) {
-			if (entry.getValue() > valor) {
-				valor = entry.getValue();
-				ProductoMasVendido = entry.getKey();
-			}
 
-		}
+            }
 
-		return ProductoMasVendido;
+        }
 
-	}
+        Producto ProductoMasVendido = null;
+        int valor = 0;
+        for (Map.Entry<Producto, Integer> entry : producto.entrySet()) {
+            if (entry.getValue() > valor) {
+                valor = entry.getValue();
+                ProductoMasVendido = entry.getKey();
+            }
 
-	public static float ventasTotales() {
-		float valorVentas = 0;
-		for (Comprador comprador : CompradorRepositorio.obtener()) {
-			for (Orden orden : comprador.getOrdenes()) {
-				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
-					valorVentas += (productoTransaccion.getPublicacion().getPrecio()
-							* productoTransaccion.getCantidad());
-				}
+        }
 
-			}
-		}
-		return valorVentas;
-	}
+        return ProductoMasVendido;
 
-	public static float productoMasCaro() {
-		float productoMasCaro = 0;
-		for (Comprador comprador : CompradorRepositorio.obtener()) {
-			for (Orden orden : comprador.getOrdenes()) {
-				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
-					if (productoMasCaro < (productoTransaccion.getPublicacion().getPrecio()))
-						;
-					{
-						productoMasCaro = productoTransaccion.getPublicacion().getPrecio();
+    }
 
-					}
-				}
+    public static float ventasTotales() {
+        float valorVentas = 0;
+        for (Comprador comprador : CompradorRepositorio.obtener()) {
+            for (Orden orden : comprador.getOrdenes()) {
+                for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+                    valorVentas += (productoTransaccion.getPublicacion().getPrecio()
+                            * productoTransaccion.getCantidad());
+                }
 
-			}
-		}
-		return productoMasCaro;
-	}
+            }
+        }
+        return valorVentas;
+    }
 
-	public static float productoMasBarato() {
-		float productoMasBarato = Float.MAX_VALUE;
-		for (Comprador comprador : CompradorRepositorio.obtener()) {
-			for (Orden orden : comprador.getOrdenes()) {
-				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
-					if (productoMasBarato > (productoTransaccion.getPublicacion().getPrecio()))
-						;
-					{
-						productoMasBarato = productoTransaccion.getPublicacion().getPrecio();
+    public static float productoMasCaro() {
+        float productoMasCaro = 0;
+        for (Comprador comprador : CompradorRepositorio.obtener()) {
+            for (Orden orden : comprador.getOrdenes()) {
+                for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+                    if (productoMasCaro < (productoTransaccion.getPublicacion().getPrecio()))
+                        ;
+                    {
+                        productoMasCaro = productoTransaccion.getPublicacion().getPrecio();
 
-					}
-				}
+                    }
+                }
 
-			}
-		}
-		return productoMasBarato;
-	}
+            }
+        }
+        return productoMasCaro;
+    }
 
-	public static Membresia encontrarElementoMasRepetido(Membresia[] membresias) {
-		if (membresias == null || membresias.length == 0) {
-			return null; // Manejo de caso especial si el arreglo está vacío o es nulo
-		}
+    public static float productoMasBarato() {
+        float productoMasBarato = 0;
+        for (Comprador comprador : CompradorRepositorio.obtener()) {
+            for (Orden orden : comprador.getOrdenes()) {
+                for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+                    if (productoMasBarato > (productoTransaccion.getPublicacion().getPrecio()))
+                        ;
+                    {
+                        productoMasBarato = productoTransaccion.getPublicacion().getPrecio();
 
-		Membresia elementoMasRepetido = null;
-		int maxRepeticiones = 0;
+                    }
+                }
 
-		for (Membresia membresia : Membresia.values()) {
-			int repeticiones = 0;
-			for (Membresia m : membresias) {
-				if (m == membresia) {
-					repeticiones++;
-				}
-			}
-			if (repeticiones > maxRepeticiones) {
-				maxRepeticiones = repeticiones;
-				elementoMasRepetido = membresia;
-			}
-		}
+            }
+        }
+        return productoMasBarato;
+    }
 
-		return elementoMasRepetido;
-	}
+    public static Membresia encontrarElementoMasRepetido(Membresia[] membresias) {
+        if (membresias == null || membresias.length == 0) {
+            return null; // Manejo de caso especial si el arreglo está vacío o es nulo
+        }
+
+        Membresia elementoMasRepetido = null;
+        int maxRepeticiones = 0;
+
+        for (Membresia membresia : Membresia.values()) {
+            int repeticiones = 0;
+            for (Membresia m : membresias) {
+                if (m == membresia) {
+                    repeticiones++;
+                }
+            }
+            if (repeticiones > maxRepeticiones) {
+                maxRepeticiones = repeticiones;
+                elementoMasRepetido = membresia;
+            }
+        }
+
+        return elementoMasRepetido;
+    }
 }

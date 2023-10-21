@@ -4,14 +4,17 @@ import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Transaccion implements Serializable {
 
-    protected long id;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
+    protected long id;
     protected Comprador comprador;
     protected  List<ProductoTransaccion> productosTransaccion;
 

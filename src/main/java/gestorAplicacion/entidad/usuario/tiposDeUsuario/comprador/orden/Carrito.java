@@ -8,23 +8,19 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 public class Carrito extends Transaccion {
 
     public Carrito(long id, Comprador comprador) {
-        super(id,comprador);
+        super(id, comprador);
     }
-    
+
 
     @Override
     public void agregarProducto(ProductoTransaccion productoTransaccion) {
-        for (int i = 0; i<productoTransaccion.getCantidad();i++){                                               //implentado para agregar productos a la lista en transaccion
-            this.productosTransaccion.add(productoTransaccion);
-        }
+        this.productosTransaccion.add(productoTransaccion);
     }
 
     @Override
     public void removerProducto(ProductoTransaccion productoTransaccion) {                 //implentado para remover productos a la lista en transaccion
-        for (int i = 0; i<productoTransaccion.getCantidad();i++){
-            if (productosTransaccion.contains(productoTransaccion)){
+        if (productosTransaccion.contains(productoTransaccion)) {
             this.productosTransaccion.remove(productoTransaccion);
-            }else{break;}
         }
     }
 
