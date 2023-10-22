@@ -25,6 +25,7 @@ public class BaseDatos implements Serializable {
     private List<Comprador> compradores;
     private List<Producto> productos;
 
+
     public BaseDatos() {
         vendedores = new ArrayList<>();
         compradores = new ArrayList<>();
@@ -45,7 +46,7 @@ public class BaseDatos implements Serializable {
     }
 
     private void valoresPorDefecto() {
-
+ 
             productos.add(new Producto(1L, "Arroz", Categoria.ALIMENTOS));
             productos.add(new Producto(2L, "Televisor", Categoria.ELECTRONICA));
             productos.add(new Producto(3L, "Camiseta", Categoria.ROPA));
@@ -81,6 +82,7 @@ public class BaseDatos implements Serializable {
             productos.add(new Producto(33L, "Teléfono", Categoria.ELECTRONICA));
             productos.add(new Producto(34L, "Leche", Categoria.ALIMENTOS));
             productos.add(new Producto(35L, "Portátil", Categoria.ELECTRONICA));
+            
 
             compradores.add(new Comprador(1L, "Pedro", "Moreno", "pedro@example.com", Membresia.ORO,234));
             compradores.add(new Comprador(2L, "Ana", "López", "ana@example.com", Membresia.PLATA,456));
@@ -118,6 +120,8 @@ public class BaseDatos implements Serializable {
             compradores.add(new Comprador(34L, "María", "Sánchez", "maria@example.com", Membresia.ORO,167));
             compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA,189));
             compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
+            compradores.add(new Comprador(37L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
+
 
             vendedores.add(new Vendedor(1L, "Juan", "Pérez", "juan@example.com"));
             vendedores.add(new Vendedor(2L, "María", "López", "maria@example.com"));
@@ -156,6 +160,8 @@ public class BaseDatos implements Serializable {
             vendedores.add(new Vendedor(35L, "Pedro", "Sánchez", "pedro@example.com"));
 
 
+            
+        
         vendedores.forEach(vendedor -> {
             int cantidadPublicaciones = RandomUtils.nextInt(5, 11);
             IntStream.range(1, cantidadPublicaciones).forEach(i -> {
@@ -199,4 +205,20 @@ public class BaseDatos implements Serializable {
         });
     }
 
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public void setVendedores(List<Vendedor> vendedores) {
+        this.vendedores = vendedores;
+    }
+
+    public void setCompradores(List<Comprador> compradores) {
+        this.compradores = compradores;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+    
 }

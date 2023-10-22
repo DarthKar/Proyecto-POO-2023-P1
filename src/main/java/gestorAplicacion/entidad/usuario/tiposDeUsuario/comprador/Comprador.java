@@ -59,7 +59,7 @@ public class Comprador extends Usuario {
         this.productosComprados = listacomprados;
     }
 
-    public List<Opinion> getResenasDeProductos() {
+    public List<Opinion>  getResenasDeProductos() {
         return resenasDeProductos;
     }
 

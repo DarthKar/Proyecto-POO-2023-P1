@@ -39,7 +39,11 @@ public class Producto implements Serializable {
 		this.opinion = new ArrayList<>();
 		this.compradores = new ArrayList<>();
 		this.publicaciones = new ArrayList<>();
+		this.resenadores=new ArrayList<>();
+		this.resenadores.add(new Comprador(1234234235L, "a", "b","si",Membresia.NINGUNA,200));
 	}
+	 
+	
 
 	public void addOpinionProducto(OpinionProducto resena) {
 		if (Objects.isNull(resena))
@@ -90,7 +94,7 @@ public class Producto implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public void setComprodores(List compradores) {
+	public void setComprodores(List<Comprador> compradores) {
 		this.compradores = compradores;
 	}
 
