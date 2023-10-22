@@ -24,12 +24,13 @@ public abstract class Transaccion implements Serializable {
         productosTransaccion = new ArrayList<>();
     }
 
+
     public Comprador getComprador() {
         return comprador;
     }
 
     public List<ProductoTransaccion> getProductosTransaccion() {
-        return productosTransaccion;
+        return this.productosTransaccion;
     }
     
     public void setProductosTransaccion(List<ProductoTransaccion> productoTra) {       //metodo que uso para asignarle a las ordenes la misma lista de productos que el carrito de compras
@@ -40,14 +41,14 @@ public abstract class Transaccion implements Serializable {
         return id;
     }
     
-    public final float calcularTotal(){
+    public float calcularTotal(){
         float Total = 0;
         for(ProductoTransaccion proTran : productosTransaccion){                    //metodo para obtener el total de una transaccion o bien del  carrito
             Total += proTran.getSubTotal();
         }
         return Total;
     }
-
+    
     public abstract void agregarProducto(ProductoTransaccion productoTransaccion);
     public abstract void removerProducto(ProductoTransaccion productoTransaccion);
     public abstract void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad);

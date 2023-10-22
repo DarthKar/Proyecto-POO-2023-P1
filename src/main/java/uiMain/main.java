@@ -24,6 +24,10 @@ public class main {
                     continue;
                 case "5":
                     break menuLoop;
+                default:
+                    System.out.println("\n");
+                    System.out.println("Opcion invalida eliga de nuevo");
+                    System.out.println("\n");
             }
         } while (true);
         System.out.println("Hasta luego que le vaya bien");

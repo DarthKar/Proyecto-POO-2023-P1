@@ -1,11 +1,13 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 
 public class Orden extends Transaccion {
-
     boolean tieneDevoluciones;
 
     public Orden(Long id,Comprador comprador) {
@@ -21,13 +23,12 @@ public class Orden extends Transaccion {
     }
 
     public String mostrarOrden(){
-        return"Comprado por: "+ this.comprador.getNombreCompleto()+" \nid de la compra : "+this.id+"\n-------------------------------";    //metodo para mostrar una orden individualmente
+        return"Comprado por: "+ this.comprador.getNombreCompleto()+" \nid de la compra : "+this.id+"\nEl total a pagar es: "+this.calcularTotal()+"\n-------------------------------";    //metodo para mostrar una orden individualmente
     }
 
     @Override
     public void agregarProducto(ProductoTransaccion productoTransaccion) {
-        //TODO: Implementar validaciones de inventario.
-        productosTransaccion.add(productoTransaccion);
+        this.productosTransaccion.add(productoTransaccion);
     }
 
     @Override
