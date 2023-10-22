@@ -13,8 +13,10 @@ import java.util.Scanner;
 public class opinionUI extends Repositorio {
 
     protected static void IU(Scanner scanner) {
+        
         menuOpinionLoop:
         do {
+            casoPrueba();
             System.out.println(getOpciones());
             String opcion = scanner.nextLine().trim();
             
@@ -24,83 +26,91 @@ public class opinionUI extends Repositorio {
                     
                     String opcion1 = scanner.nextLine().trim();
                     
-                    if (opcion1.equals(1)) {
-                        crearOpinionProducto(scanner);
-                    }
-                    if (opcion1.equals(2)) {
-                        crearOpinionVendedor(scanner);
-                    }
-                    if (opcion1.equals(3)){
-                        continue;
-                    }
+                    switch(opcion1){ 
 
-                    continue;
+                    case "1":
+                        crearOpinionProducto(scanner);
+                        break;
+                    
+
+                    case "2":
+                        crearOpinionVendedor(scanner);
+                        break;
+                    
+                    
+                    case"3":
+                        break;
+                    
+
+                }
+                    continue menuOpinionLoop;
 
                 case "2":
                     System.out.println(getEditarOpc());
 
                     String opcion2 = scanner.nextLine().trim();
                     
-                    if (opcion2.equals(1)) {
+                    switch(opcion2){
                         
+                        case"1":
                         editarOpinionProducto(scanner);
-                        
+                            break;
+                    
+                    
+                    
+                        case"2":
+                            editarOpinionVendedor(scanner);
+                            break;
+                    
+                        case"3":
+                            break;
+
+
                     }
                     
-                    if (opcion2.equals(2)) {
-                        
-                        editarOpinionVendedor(scanner);
-                        
-                    }
-                    
-                    if(opcion2.equals(3)){
-                        
-                        continue;
-                    }
-                    
-                    continue;
+                        continue menuOpinionLoop;
                     
                 case "3":
                     System.out.println(getBorrarOpc());
                     
                     String opcion3 = scanner.nextLine().trim();
                     
-                    if (opcion3.equals(1)){
-                        
-                        borrarOpinionProducto(scanner);  
-                        
-                    }
+                    switch (opcion3){
+                        case "1":
+
+                            borrarOpinionProducto(scanner);  
+                            break;
                     
-                    if (opcion3.equals(2)){
-                        
-                        borrarOpinionVendedor(scanner);
-                        
+                        case "2":
+
+                            borrarOpinionVendedor(scanner);
+                            break;
                     }  
-                    continue;
+                        continue menuOpinionLoop;
                     
                 case "4":
                     System.out.println(getVerOpinionOpc());
                     
                     String opcion4 = scanner.nextLine().trim();
                     
-                    if (opcion4.equals(1)){
-                        
-                        verOpinionProducto(scanner);
-                        
-                    }
+                    switch(opcion4) {
+                        case "1":
+
+                            verOpinionProducto(scanner);
+                            break;
                     
-                    if (opcion4.equals(2)){
-                        
-                        verOpinionVendedor(scanner);
-                        
-                    }
                     
-                    if (opcion4.equals(3)){
+                        case "2":
                         
+                            verOpinionVendedor(scanner);
+                            break;
+                    
+                    
+                        case "3":
                         
-                        continue;
+                          break;
                     }
-                    continue;
+                    continue menuOpinionLoop;
                     
                 case "5":
                     
@@ -108,11 +118,18 @@ public class opinionUI extends Repositorio {
                 default:
                     
                     System.out.println("Has elegido una opcion invalida. Regresando al menu");
+
+                    continue menuOpinionLoop;
             }
         } while (true);
     }
     
-    
+    static void casoPrueba(){
+   Producto productoPrueba = baseDatos.getProductos().get(0);
+   Comprador compradorPrueba = baseDatos.getCompradores().get(35);
+   productoPrueba.agregarComprador(compradorPrueba);
+
+ }    
 
     private static String getOpciones() {
         return "Selecciona una de las siguientes opciones\n"
@@ -163,71 +180,78 @@ public class opinionUI extends Repositorio {
     
     
     private static void crearOpinionProducto(Scanner scanner) {
-        System.out.println("Ingresa el codigo del producto que quieres resenar");
-        String codigo = scanner.nextLine();
-        System.out.println("Ingresa cedula del autor");
-        String autor = scanner.nextLine();
-        List<Producto> bd = baseDatos.getProductos();
-        List<Comprador> bdC = baseDatos.getCompradores();
-        long codigoNuevo = 0;
-        long idAutor = 0;
-        boolean compradorExiste = false;
-        boolean productoExiste = false;
-        try {
-            codigoNuevo = Long.parseLong(codigo);
+    System.out.println("Ingresa el codigo del producto que quieres resenar");
+    String codigo = scanner.nextLine();
+    System.out.println("Ingresa cedula del autor");
+    String autor = scanner.nextLine();
 
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un codigo valido.");
-        }
-        try {
-            idAutor = Long.parseLong(autor);
+    long codigoNuevo;
+    long idAutor;
 
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un numero de cedula valido.");
-        }
+    try {
+        codigoNuevo = Long.parseLong(codigo);
+        idAutor = Long.parseLong(autor);
+    } catch (NumberFormatException e) {
+        System.out.println("Error: Ingresa un codigo y una cedula válidos.");
+        return;
+    }
 
-        for (Comprador co : bdC) {
-            if (co.getId() == idAutor) {
-                compradorExiste = true;
+    List<Producto> bd = baseDatos.getProductos();
+    List<Comprador> bdC = baseDatos.getCompradores();
+    boolean compradorExiste = false;
+    boolean productoExiste = false;
 
-                for (Producto producto : bd) {
-                    if (codigoNuevo == producto.getId()) {
-                        productoExiste = true;
-                        System.out.println("Ingrese su comentario");
-                        String com = scanner.nextLine();
-                        int valoracion = 0;
-                        while (true) {
-                            System.out.println("Ingrese su valoracion del 1 al 5 (siendo 1 lo mas bajo)");
+    System.out.println("Número de productos en la base de datos: " + bd.size());
+    System.out.println("Número de compradores en la base de datos: " + bdC.size());
 
-                            try {
-                                valoracion = Integer.parseInt(scanner.nextLine());
-                            } catch (NumberFormatException e) {
-                                System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
 
-                            }
+    for (Comprador co : bdC) {
+        System.out.println("Revisando comprador con ID: " + co.getId());
+        if (co.getId() == idAutor) {
+            compradorExiste = true;
 
-                            if (valoracion >= 1 && valoracion <= 5) {
+            for (Producto producto : bd) {
+                System.out.println("Revisando producto con ID: " + producto.getId());
+                if (codigoNuevo == producto.getId()) {
+                    productoExiste = true;
+                    System.out.println("Ingrese su comentario");
+                    String com = scanner.nextLine();
+                    int valoracion = 0;
+                    System.out.println(producto.getCompradores());
+                    while (true) {
+                        System.out.println("Ingrese su valoracion del 1 al 5 (siendo 1 lo mas bajo)");
 
-                                break;
-                            } else {
-                                System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
-                            }
+                        try {
+                            valoracion = Integer.parseInt(scanner.nextLine());
+                        } catch (NumberFormatException ex) {
+                            System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                            continue;
                         }
 
-                        Opinion op = new Opinion(com, valoracion);
-                        System.out.println(op.crearOpinion(co, producto, com, valoracion));
+                        if (valoracion >= 1 && valoracion <= 5) {
+                            break;
+                        } else {
+                            System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                        }
                     }
-                    if (!productoExiste) {
-                        System.out.println("Error: El producto no existe en la base de datos");
-                    }
+
+                    Opinion op = new Opinion(com, valoracion);
+                    System.out.println(op.crearOpinion(co, producto, com, valoracion));
+                    System.out.println("si dio");
                 }
             }
         }
-        if (!compradorExiste) {
-            System.out.println("el usuario no ha comprado el producto, no se puede crear una resena");
-        }
     }
-    
+
+    if (!compradorExiste) {
+        System.out.println("Error: El usuario no existe en la base de datos.");
+    }
+
+    if (!productoExiste) {
+        System.out.println("Error: El producto no existe en la base de datos.");
+    }
+}
+
     
 
     private static void editarOpinionProducto(Scanner scanner) {
@@ -563,14 +587,20 @@ public class opinionUI extends Repositorio {
                     
                     System.out.println(op.toString());
                     
-                }if(producto.getOpiniones().isEmpty()){
-                    System.out.println("El producto aun no tiene resenas");
-                }   
-             }if(!productoEncontrado){
-                 System.out.println("Error: No se ha encontrado el producto que buscas");
+                }
+                }
+                if(producto.getOpiniones().isEmpty()){
+                
+                    System.out.println("El producto aun no tiene resenas");   
+             
              }
          }
          }
+        if(!productoEncontrado){
+
+                 System.out.println("Error: No se ha encontrado el producto que buscas");
+        }
+                 
      }
      private static void verOpinionVendedor(Scanner scanner){
          System.out.println("Ingresa el codigo del producto del cual quieres ver opiniones");
@@ -602,9 +632,9 @@ public class opinionUI extends Repositorio {
              }if(vendedor.getOpinion().isEmpty()){
                  System.out.println("El vendedor aun no tiene resenas  ");
              }
-         }if(!vendedorEncontrado){
+         }
+            }if(!vendedorEncontrado){
              System.out.println("Error: No se ha encontrado el vendedor que buscas");
-            }
          
         }
     }

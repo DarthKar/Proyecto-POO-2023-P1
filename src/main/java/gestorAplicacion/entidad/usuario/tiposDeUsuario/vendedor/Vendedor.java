@@ -96,30 +96,64 @@ public class Vendedor extends Usuario {
 		new Publicacion(this, producto, inventario, precio);
 	}
 
-	public static Vendedor mayorVendedor() {
-		Map<Vendedor, Integer> vendedor = new HashMap<>();
-		for (Comprador comprador : CompradorRepositorio.obtener()) {
-			for (Transaccion orden : comprador.getOrdenes()) { // cambiarlo por transaccion
-				for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
-					if (vendedor.containsKey(productoTransaccion.getPublicacion().getProducto()))
-						vendedor.merge(productoTransaccion.getPublicacion().getVendedor(), 1, Integer::sum);
-					else
-						vendedor.put(productoTransaccion.getPublicacion().getVendedor(), 1);
+	public static String mejorVendedor() {
+	    Map<Vendedor, Integer> cantidadProductosPorVendedor = new HashMap<>();
+	    
+	    for (Comprador comprador : CompradorRepositorio.obtener()) {
+	        for (Transaccion transaccion : comprador.getOrdenes()) {
+	            for (ProductoTransaccion productoTransaccion : transaccion.getProductosTransaccion()) {
+	                Vendedor vendedor = productoTransaccion.getPublicacion().getVendedor();
+	                cantidadProductosPorVendedor.merge(vendedor, 1, Integer::sum);
+	            }
+	        }
+	    }
+	    
+	    Vendedor mejorVendedor = null;
+	    int maxCantidadProductos = 0;
+	    
+	    for (Map.Entry<Vendedor, Integer> entry : cantidadProductosPorVendedor.entrySet()) {
+	        if (entry.getValue() > maxCantidadProductos) {
+	            maxCantidadProductos = entry.getValue();
+	            mejorVendedor = entry.getKey();
+	        }
+	    }
+	    
+	    return (mejorVendedor.getNombre()+" "+ mejorVendedor.getApellido()+" con un total de "+maxCantidadProductos+" productos vendidos");
+	}
+     
+	
 
-				}
-
-			}
-			
-		}
-		Vendedor mayorVendedor = null;
-		int valor = 0;
-		for (Map.Entry<Vendedor, Integer> entry : vendedor.entrySet()) {
-			if (entry.getValue() > valor) {
-				valor = entry.getValue();
-				mayorVendedor = entry.getKey();
-			}
-			
-}
-		return mayorVendedor;
+public static String mejorVendedorPorRecaudacion() {
+    Map<Vendedor, Float> recaudacionPorVendedor = new HashMap<>();
+    
+    for (Comprador comprador : CompradorRepositorio.obtener()) {
+        for (Transaccion transaccion : comprador.getOrdenes()) {
+            for (ProductoTransaccion productoTransaccion : transaccion.getProductosTransaccion()) {
+                Vendedor vendedor = productoTransaccion.getPublicacion().getVendedor();
+                float precioProducto = productoTransaccion.getPublicacion().getPrecio();
+                recaudacionPorVendedor.merge(vendedor, precioProducto, Float::sum);
+            }
+        }
+    }
+    
+    Vendedor mejorVendedor = null;
+    float maxRecaudacion = 0;
+    
+    for (Map.Entry<Vendedor, Float> entry : recaudacionPorVendedor.entrySet()) {
+        if (entry.getValue() > maxRecaudacion) {
+            maxRecaudacion = entry.getValue();
+            mejorVendedor = entry.getKey();
+        }
+    }
+    
+    if (mejorVendedor != null) {
+        return mejorVendedor.getNombre() + " " + mejorVendedor.getApellido() + " ha recaudado un total de " + maxRecaudacion + " en ventas.";
+    } else {
+        return "No se encontró ningún mejor vendedor por recaudación.";
     }
 }
+}
+
+
+
+
