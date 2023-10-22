@@ -69,7 +69,7 @@ public class DevolucionesUI extends Validaciones {
                 System.out.println("No ha elegido una opción valida");
                 return;
             }
-
+            
             devolucion.setOrden(ordenOptional.get());
             menuDevolucion:
             do {
