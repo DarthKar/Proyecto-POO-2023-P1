@@ -70,7 +70,7 @@ public class Publicacion implements Serializable {
     }
     
     public String mostrarPublicacion(){
-        return "Vendedor: "+this.getVendedor().getNombre()+"\nProducto: "+this.getProducto().getNombre()+"\nInventario: "
+        return "\n------------------------------------------\n"+"Vendedor: "+this.getVendedor().getNombre()+"\nProducto: "+this.getProducto().getNombre()+"\nInventario: "
                 +this.getInventario()+"\nPrecio: "+this.getPrecio()+"\n------------------------------------------";                                                                //Metodo para mostrar las publicaciones en un formato
     }
 
