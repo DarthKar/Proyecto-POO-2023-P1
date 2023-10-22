@@ -188,11 +188,34 @@ public class Comprador extends Usuario {
             }
 
         }
-        return (mascomprador.getNombre()+" "+ mascomprador.getApellido()+" con el ID "+mascomprador.getId()+" y con el correo electronico "+mascomprador.getCorreo());
+        return (mascomprador.getNombre()+" "+ mascomprador.getApellido()+" con el ID "+mascomprador.getId()+" y con el correo electronico "+mascomprador.getCorreo()+" con un total de "+tamanoOrdenes+" productos comprados");
     }
-  
+    
+    public static String masCompradorValor() {
+        float comprasValorMaximo = 0;
+        Comprador masComprador = null;
 
+        for (Comprador comprador : CompradorRepositorio.obtener()) {
+            float comprasValor = 0;
 
+            for (Orden orden : comprador.getOrdenes()) {
+                for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+                    comprasValor += productoTransaccion.getPublicacion().getPrecio();
+                }
+            }
+
+            if (comprasValor > comprasValorMaximo) {
+                comprasValorMaximo = comprasValor;
+                masComprador = comprador;
+            }
+        }
+
+        if (masComprador != null) {
+            return masComprador.getNombre() +" "+ masComprador.getApellido()+ " que gastó un total de " + comprasValorMaximo;
+        } else {
+            return "No se encontró ningún comprador.";
+        }
+    }
     public List<Publicacion> getPublicacionesRecomendadas(int numeroPublicaciones) {
 
         if (ordenes.isEmpty()) {

@@ -72,5 +72,7 @@ public class Devolucion extends Transaccion {
         return orden.getProductosTransaccion().stream()
                 .filter(productoOrden -> productoOrden.getPublicacion().equals(publicacion))
                 .findAny().get();
+    
+    
     }
 }

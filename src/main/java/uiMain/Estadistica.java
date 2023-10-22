@@ -5,6 +5,7 @@ import java.util.Scanner;
 import gestorAplicacion.entidad.producto.Producto;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Membresia;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import uiMain.utilidades.Validaciones;
 
 public class Estadistica extends Validaciones {
@@ -48,7 +49,7 @@ public class Estadistica extends Validaciones {
 			System.out.println(opcionesEstadistica());
 			int opcion;
 			try {
-				opcion = validarOpcionMenu(scanner.nextLine(), 1, 5);
+				opcion = validarOpcionMenu(scanner.nextLine(), 1, 2);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 				continue;
@@ -60,8 +61,7 @@ public class Estadistica extends Validaciones {
 				
 				break estadisticas;
 			case 2:
-				System.out.println("estadisticas");
-			case 5:
+				productosVendidos();
 				break estadisticas;
 			default:
 				System.out.println("Ha elegido una opción invalida.");
@@ -88,6 +88,7 @@ public class Estadistica extends Validaciones {
 				totalComprador();
 				break estadisticasCompradores;
 			case 2:
+				totalFactura();
 				break estadisticasCompradores;
 			case 3:
 				totalMembresias();
@@ -98,9 +99,10 @@ public class Estadistica extends Validaciones {
 		} while (true);
 
 	}
+
 	private static void menuEstadisticasVendedores() {
 		// TODO Auto-generated method stub
-		estadisticas:do {
+		estadisticasVendedores:do {
 			System.out.println("Bienvenido a las estadisticas generales de los vendedores, ingrese el numero de la estadistica que desea visualizar");
 			System.out.println(opcionesEstadisticaVendedores());
 			int opcion;
@@ -113,13 +115,13 @@ public class Estadistica extends Validaciones {
 
 			switch (opcion) {
 			case 1:
-				totalVentas();
-				
-				break estadisticas;
+				break estadisticasVendedores;
 			case 2:
-				System.out.println("estadisticas");
-			case 5:
-				break estadisticas;
+				masVendedor();
+				
+			case 3:
+				masRecaudador();
+				break estadisticasVendedores;
 			default:
 				System.out.println("Ha elegido una opción invalida.");
 			}
@@ -128,6 +130,7 @@ public class Estadistica extends Validaciones {
 	}
 		
 	
+
 	private static void menuEstadisticasProductos() {
 		estadisticas:do {
 			System.out.println("Bienvenido a las estadisticas generales de los productos, ingrese el numero de la estadistica que desea visualizar");
@@ -142,19 +145,15 @@ public class Estadistica extends Validaciones {
 
 			switch (opcion) {
 			case 1:
-				totalVentas();
-				
-				break estadisticas;
-			case 2:
 				System.out.println("estadisticas");
 				break estadisticas;
-			case 3:
+			case 2:
 				productoMasCaro();
 				break estadisticas;
-			case 4:
+			case 3:
 				productoMasBarato();
 				break estadisticas;
-			case 5:
+			case 4:
 				productoMasVendido();
 				break estadisticas;
 			default:
@@ -169,14 +168,22 @@ public class Estadistica extends Validaciones {
 		String barato=Producto.productoMasBarato();
 		System.out.println("El producto mas barato de todo el e-commerce es %s".formatted(barato));		
 	}
-
+	private static void masRecaudador() {
+		// TODO Auto-generated method stub
+		String masRecaudo=Vendedor.mejorVendedorPorRecaudacion();
+		System.out.println("El vendedor con la mayor recaudacion fue %s".formatted(masRecaudo));
+	}
 	private static void productoMasCaro() {
 		// TODO Auto-generated method stub
 		String caro=Producto.productoMasCaro();
 		System.out.println("El producto mas caro de todo el e-commerce es %s".formatted(caro));	
 		
 	}
-
+	private static void totalFactura() {
+		String Factura=Comprador.masCompradorValor();
+		System.out.println("El usuario que mas ha gastado de todo el e-commerce es %s".formatted(Factura));
+		
+	}
 	private static void totalMembresias() {
 		// TODO Auto-generated method stub
 		
@@ -191,10 +198,16 @@ public class Estadistica extends Validaciones {
 			
 	}
 	
+	private static void masVendedor() {
+		// TODO Auto-generated method stub
+		String masVentas=Vendedor.mejorVendedor();
+		System.out.println("El vendedor que mas vendio fue %s".formatted(masVentas));
+	}
+	
 	private static void totalComprador() {
 		//String compras=null;
 		String compras=Comprador.masComprador();
-		System.out.println("El Usuario con la factura mas alta es %s".formatted(compras));
+		System.out.println("El Usuario con el mayor numero de productos comprados es %s".formatted(compras));
 	}
 
 
@@ -203,6 +216,12 @@ public class Estadistica extends Validaciones {
 		Producto producto = Producto.productoMasVendido();
 		System.out.println("El producto mas vendido es %s que pertenece a la categoria %s "
 				.formatted(producto.getNombre(), producto.getCategoria()));
+	}
+	private static void productosVendidos() {
+		// TODO Auto-generated method stub
+		int producto = Producto.cantidadProductosVendidos();
+		System.out.println("El total de productos que se vendieron fueron %s "
+				.formatted(producto));
 	}
 
 	private static String getOpciones() {
@@ -217,14 +236,14 @@ public class Estadistica extends Validaciones {
 		// TODO Auto-generated method stub
 		return 
 		"1. Total ventas e-commerce\n"+
-		"2. Total devoluciones";
+		"2. Total Productos vendidos";
 	}
 	private static String opcionesEstadisticaCompradores() {
 		// TODO Auto-generated method stub
 		return 
 				
-		"1. Usuario que mas productos ha compado\n"+
-		"2. Usuario mas comprador por valor\n"+
+		"1. Usuario que mas productos ha comprado\n"+
+		"2. Usuario que mas dinero ha gastado \n"+
 		"3. Membresia mas comprada";
 	}
 	private static String opcionesEstadisticaVendedores() {
@@ -232,17 +251,16 @@ public class Estadistica extends Validaciones {
 		return 
 				
 		"1. Vendedor con mejor valoracion\n"+
-		"2. Vendedor que mas productos vendio\n"+
-		"3. Vendedor con mayor cantidad de productos vendidos";
+		"2. Vendedor que mas productos vendió\n"+
+		"3. Vendedor que mas dinero recaudó";
 	}
 	private static String opcionesEstadisticaProductos() {
 		// TODO Auto-generated method stub
 		return 
 				
-		"1. Productos mejor valoracion\n"+
-		"2. Total productos sin vender\n"+
-		"3. Producto mas caro\n"+
-		"4. Producto mas barato\n"+
-		"5. Producto mas vendido";
+		"1. Total productos sin vender\n"+
+		"2. Producto mas caro\n"+
+		"3. Producto mas barato\n"+
+		"4. Producto mas vendido";
 	}
 }
