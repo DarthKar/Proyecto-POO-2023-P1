@@ -120,6 +120,8 @@ public class BaseDatos implements Serializable {
             compradores.add(new Comprador(34L, "María", "Sánchez", "maria@example.com", Membresia.ORO,167));
             compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA,189));
             compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
+            compradores.add(new Comprador(37L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
+
 
             vendedores.add(new Vendedor(1L, "Juan", "Pérez", "juan@example.com"));
             vendedores.add(new Vendedor(2L, "María", "López", "maria@example.com"));
