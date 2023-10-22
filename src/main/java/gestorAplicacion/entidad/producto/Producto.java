@@ -13,9 +13,11 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class Producto implements Serializable {
 
@@ -37,7 +39,11 @@ public class Producto implements Serializable {
 		this.opinion = new ArrayList<>();
 		this.compradores = new ArrayList<>();
 		this.publicaciones = new ArrayList<>();
+		this.resenadores=new ArrayList<>();
+		this.resenadores.add(new Comprador(1234234235L, "a", "b","si",Membresia.NINGUNA,200));
 	}
+	 
+	
 
 	public void addOpinionProducto(OpinionProducto resena) {
 		if (Objects.isNull(resena))
@@ -88,7 +94,7 @@ public class Producto implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public void setComprodores(List compradores) {
+	public void setComprodores(List<Comprador> compradores) {
 		this.compradores = compradores;
 	}
 
@@ -197,6 +203,19 @@ public class Producto implements Serializable {
 			}
 			return valorVentas;
 		}
+		
+		public static int productosTotalesVendidos() {
+			int valorVendidos = 0;
+			for (Comprador comprador : CompradorRepositorio.obtener()) {
+				for (Orden orden : comprador.getOrdenes()) {
+					for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+						valorVendidos ++;
+					}
+
+				}
+			}
+			return valorVendidos;
+		}
 
 
 
@@ -273,6 +292,20 @@ public class Producto implements Serializable {
 
 	        return membresiaMasComun;
 	    }
-	}
+		public static int cantidadProductosVendidos() {
+		    Set<Producto> productosDiferentes = new HashSet<>();
+
+		    for (Comprador comprador : CompradorRepositorio.obtener()) {
+		        for (Orden orden : comprador.getOrdenes()) {
+		            for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+		                Producto producto = productoTransaccion.getPublicacion().getProducto();
+		                productosDiferentes.add(producto);
+		            }
+		        }
+		    }
+
+		    return productosDiferentes.size();
+		}	
+}
 
 

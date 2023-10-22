@@ -39,7 +39,7 @@ public class main {
                 + "2. Realizar devolución\n"
                 + "3. Opinar \n"
                 + "4. Estadisticas\n"
-                + "5. Para cerrar la aplicación";
+                + "5. cerrar la aplicación";
     }
 
 

@@ -9,7 +9,9 @@ public class Opinion {
     protected String opinion;
     protected int valoracion;
     protected Comprador creador;        // Creacion de atributo creador para poder diferenciar entre una opinion y otra, filtrar por edicion de opiniones
-
+    static {
+        
+    }
    
     public Opinion(String opinion, int valoracion) {
         this.opinion = opinion;
@@ -41,8 +43,7 @@ public class Opinion {
          
     public String crearOpinion(Comprador comprador, Producto producto, String comentario, int valoracion) { 
         boolean existe=false;
-        if (producto != null && comprador != null) {
-           for (Comprador comp : producto.getCompradores()) {
+    for (Comprador comp : producto.getCompradores()) {
               if ( comp.equals(comprador)){  
                   existe=true;
                   if(producto.existeResena(comprador)==false){              
@@ -55,11 +56,11 @@ public class Opinion {
                 return "Este usuario ya ha resenado este producto";
            }
           }
-        }if(!existe){
+        if(!existe){
             return "el usuario no ha comprado el producto, no se puede crear una resena";
         }
         return "No se pudo realizar la accion";
-      }
+    }
     
     
     public String editarOpinion(Comprador comprador, Producto producto,String comentario, int valoracion){
