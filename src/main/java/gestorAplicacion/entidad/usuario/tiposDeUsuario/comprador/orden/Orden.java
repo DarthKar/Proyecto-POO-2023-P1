@@ -9,9 +9,15 @@ import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 
 public class Orden extends Transaccion {
     boolean tieneDevoluciones;
+    public boolean pagar;
 
     public Orden(Long id,Comprador comprador) {
         super(id, comprador);
+        pagar = false;
+    }
+
+    public void pagado(){
+        this.pagar = true;
     }
 
     public boolean isTieneDevoluciones() {
@@ -28,16 +34,18 @@ public class Orden extends Transaccion {
 
     @Override
     public void agregarProducto(ProductoTransaccion productoTransaccion) {
-        this.productosTransaccion.add(productoTransaccion);
+        this.productosTransaccion.add(productoTransaccion);                 //metodo para agregar un producto a la lista de productos
     }
 
     @Override
-    public void removerProducto(ProductoTransaccion productoTransaccion) {
-        //TODO: Realizar implementación
+    public void removerProducto(ProductoTransaccion productoTransaccion) {      //implentado para remover productos a la lista en transaccion
+        if (productosTransaccion.contains(productoTransaccion)) {
+            this.productosTransaccion.remove(productoTransaccion);
+        }
     }
 
     @Override
     public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
-        //TODO: Realizar implementación
+        productoTransaccion.setCantidad(cantidad);                                                //implementado para modifcar la cantidad de un producto en especifico
     }
 }

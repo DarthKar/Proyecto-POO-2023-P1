@@ -298,6 +298,7 @@ public class productosIU extends Validaciones {
                             for (ProductoTransaccion comprado : ordenpagar.getProductosTransaccion()) {
                                 compradorActual.agregarProductoComprado(comprado);
                             }
+                            ordenpagar.pagado();
                             System.out.println("Pago realizado con exito");
                             System.out.println("Total pagado: " + totalpagar);
                             continue menuProductoLoop;
