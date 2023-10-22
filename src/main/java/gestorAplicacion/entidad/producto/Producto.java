@@ -13,9 +13,11 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class Producto implements Serializable {
 
@@ -197,6 +199,19 @@ public class Producto implements Serializable {
 			}
 			return valorVentas;
 		}
+		
+		public static int productosTotalesVendidos() {
+			int valorVendidos = 0;
+			for (Comprador comprador : CompradorRepositorio.obtener()) {
+				for (Orden orden : comprador.getOrdenes()) {
+					for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+						valorVendidos ++;
+					}
+
+				}
+			}
+			return valorVendidos;
+		}
 
 
 
@@ -273,6 +288,20 @@ public class Producto implements Serializable {
 
 	        return membresiaMasComun;
 	    }
-	}
+		public static int cantidadProductosVendidos() {
+		    Set<Producto> productosDiferentes = new HashSet<>();
+
+		    for (Comprador comprador : CompradorRepositorio.obtener()) {
+		        for (Orden orden : comprador.getOrdenes()) {
+		            for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
+		                Producto producto = productoTransaccion.getPublicacion().getProducto();
+		                productosDiferentes.add(producto);
+		            }
+		        }
+		    }
+
+		    return productosDiferentes.size();
+		}	
+}
 
 
