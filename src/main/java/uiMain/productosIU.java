@@ -254,7 +254,7 @@ public class productosIU extends Validaciones {
                             System.out.println("\n");
                             compradorActual.agregarOrden(ordencompra);
                             System.out.println("El id es: " + ordencompra.getId() + " guardelo para el pago");
-                            System.out.println("Orden creada con exito, recuerde pagarle inmediatamente, regresando al menu de compra");
+                            System.out.println("Orden creada con exito, recuerde pagarlo inmediatamente, regresando al menu de compra");
                             carrito.getProductosTransaccion().clear();
                             continue menuProductoLoop;
 
@@ -286,6 +286,7 @@ public class productosIU extends Validaciones {
                     System.out.println("Esta es su informacion de pago");
                     System.out.println(compradorActual.mostrarInformacion());
                     System.out.println(ordenpagar.mostrarOrden());
+                    ordenpagar.mostrarProductoorden(ordenpagar);
                     System.out.println(opcionesPago1());
                     String opcion5 = scanner.nextLine().trim();
                     switch (opcion5) {
@@ -305,6 +306,7 @@ public class productosIU extends Validaciones {
                             }
                             ordenpagar.pagado();
                             System.out.println("Pago realizado con exito");
+                            System.out.println("El descuento por membresia es de: "+(ordenpagar.calcularTotal()-totalpagar));
                             System.out.println("Total pagado: " + totalpagar);
                             continue menuProductoLoop;
                         
