@@ -20,6 +20,14 @@ public class Orden extends Transaccion {
         this.pagar = true;
     }
 
+    public void mostrarProductoorden(Orden orden){
+        int contador2 = 1;
+        for (ProductoTransaccion productosTransaccion : orden.getProductosTransaccion()) {
+            System.out.println(contador2 + ". " + productosTransaccion.mostrarEspProducto());
+            contador2++;
+         }
+    }
+
     public boolean isTieneDevoluciones() {
         return tieneDevoluciones;
     }
