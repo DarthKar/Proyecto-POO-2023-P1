@@ -43,7 +43,7 @@ public class Opinion {
          
     public String crearOpinion(Comprador comprador, Producto producto, String comentario, int valoracion) { 
         boolean existe=false;
-    for (Comprador comp : producto.getCompradores()) {
+            for (Comprador comp : producto.getCompradores()) {
               if ( comp.equals(comprador)){  
                   existe=true;
                   if(producto.existeResena(comprador)==false){              
@@ -51,6 +51,7 @@ public class Opinion {
                 opinion.setCreador(comprador);
                 producto.addOpinionProducto(opinion);
                 comprador.getResenasDeProductos().add(opinion);
+                producto.agregarResenador(comprador);
                 return "Se ha creado la resena con exito";
             }
                 return "Este usuario ya ha resenado este producto";
@@ -64,37 +65,39 @@ public class Opinion {
     
     
     public String editarOpinion(Comprador comprador, Producto producto,String comentario, int valoracion){
-        if (producto !=null && comprador != null){
-          if(producto.existeResena(comprador)==true){  
-           for (OpinionProducto op : producto.getOpiniones()){          //edicion de opiniones 
+           if(producto.existeResena(comprador)){
+            for (OpinionProducto op : producto.getOpiniones()){       //edicion de opiniones 
                 if (op.getCreador().equals(comprador)){
+                
                    op.setOpinion(comentario);
                    op.setValoracion(valoracion);
                    return "Opinion editada con exito";
-                }
-            
-               
-                   
+                }  
                
             }     
-          }
-        }return "No se pudo realizar la accion";
-    }
+        }
+        return "Error: Este autor no tiene ninguna resena de este producto";
+        }
     
-    public String borrarOpinionProducto(Producto producto, Comprador comprador) {
+    public OpinionProducto borrarOpinionProducto(Producto producto, Comprador comprador) {
+        boolean opinionEncontrada=false;
+        OpinionProducto opinionEliminar=null;
         for (OpinionProducto op : producto.getOpiniones()){                 // Metodo para Borrar una opinion de un producto
             if ( op.getCreador().equals(comprador)){
-                producto.getOpiniones().remove(op);
-                return "Opinion eliminada con exito";
-            }
-        }return "No se pudo realizar la accion";
-            
+                opinionEliminar=op;
+                opinionEncontrada=true;
+                }
+
+        }if(opinionEncontrada&&opinionEliminar!=null){
+            return (opinionEliminar);
+                
+                }
+            return null;
     }
     
     
     public  String crearOpinion(Comprador comprador, Vendedor vendedor, String comentario, int valoracion) { 
         boolean existe=false;
-        if (vendedor != null && comprador != null) {
            for (Comprador comp : vendedor.getCompradores()) {
               if ( comp.equals(comprador)){ 
                   existe=true;
@@ -103,22 +106,23 @@ public class Opinion {
                 opinion.setCreador(comprador);
                 vendedor.addOpinionVendedor(opinion);
                 comprador.getResenasDeProductos().add(opinion);
+                vendedor.agregarResenador(comprador);
                    return "Se ha creado la resena con exito";
                    }
-                   return "Este usuario ya ha resenado este producto";
+                   return "Este usuario ya ha resenado este vendedor";
                 }   
             }    
-        }if(!existe){
+        if(!existe){
             return "el usuario no es cliente del vendedor, no se puede crear una resena";
         }
         return "No se pudo realizar la accion";
     }
     
     public String editarOpinion(Comprador comprador, Vendedor vendedor,String comentario, int valoracion){
-        if (vendedor !=null && comprador != null ){
           if(vendedor.existeResena(comprador)==true){  
            for (OpinionVendedor op : vendedor.getOpinion()){        //edicion de opinones 
                if (op.getCreador().equals(comprador)){
+
                    op.setOpinion(comentario);
                    op.setValoracion(valoracion);
                    return "Opinion editada con exito";
@@ -126,25 +130,36 @@ public class Opinion {
                }    
             }     
           }
-        }return "No se pudo realizar la accion";
+        return "Error: Este autor no tiene ninguna resena de este vendedor";
     }
-    public String borrarOpinionVendedor(Vendedor vendedor,Comprador comprador) {
+    public OpinionVendedor borrarOpinionVendedor(Vendedor vendedor,Comprador comprador) {
+        boolean opinionEncontrada=false;
+        OpinionVendedor opinionEliminar=null;
         for (OpinionVendedor op : vendedor.getOpinion()){           // Metodo para Borrar una opinion de vendedor
             if ( op.getCreador().equals(comprador)){
-                vendedor.getOpinion().remove(op);
-                return "Opinion eliminada con exito";
+                if ( op.getCreador().equals(comprador)){
+                    opinionEliminar=op;
+                    opinionEncontrada=true;
+                }
+
+        }if(opinionEncontrada&&opinionEliminar!=null){
+            return (opinionEliminar);
             }
             
-        }return "No se pudo realizar la accion";
+        }return null;
             
     }
     @Override
     public String toString(){
-        return "Autor: "+this.getCreador()+"\n\n"
+        return "Autor: "+this.getCreador().getNombreCompleto()+"\n"
+              +"Miembro: "+this.getCreador().getMembresia()+"\n\n"
                 
                 +"Comentario: "+this.getOpinion()+"\n"
                 
-                +"Valoracion: "+this.getValoracion();
+                +"Valoracion: "+this.getValoracion()+"\n"
+                +"----------------------------------------------------------------"
+                +"";
+
                 
         
     }
