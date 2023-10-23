@@ -181,6 +181,10 @@ public class productosIU extends Validaciones {
                                 System.out.println("Si quieres eliminar el producto ve a al opcion 'eliminar', regresando al menu principal");
                                 continue menuProductoLoop;
                             }
+                            if(Ncantidad < 0){
+                                System.out.println("No puedes poner cantidades negativas, regresando al menu");
+                                continue menuProductoLoop;
+                            }
                             carrito.modificarProducto(carrito.getProductosTransaccion().get(select3), Ncantidad);
                             continue;
                         case "2":
@@ -194,10 +198,11 @@ public class productosIU extends Validaciones {
                             continue;
                         case "3":
                             System.out.println("\n");
+                            System.out.println("Regresando al menú de compra....");
                             break menuProductoLoop;
                         default:
                             System.out.println("\n");
-                            System.out.println("Opción inválida. Regresando al menú de carrito");
+                            System.out.println("Opción inválida. Regresando al menú de compra");
                             break; // Regresa automáticamente al menú principal
                     }
 
@@ -210,7 +215,7 @@ public class productosIU extends Validaciones {
                         case "1":
                             System.out.println("\n");
                             System.out.println("Su saldo actual es de:  " + compradorActual.getSaldo());
-                            break;
+                            continue ;
                         case "2":
                             System.out.println("\n");
                             System.out.println("Cuanto saldo desea agregar");
