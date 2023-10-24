@@ -66,7 +66,7 @@ public class Comprador extends Usuario {
 
     public void agregarDevolucion(Devolucion devolucion) {
         if (!devolucion.getProductosTransaccion().isEmpty()) {
-            saldo += devolucion.calcularTotal();
+            saldo += AplicarDescuento(devolucion.calcularTotal());
             devoluciones.add(devolucion);
             CompradorRepositorio.guardar(this);
         }
