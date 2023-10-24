@@ -66,6 +66,7 @@ public class Comprador extends Usuario {
 
     public void agregarDevolucion(Devolucion devolucion) {
         if (!devolucion.getProductosTransaccion().isEmpty()) {
+            saldo += devolucion.calcularTotal();
             devoluciones.add(devolucion);
             CompradorRepositorio.guardar(this);
         }
@@ -106,10 +107,6 @@ public class Comprador extends Usuario {
         }
         return a;
     }
-    
-    public String mostrarSaldo(){
-        return "Su saldo actual es: "+this.saldo;                   //metodo toString() para mostrar el saldo del comprador
-    }
    
     public String mostrarInformacion(){
         return "Nombre: "+this.getNombre()+" "+this.apellido+" \nCorreo: "+this.correo+" \nTipo de Membresia: "+this.membresia+" \nSaldo: "+this.saldo;
@@ -120,14 +117,13 @@ public class Comprador extends Usuario {
                 new IllegalArgumentException("Comprador con id %s no ha sido encontrado.".formatted(id)));
     }
 
-    // TODO: Método temporal para agregar información por defecto a base de datos.
     public void agregarOrden(Orden orden) {
         ordenes.add(orden);
     }
 
     public List<Orden> getOrdenesValidasParaDevolucion() {
         return ordenes.stream().filter(orden ->
-                        !orden.isTieneDevoluciones()
+                        !orden.isTieneDevoluciones() && orden.isPagar()
                                 && orden.getProductosTransaccion()
                                 .stream()
                                 .anyMatch(productoTransaccion -> !productoTransaccion.getPublicacion().getProducto().getCategoria().isPerecedero()))

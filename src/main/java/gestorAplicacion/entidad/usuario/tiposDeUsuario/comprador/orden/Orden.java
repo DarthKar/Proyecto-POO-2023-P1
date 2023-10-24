@@ -1,15 +1,12 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 
 public class Orden extends Transaccion {
     boolean tieneDevoluciones;
-    public boolean pagar;
+    private boolean pagar;
 
     public Orden(Long id,Comprador comprador) {
         super(id, comprador);
@@ -55,5 +52,9 @@ public class Orden extends Transaccion {
     @Override
     public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
         productoTransaccion.setCantidad(cantidad);                                                //implementado para modifcar la cantidad de un producto en especifico
+    }
+
+    public boolean isPagar() {
+        return pagar;
     }
 }

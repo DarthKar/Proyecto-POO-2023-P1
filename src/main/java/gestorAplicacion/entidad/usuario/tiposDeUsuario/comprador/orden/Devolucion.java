@@ -1,12 +1,10 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden;
 
-import baseDatos.impl.Repositorio;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Devolucion extends Transaccion {
