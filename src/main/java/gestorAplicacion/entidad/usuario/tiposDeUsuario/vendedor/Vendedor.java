@@ -17,12 +17,19 @@ import java.util.Optional;
 
 import baseDatos.impl.CompradorRepositorio;
 
+
+
 public class Vendedor extends Usuario {
 
 	private List<Publicacion> publicaciones;
 	private List<OpinionVendedor> opinionesVendedor;
 	private List<Comprador> compradores;
 	private List<Comprador> resenadores;
+
+
+	public Vendedor(){
+        this(999L,"Jhon", "Doe", "JhonDoe@example.com");
+    }
 
 	public Vendedor(long id, String nombre, String apellido, String correo) {
 		super(id, nombre, apellido, correo);
