@@ -115,11 +115,10 @@ public class Estadistica extends Validaciones {
 
 			switch (opcion) {
 			case 1:
-				break estadisticasVendedores;
-			case 2:
 				masVendedor();
+				break estadisticasVendedores;
 				
-			case 3:
+			case 2:
 				masRecaudador();
 				break estadisticasVendedores;
 			default:
@@ -137,7 +136,7 @@ public class Estadistica extends Validaciones {
 			System.out.println(opcionesEstadisticaProductos());
 			int opcion;
 			try {
-				opcion = validarOpcionMenu(scanner.nextLine(), 1, 6);
+				opcion = validarOpcionMenu(scanner.nextLine(), 1, 3);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 				continue;
@@ -145,15 +144,12 @@ public class Estadistica extends Validaciones {
 
 			switch (opcion) {
 			case 1:
-				System.out.println("estadisticas");
-				break estadisticas;
-			case 2:
 				productoMasCaro();
 				break estadisticas;
-			case 3:
+			case 2:
 				productoMasBarato();
 				break estadisticas;
-			case 4:
+			case 3:
 				productoMasVendido();
 				break estadisticas;
 			default:
@@ -250,17 +246,15 @@ public class Estadistica extends Validaciones {
 		// TODO Auto-generated method stub
 		return 
 				
-		"1. Vendedor con mejor valoracion\n"+
-		"2. Vendedor que mas productos vendió\n"+
-		"3. Vendedor que mas dinero recaudó";
+		"1. Vendedor que mas productos vendió\n"+
+		"2. Vendedor que mas dinero recaudó";
 	}
 	private static String opcionesEstadisticaProductos() {
 		// TODO Auto-generated method stub
 		return 
 				
-		"1. Total productos sin vender\n"+
-		"2. Producto mas caro\n"+
-		"3. Producto mas barato\n"+
-		"4. Producto mas vendido";
+		"1. Producto mas caro\n"+
+		"2. Producto mas barato\n"+
+		"3. Producto mas vendido";
 	}
 }

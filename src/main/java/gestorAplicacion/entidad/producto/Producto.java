@@ -175,7 +175,7 @@ public class Producto implements Serializable {
 				for (Orden orden : comprador.getOrdenes()) {
 					for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
 						if (productoMasCaro < (productoTransaccion.getPublicacion().getPrecio()))
-							;
+							
 						{
 							productoMasCaro = productoTransaccion.getPublicacion().getPrecio();
 							productoCaro=productoTransaccion.getPublicacion().getProducto().getNombre();
@@ -226,7 +226,7 @@ public class Producto implements Serializable {
 				for (Orden orden : comprador.getOrdenes()) {
 					for (ProductoTransaccion productoTransaccion : orden.getProductosTransaccion()) {
 						if (productoMasBarato > (productoTransaccion.getPublicacion().getPrecio()))
-							;
+							
 						{
 							productoMasBarato = productoTransaccion.getPublicacion().getPrecio();
 							productoBarato=productoTransaccion.getPublicacion().getProducto().getNombre();
