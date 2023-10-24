@@ -47,9 +47,6 @@ public abstract class Transaccion implements Serializable, ITransaccion {
         }
         return Total;
     }
-    
-    public abstract void agregarProducto(ProductoTransaccion productoTransaccion);
-    public abstract void removerProducto(ProductoTransaccion productoTransaccion);
-    public abstract void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad);
+
 
 }
