@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Transaccion implements Serializable {
+public abstract class Transaccion implements Serializable, ITransaccion {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -23,7 +23,6 @@ public abstract class Transaccion implements Serializable {
         this.comprador = comprador;
         productosTransaccion = new ArrayList<>();
     }
-
 
     public Comprador getComprador() {
         return comprador;
