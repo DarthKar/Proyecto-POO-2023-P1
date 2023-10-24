@@ -20,7 +20,8 @@ public class main {
                     continue;
                 case "3": opinionUI.IU(scanner);
                     continue;
-                case "4":Estadistica.interfaz(scanner);
+                case "4":
+                    EstadisticaUI.interfaz(scanner);
                     continue;
                 case "5":
                     break menuLoop;
