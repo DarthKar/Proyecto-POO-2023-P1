@@ -220,6 +220,10 @@ public class productosIU extends Validaciones {
                             System.out.println("\n");
                             System.out.println("Cuanto saldo desea agregar");
                             float saldoagregado = Float.parseFloat(scanner.nextLine().trim());
+                            if(saldoagregado < 0){
+                                System.out.println("No puedes poner cantidades negativas, regresando al menu");
+                                continue menuProductoLoop;
+                            }
                             compradorActual.agregarSaldo(saldoagregado);
                             System.out.println("Saldo agregado con exito");
                             break;
