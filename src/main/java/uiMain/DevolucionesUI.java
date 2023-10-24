@@ -47,7 +47,12 @@ public class DevolucionesUI extends Validaciones {
     private static void listarOrdenes(List<Orden> ordenes) {
 
         if (ordenes.isEmpty()) {
-            throw new IllegalArgumentException("No tiene ninguna compra realizada");
+            throw new IllegalArgumentException("""
+                    No tiene ninguna orden realizada o ninguna cumple con el criterio de devolución
+                    1. La orden debe estar paga
+                    2. La orden debe contener como minimo un articulo no perecedero
+                    3. La orden no debe tener devoluciones anteriores
+                    """);
         }
         AtomicInteger i = new AtomicInteger(0);
         ordenes.forEach(orden -> {
@@ -69,7 +74,7 @@ public class DevolucionesUI extends Validaciones {
                 System.out.println("No ha elegido una opción valida");
                 return;
             }
-            
+
             devolucion.setOrden(ordenOptional.get());
             menuDevolucion:
             do {
