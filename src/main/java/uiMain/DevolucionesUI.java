@@ -234,7 +234,4 @@ public class DevolucionesUI extends Validaciones {
                 + "5. Deshacer cambios y regresar";
 
     }
-
-    private static void comprar() {
-    }
 }

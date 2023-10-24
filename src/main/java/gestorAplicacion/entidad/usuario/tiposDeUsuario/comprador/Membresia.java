@@ -6,7 +6,6 @@ public enum Membresia {
     BRONCE,
     PLATA,
     ORO;
-
     public static final float PRECIO_BASICA = 0.9f;
     public static final float PRECIO_BRONCE = 0.8f;
     public static final float PRECIO_PLATA = 0.7f;

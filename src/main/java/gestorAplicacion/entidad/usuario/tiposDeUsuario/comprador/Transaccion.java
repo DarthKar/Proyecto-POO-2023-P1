@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Transaccion implements Serializable {
+public abstract class Transaccion implements Serializable, ITransaccion {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -48,9 +48,6 @@ public abstract class Transaccion implements Serializable {
         }
         return Total;
     }
-    
-    public abstract void agregarProducto(ProductoTransaccion productoTransaccion);
-    public abstract void removerProducto(ProductoTransaccion productoTransaccion);
-    public abstract void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad);
+
 
 }

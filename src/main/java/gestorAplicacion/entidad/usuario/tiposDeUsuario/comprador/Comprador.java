@@ -31,7 +31,6 @@ public class Comprador extends Usuario {
     private Carrito carrito;
     private List<ProductoTransaccion> productosComprados;//Para guardar los productos que ha comprado este comprador
     private List<Opinion> resenasDeProductos; //Se guardaran aqui las rese�as a productos
-    private List<Opinion> resenasDeTiendas; //Se guardaran Rese�as De Productos
     private float saldo; //atributo para poder justificar el metodo de pago en la funcionalidad 1
 
     public Comprador(long id, String nombre, String apellido, String correo, Membresia membresia,float saldo) {
@@ -42,62 +41,27 @@ public class Comprador extends Usuario {
         devoluciones = new ArrayList<>();
         carrito = new Carrito(id, this);
         resenasDeProductos = new ArrayList<>(); // Se crean Ambas listas Para Rese�as hechas a tiendas y productos
-        resenasDeTiendas = new ArrayList<>();
         productosComprados = new ArrayList<>();
-
     }
 
     public Comprador(long id,String nombre,String apellido,String correo){
         this(id,nombre, apellido, correo,Membresia.NINGUNA,100);
     }
-    
-    public List<ProductoTransaccion> getProductosComprados() {
-        return productosComprados;                                                          //obtener la lista de productos adquiridos
-    }
-    
+
     public void agregarProductoComprado(ProductoTransaccion productocomprado){    //agregar productos comprados
         productosComprados.add(productocomprado);
-    }
-    
-    public void setProductosComprados(List<ProductoTransaccion> listacomprados){      //settear una lista de productos comprados predeterminada en caso de ser necesario
-        this.productosComprados = listacomprados;
     }
 
     public List<Opinion>  getResenasDeProductos() {
         return resenasDeProductos;
     }
 
-    public void SetResenasDeProductos(List<Opinion> resenaP) {
-        this.resenasDeProductos = resenaP;
-    }
-
-    public List<Opinion> getResenasDeTiendas() {                   //Metodos get y set para esas rese�as
-        return resenasDeTiendas;
-
-    }
-
-    public void SetResenasDeTiendas(List<Opinion> resenaT) {
-        this.resenasDeProductos = resenaT;
-    }
-
     public Membresia getMembresia() {
         return membresia;
     }
 
-    public void setMembresia(Membresia membresia) {
-        this.membresia = membresia;
-    }
-
     public List<Orden> getOrdenes() {
         return ordenes;
-    }
-
-    public void setOrdenes(List<Orden> ordenes) {
-        this.ordenes = ordenes;
-    }
-
-    public List<Devolucion> getDevoluciones() {
-        return devoluciones;
     }
 
     public void agregarDevolucion(Devolucion devolucion) {
@@ -111,10 +75,6 @@ public class Comprador extends Usuario {
         return carrito;
     }
 
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;                                
-    }
-    
     public float getSaldo(){                  //metodo para obtener el saldo de un comprador
         return this.saldo;
     }
@@ -155,17 +115,9 @@ public class Comprador extends Usuario {
         return "Nombre: "+this.getNombre()+" "+this.apellido+" \nCorreo: "+this.correo+" \nTipo de Membresia: "+this.membresia+" \nSaldo: "+this.saldo;
     }
 
-    public static List<Comprador> obtenerCompradores() {
-        return CompradorRepositorio.obtener();
-    }
-
     public static Comprador obtenerCompradorPorId(long id) {
         return CompradorRepositorio.obtenerPorId(id).orElseThrow(() ->
                 new IllegalArgumentException("Comprador con id %s no ha sido encontrado.".formatted(id)));
-    }
-
-    public static void eliminarComprador(long id) {
-
     }
 
     // TODO: Método temporal para agregar información por defecto a base de datos.
