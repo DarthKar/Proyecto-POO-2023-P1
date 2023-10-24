@@ -319,6 +319,7 @@ public class productosIU extends Validaciones {
                             System.out.println("La opcion elegida no es valida, regresando al menu");
                     }
                     return;
+                
                 case 10:
                     System.out.println("\n");
                     if (compradorActual.getOrdenes().isEmpty()){
@@ -344,6 +345,7 @@ public class productosIU extends Validaciones {
                             System.out.println("La opcion elegida no es valida, regresando al menu");
                     }
                     continue;
+                
                 case 11:
                     System.out.println("\n");
                     if (compradorActual.getOrdenes().isEmpty()){
@@ -356,6 +358,7 @@ public class productosIU extends Validaciones {
                         contador4++;
                     }
                     continue;
+                
                 case 12:
                     return;
                 default:
