@@ -46,6 +46,10 @@ public class Comprador extends Usuario {
         productosComprados = new ArrayList<>();
 
     }
+
+    public Comprador(long id,String nombre,String apellido,String correo){
+        this(id,nombre, apellido, correo,Membresia.NINGUNA,100);
+    }
     
     public List<ProductoTransaccion> getProductosComprados() {
         return productosComprados;                                                          //obtener la lista de productos adquiridos
@@ -129,16 +133,16 @@ public class Comprador extends Usuario {
             a  = totalpuro;
         }
         if(this.membresia ==  Membresia.BASICA){
-            a = totalpuro*0.9f;                                                       //metodo para aplicar los descuentos al total de una orden al ejecutar el pago
+            a = totalpuro*Membresia.PRECIO_BASICA;                                                       //metodo para aplicar los descuentos al total de una orden al ejecutar el pago
         }
         if(this.membresia ==  Membresia.BRONCE){
-            a = totalpuro*0.8f;
+            a = totalpuro*Membresia.PRECIO_BRONCE;
         }
         if(this.membresia ==  Membresia.PLATA){
-            a = totalpuro*0.7f;
+            a = totalpuro*Membresia.PRECIO_PLATA;
         }
         if(this.membresia ==  Membresia.ORO){
-            a = totalpuro*0.5f;
+            a = totalpuro*Membresia.PRECIO_ORO;
         }
         return a;
     }

@@ -1,5 +1,8 @@
 package gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.orden;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Comprador;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.ProductoTransaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
@@ -18,7 +21,7 @@ public class Carrito extends Transaccion {
             contador1++;
          }
     }
-
+    
 
     @Override
     public void agregarProducto(ProductoTransaccion productoTransaccion) {

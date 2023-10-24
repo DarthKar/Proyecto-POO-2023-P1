@@ -128,6 +128,10 @@ public class opinionUI extends Repositorio {
    Producto productoPrueba = baseDatos.getProductos().get(0);
    Comprador compradorPrueba = baseDatos.getCompradores().get(35);
    productoPrueba.agregarComprador(compradorPrueba);
+   
+   Vendedor vendedorPrueba = baseDatos.getVendedores().get(0);
+   vendedorPrueba.agregarComprador(compradorPrueba);
+
 
  }    
 
@@ -182,8 +186,10 @@ public class opinionUI extends Repositorio {
     private static void crearOpinionProducto(Scanner scanner) {
     System.out.println("Ingresa el codigo del producto que quieres resenar");
     String codigo = scanner.nextLine();
-    System.out.println("Ingresa cedula del autor");
+    System.out.println("---------------------------------------------------------------");
+    System.out.println("Ingresa id del autor");
     String autor = scanner.nextLine();
+    System.out.println("---------------------------------------------------------------");
 
     long codigoNuevo;
     long idAutor;
@@ -192,7 +198,8 @@ public class opinionUI extends Repositorio {
         codigoNuevo = Long.parseLong(codigo);
         idAutor = Long.parseLong(autor);
     } catch (NumberFormatException e) {
-        System.out.println("Error: Ingresa un codigo y una cedula válidos.");
+        System.out.println("Error: Ingresa un codigo y una id válidos.");
+        System.out.println("---------------------------------------------------------------");
         return;
     }
 
@@ -201,30 +208,31 @@ public class opinionUI extends Repositorio {
     boolean compradorExiste = false;
     boolean productoExiste = false;
 
-    System.out.println("Número de productos en la base de datos: " + bd.size());
-    System.out.println("Número de compradores en la base de datos: " + bdC.size());
-
 
     for (Comprador co : bdC) {
-        System.out.println("Revisando comprador con ID: " + co.getId());
+       
         if (co.getId() == idAutor) {
             compradorExiste = true;
 
             for (Producto producto : bd) {
-                System.out.println("Revisando producto con ID: " + producto.getId());
+              
                 if (codigoNuevo == producto.getId()) {
                     productoExiste = true;
                     System.out.println("Ingrese su comentario");
                     String com = scanner.nextLine();
+                    System.out.println("---------------------------------------------------------------");
                     int valoracion = 0;
-                    System.out.println(producto.getCompradores());
+                
                     while (true) {
                         System.out.println("Ingrese su valoracion del 1 al 5 (siendo 1 lo mas bajo)");
+                        
 
                         try {
                             valoracion = Integer.parseInt(scanner.nextLine());
+                            System.out.println("---------------------------------------------------------------");
                         } catch (NumberFormatException ex) {
                             System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                            System.out.println("---------------------------------------------------------------");
                             continue;
                         }
 
@@ -232,12 +240,14 @@ public class opinionUI extends Repositorio {
                             break;
                         } else {
                             System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                            System.out.println("---------------------------------------------------------------");
                         }
                     }
 
                     Opinion op = new Opinion(com, valoracion);
                     System.out.println(op.crearOpinion(co, producto, com, valoracion));
-                    System.out.println("si dio");
+                    System.out.println("---------------------------------------------------------------");
+                    
                 }
             }
         }
@@ -245,10 +255,12 @@ public class opinionUI extends Repositorio {
 
     if (!compradorExiste) {
         System.out.println("Error: El usuario no existe en la base de datos.");
+        System.out.println("---------------------------------------------------------------");
     }
 
     if (!productoExiste) {
         System.out.println("Error: El producto no existe en la base de datos.");
+        System.out.println("---------------------------------------------------------------");
     }
 }
 
@@ -257,9 +269,11 @@ public class opinionUI extends Repositorio {
     private static void editarOpinionProducto(Scanner scanner) {
         System.out.println("Ingresa el codigo del producto del cual quieres editar una resena");
         String codigo = scanner.nextLine();
+        System.out.println("---------------------------------------------------------------");
         List<Producto> bdP = baseDatos.getProductos();
-        System.out.println("Ingrese la cedula del usuario autor de la resena");
+        System.out.println("Ingrese la id del usuario autor de la resena");
         String id = scanner.nextLine();
+        System.out.println("---------------------------------------------------------------");
         boolean resenadorExiste = false;
         long codigoNuevo = 0;
         long id1 = 0;
@@ -267,12 +281,14 @@ public class opinionUI extends Repositorio {
             id1 = Long.parseLong(id);
 
         } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un numero de cedula valido.");
+            System.out.println("Error: Ingresa un numero de id valido.");
+            System.out.println("---------------------------------------------------------------");
         }
         try {
             codigoNuevo = Long.parseLong(codigo);
         } catch (NumberFormatException e) {
             System.out.println("Error: Ingresa un codigo producto valido.");
+            System.out.println("---------------------------------------------------------------");
         }
 
         for (Producto producto : bdP) {
@@ -286,14 +302,18 @@ public class opinionUI extends Repositorio {
                             if (co.getId() == op.getCreador().getId()) {
                                 System.out.println("Ingrese el comentario nuevo");
                                 String com = scanner.nextLine();
+                                System.out.println("---------------------------------------------------------------");
                                 int valoracion = 0;
                                 while (true) {
                                     System.out.println("Ingrese la nueva valoracion del 1 al 5 (siendo 1 lo mas bajo)");
+                                    
 
                                     try {
                                         valoracion = Integer.parseInt(scanner.nextLine());
+                                        System.out.println("---------------------------------------------------------------");
                                     } catch (NumberFormatException e) {
                                         System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                                        System.out.println("---------------------------------------------------------------");
 
                                     }
 
@@ -302,9 +322,12 @@ public class opinionUI extends Repositorio {
                                         break;
                                     } else {
                                         System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                                        System.out.println("---------------------------------------------------------------");
                                     }
-                                    System.out.println(op.editarOpinion(co, producto, com, valoracion));
-                                }
+                                    
+                                    
+                                }   System.out.println(op.editarOpinion(co, producto, com, valoracion));
+                                    System.out.println("---------------------------------------------------------------");
 
                             }
                         }
@@ -317,84 +340,99 @@ public class opinionUI extends Repositorio {
         }
         if (!resenadorExiste) {
             System.out.println("El usuario no ha hecho una resena");
+            System.out.println("---------------------------------------------------------------");
         }
     }
     
     
-
     private static void crearOpinionVendedor(Scanner scanner) {
-        System.out.println("Ingresa el codigo del vendedor que quieres resenar");
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Ingresa el código del vendedor que quieres reseñar");
         String codigo = scanner.nextLine();
-        System.out.println("Ingresa cedula del autor");
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Ingresa cédula del autor");
         String autor = scanner.nextLine();
-        List<Vendedor> bd = baseDatos.getVendedores();
-        List<Comprador> bdC = baseDatos.getCompradores();
-        long codigoNuevo = 0;
-        long idAutor = 0;
-        boolean compradorExiste = false;
-        boolean vendedorExiste = false;
+        System.out.println("---------------------------------------------------------------");
+    
+        long codigoNuevo;
+        long idAutor;
+    
         try {
             codigoNuevo = Long.parseLong(codigo);
-
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un codigo de vendedor valido.");
-        }
-        try {
             idAutor = Long.parseLong(autor);
-
         } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un numero de cedula valido.");
+            System.out.println("Error: Ingresa un código y una cédula válidos.");
+            System.out.println("---------------------------------------------------------------");
+            return;
         }
-
+    
+        List<Vendedor> bd = baseDatos.getVendedores();
+        List<Comprador> bdC = baseDatos.getCompradores();
+        boolean compradorExiste = false;
+        boolean vendedorExiste = false;
+    
         for (Comprador co : bdC) {
             if (co.getId() == idAutor) {
                 compradorExiste = true;
-
+    
                 for (Vendedor vend : bd) {
                     if (codigoNuevo == vend.getId()) {
                         vendedorExiste = true;
                         System.out.println("Ingrese su comentario");
                         String com = scanner.nextLine();
-                        int valoracion = 0;
-                        while (true) {
-                            System.out.println("Ingrese su valoracion del 1 al 5 (siendo 1 lo mas bajo)");
+                        System.out.println("---------------------------------------------------------------");
+                        
 
+                        int valoracion = 0;
+    
+                        while (true) {
+                            
+                            System.out.println("Ingrese su valoración del 1 al 5 (siendo 1 lo más bajo)");
+    
                             try {
                                 valoracion = Integer.parseInt(scanner.nextLine());
-                            } catch (NumberFormatException e) {
-                                System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
-
+                            } catch (NumberFormatException ex) {
+                                System.out.println("La valoración se mide del 1 al 5, digite un número válido");
+                                System.out.println("---------------------------------------------------------------");
+                                continue;
                             }
-
+    
                             if (valoracion >= 1 && valoracion <= 5) {
-
                                 break;
                             } else {
-                                System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                                System.out.println("La valoración se mide del 1 al 5, digite un número válido");
+                                System.out.println("---------------------------------------------------------------");
                             }
                         }
-
+    
                         Opinion op = new Opinion(com, valoracion);
                         System.out.println(op.crearOpinion(co, vend, com, valoracion));
+                        System.out.println("---------------------------------------------------------------");
                     }
-                    if (!vendedorExiste) {
-                        System.out.println("Error: El vendedor no existe en la base de datos");
-                    }
+                }
+    
+                if (!vendedorExiste) {
+                    System.out.println("Error: El vendedor no existe en la base de datos");
+                    System.out.println("---------------------------------------------------------------");
                 }
             }
         }
+    
         if (!compradorExiste) {
-            System.out.println("el usuario no ha comprado el producto, no se puede crear una resena");
+            System.out.println("El usuario no es cliente del vendedor, no se puede crear una reseña.");
+            System.out.println("---------------------------------------------------------------");
         }
     }
     
     
     
      private static void editarOpinionVendedor(Scanner scanner) {
-        System.out.println("Ingresa el codigo del producto del cual quieres editar una resena");
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Ingresa el codigo del vendedor del cual quieres editar una resena");
         String codigo = scanner.nextLine();
         List<Vendedor> bdV = baseDatos.getVendedores();
-        System.out.println("Ingrese la cedula del usuario autor de la resena");
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Ingrese la id del usuario autor de la resena");
         String id = scanner.nextLine();
         boolean resenadorExiste = false;
         long codigoNuevo = 0;
@@ -403,12 +441,14 @@ public class opinionUI extends Repositorio {
             id1 = Long.parseLong(id);
 
         } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un numero de cedula valido.");
+            System.out.println("Error: Ingresa un numero de id valido.");
+            System.out.println("---------------------------------------------------------------");
         }
         try {
             codigoNuevo = Long.parseLong(codigo);
         } catch (NumberFormatException e) {
             System.out.println("Error: Ingresa un codigo producto valido.");
+            System.out.println("---------------------------------------------------------------");
         }
 
         for (Vendedor vendedor : bdV) {
@@ -423,14 +463,18 @@ public class opinionUI extends Repositorio {
                                 
                                 System.out.println("Ingrese el comentario nuevo");
                                 String com = scanner.nextLine();
+                                System.out.println("---------------------------------------------------------------");
                                 int valoracion = 0;
                                 while (true) {
                                     System.out.println("Ingrese la nueva valoracion del 1 al 5 (siendo 1 lo mas bajo)");
+                                    
 
                                     try {
                                         valoracion = Integer.parseInt(scanner.nextLine());
+                                        System.out.println("---------------------------------------------------------------");
                                     } catch (NumberFormatException e) {
                                         System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                                        System.out.println("---------------------------------------------------------------");
 
                                     }
 
@@ -439,9 +483,11 @@ public class opinionUI extends Repositorio {
                                         break;
                                     } else {
                                         System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
+                                        System.out.println("---------------------------------------------------------------");
                                     }
-                                    System.out.println(op.editarOpinion(co, vendedor, com, valoracion));
-                                }
+                                    
+                                }System.out.println(op.editarOpinion(co, vendedor, com, valoracion));
+                                    System.out.println("---------------------------------------------------------------");
 
                             }
                         }
@@ -454,6 +500,7 @@ public class opinionUI extends Repositorio {
         }
         if (!resenadorExiste) {
             System.out.println("El usuario no ha hecho una resena");
+            System.out.println("---------------------------------------------------------------");
         }
     }
      
@@ -461,10 +508,12 @@ public class opinionUI extends Repositorio {
      private static void borrarOpinionProducto(Scanner scanner){
          System.out.println("Ingresa el codigo del producto del cual quieres elliminar una resena");
          String codigo = scanner.nextLine();
+         System.out.println("---------------------------------------------------------------");
          List<Producto> bdP = baseDatos.getProductos();
          List<Comprador> bdC = baseDatos.getCompradores();
-         System.out.println("Ingrese la cedula del usuario autor de la resena");
+         System.out.println("Ingrese la id del usuario autor de la resena");
          String id = scanner.nextLine();
+         System.out.println("---------------------------------------------------------------");
          boolean productoEncontrado=false;
          boolean AutorEncontrado=false;
                  
@@ -476,12 +525,14 @@ public class opinionUI extends Repositorio {
 
         } catch (NumberFormatException e) {
             System.out.println("Error: Ingresa un codigo de producto valido.");
+            System.out.println("---------------------------------------------------------------");
         }
         try {
             idAutor = Long.parseLong(id);
 
         } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un numero de cedula valido.");
+            System.out.println("Error: Ingresa un numero de id valido.");
+            System.out.println("---------------------------------------------------------------");
         }
         for(Producto producto: bdP){
             if(producto.getId()==codigoNuevo){
@@ -493,17 +544,27 @@ public class opinionUI extends Repositorio {
                         
                         for(OpinionProducto op : producto.getOpiniones()){
                             if(op.getCreador().getId()==idAutor){
-                                System.out.println(op.borrarOpinionProducto(producto,comprador));
+                                
+                              OpinionProducto opinionBorrar = op.borrarOpinionProducto(producto,comprador);
+                               
+                               if(opinionBorrar!=null){
+                                producto.getOpiniones().remove(opinionBorrar);
+                                System.out.println("Resena borrada con exito, volviendo al menu principal");
+                                System.out.println("---------------------------------------------------------------");
+                                break;
+                               }
                                
                             }
                         }
                      }
                  }if(!AutorEncontrado){
                      System.out.println("Error: No se ha encontrado el autor que buscas");
+                     System.out.println("---------------------------------------------------------------");
                  }
+            }
             }if(!productoEncontrado){
                 System.out.println("Error: no se ha encontrado el producto que buscas");
-            }
+                System.out.println("---------------------------------------------------------------");
                 
         }
         
@@ -514,10 +575,12 @@ public class opinionUI extends Repositorio {
      private static void borrarOpinionVendedor(Scanner scanner){
          System.out.println("Ingresa el codigo del producto del cual quieres elliminar una resena");
          String codigo = scanner.nextLine();
+         System.out.println("---------------------------------------------------------------");
          List<Vendedor> bdV = baseDatos.getVendedores();
          List<Comprador> bdC = baseDatos.getCompradores();
-         System.out.println("Ingrese la cedula del usuario autor de la resena");
+         System.out.println("Ingrese la id del usuario autor de la resena");
          String id = scanner.nextLine();
+         System.out.println("---------------------------------------------------------------");
          boolean vendedorEncontrado=false;
          boolean AutorEncontrado=false;
                  
@@ -529,12 +592,14 @@ public class opinionUI extends Repositorio {
 
         } catch (NumberFormatException e) {
             System.out.println("Error: Ingresa un codigo de vendedor valido.");
+            System.out.println("---------------------------------------------------------------");
         }
         try {
             idAutor = Long.parseLong(id);
 
         } catch (NumberFormatException e) {
-            System.out.println("Error: Ingresa un numero de cedula valido.");
+            System.out.println("Error: Ingresa un numero de id valido.");
+            System.out.println("---------------------------------------------------------------");
         }
         for(Vendedor vendedor: bdV){
             if(vendedor.getId()==codigoNuevo){
@@ -546,24 +611,33 @@ public class opinionUI extends Repositorio {
                         
                         for(OpinionVendedor op : vendedor.getOpinion()){
                             if(op.getCreador().getId()==idAutor){
-                                System.out.println(op.borrarOpinionVendedor(vendedor,comprador));
+                                OpinionVendedor opinionBorrar = op.borrarOpinionVendedor(vendedor,comprador);
+                               
+                               if(opinionBorrar!=null){
+                                vendedor.getOpinion().remove(opinionBorrar);
+                                System.out.println("Resena borrada con exito, volviendo al menu principal");
+                                System.out.println("---------------------------------------------------------------");
+                                break;
                             }
                         }
                      }
-                 }if(!AutorEncontrado){
-                     System.out.println("Error: No se ha encontrado el autor que buscas");
                  }
-            }if(!vendedorEncontrado){
-                System.out.println("Error: no se ha encontrado el producto que buscas");
             }
-                
-        }
-        
+             if(!AutorEncontrado){
+                     System.out.println("Error: No se ha encontrado el autor que buscas");
+                     System.out.println("---------------------------------------------------------------");
+                 }
+     }if(!vendedorEncontrado){
+                System.out.println("Error: no se ha encontrado el producto que buscas"); 
+                System.out.println("---------------------------------------------------------------"); 
+    }
+}
      }
      
      private static void verOpinionProducto(Scanner scanner){
          System.out.println("Ingresa el codigo del producto del cual quieres ver opiniones");
          String codigo = scanner.nextLine();
+         System.out.println("---------------------------------------------------------------");
          List<Producto> bdP = baseDatos.getProductos();
          boolean productoEncontrado= false;
          
@@ -575,6 +649,7 @@ public class opinionUI extends Repositorio {
              
          } catch(NumberFormatException e ) {
              System.out.println("Error Ingresa un codigo de producto valido");
+             System.out.println("---------------------------------------------------------------");
              
          }
          
@@ -590,8 +665,9 @@ public class opinionUI extends Repositorio {
                 }
                 }
                 if(producto.getOpiniones().isEmpty()){
-                
-                    System.out.println("El producto aun no tiene resenas");   
+                    
+                    System.out.println("El producto aun no tiene resenas"); 
+                    System.out.println("---------------------------------------------------------------");  
              
              }
          }
@@ -599,12 +675,14 @@ public class opinionUI extends Repositorio {
         if(!productoEncontrado){
 
                  System.out.println("Error: No se ha encontrado el producto que buscas");
+                 System.out.println("---------------------------------------------------------------");
         }
                  
      }
      private static void verOpinionVendedor(Scanner scanner){
          System.out.println("Ingresa el codigo del producto del cual quieres ver opiniones");
          String codigo = scanner.nextLine();
+         System.out.println("---------------------------------------------------------------");
          List<Vendedor> bdV = baseDatos.getVendedores();
          boolean vendedorEncontrado= false;
          
@@ -616,6 +694,7 @@ public class opinionUI extends Repositorio {
              
          } catch(NumberFormatException e ) {
              System.out.println("Error Ingresa un codigo de producto valido");
+             System.out.println("---------------------------------------------------------------");
              
          }
          
@@ -631,10 +710,12 @@ public class opinionUI extends Repositorio {
                 }   
              }if(vendedor.getOpinion().isEmpty()){
                  System.out.println("El vendedor aun no tiene resenas  ");
+                 System.out.println("---------------------------------------------------------------");
              }
          }
             }if(!vendedorEncontrado){
              System.out.println("Error: No se ha encontrado el vendedor que buscas");
+             System.out.println("---------------------------------------------------------------");
          
         }
     }

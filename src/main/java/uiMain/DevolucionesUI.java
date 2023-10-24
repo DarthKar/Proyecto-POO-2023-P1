@@ -53,8 +53,8 @@ public class DevolucionesUI extends Validaciones {
         ordenes.forEach(orden -> {
             AsciiTable at = new AsciiTable();
             at.addRule();
-            at.addRow("Número Orden", "Número de productos");
-            at.addRow(i.incrementAndGet(), orden.getProductosTransaccion().size());
+            at.addRow("Número Orden", "Id");
+            at.addRow(i.incrementAndGet(), orden.getId());
             at.addRule();
             at.setTextAlignment(TextAlignment.CENTER);
             System.out.println(at.render());
@@ -69,7 +69,7 @@ public class DevolucionesUI extends Validaciones {
                 System.out.println("No ha elegido una opción valida");
                 return;
             }
-
+            
             devolucion.setOrden(ordenOptional.get());
             menuDevolucion:
             do {

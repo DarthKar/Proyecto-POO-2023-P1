@@ -46,15 +46,15 @@ public class BaseDatos implements Serializable {
     }
 
     private void valoresPorDefecto() {
- 
-            productos.add(new Producto(1L, "Arroz", Categoria.ALIMENTOS));
+
+            productos.add(new Producto(1L, "Ron", Categoria.ALIMENTOS));
             productos.add(new Producto(2L, "Televisor", Categoria.ELECTRONICA));
-            productos.add(new Producto(3L, "Camiseta", Categoria.ROPA));
+            productos.add(new Producto(3L, "Pomada", Categoria.ROPA));
             productos.add(new Producto(4L, "Sofá", Categoria.HOGAR));
             productos.add(new Producto(5L, "Muñeca", Categoria.JUGUETES));
             productos.add(new Producto(6L, "Crema facial", Categoria.COSMETICOS));
             productos.add(new Producto(7L, "Libro", Categoria.OTROS));
-            productos.add(new Producto(8L, "Laptop", Categoria.ELECTRONICA));
+            productos.add(new Producto(8L, "Desinfectante", Categoria.ELECTRONICA));
             productos.add(new Producto(9L, "Cepillo de dientes", Categoria.HOGAR));
             productos.add(new Producto(10L, "Manzanas", Categoria.ALIMENTOS));
             productos.add(new Producto(11L, "Lámpara", Categoria.HOGAR));
@@ -66,7 +66,7 @@ public class BaseDatos implements Serializable {
             productos.add(new Producto(17L, "Taza", Categoria.HOGAR));
             productos.add(new Producto(18L, "Reloj", Categoria.ELECTRONICA));
             productos.add(new Producto(19L, "Camiseta polo", Categoria.ROPA));
-            productos.add(new Producto(20L, "Leche", Categoria.ALIMENTOS));
+            productos.add(new Producto(20L, "impresora", Categoria.ALIMENTOS));
             productos.add(new Producto(21L, "Consola de videojuegos", Categoria.ELECTRONICA));
             productos.add(new Producto(22L, "Toallas", Categoria.HOGAR));
             productos.add(new Producto(23L, "Maquillaje", Categoria.COSMETICOS));
@@ -121,6 +121,16 @@ public class BaseDatos implements Serializable {
             compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA,189));
             compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
             compradores.add(new Comprador(37L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
+            compradores.add(new Comprador(38L, "Roberto", "Gómez", "roberto@example.com"));
+            compradores.add(new Comprador(39L, "Luciana", "Hernández", "luciana@example.com"));
+            compradores.add(new Comprador(40L, "Carlos", "Pérez", "carlos@example.com"));
+            compradores.add(new Comprador(41L, "Elena", "Díaz", "elena@example.com"));
+            compradores.add(new Comprador(42L, "Gustavo", "Fernández", "gustavo@example.com"));
+            compradores.add(new Comprador(43L, "Verónica", "Martínez", "veronica@example.com"));
+            compradores.add(new Comprador(44L, "Jorge", "García", "jorge@example.com"));
+            compradores.add(new Comprador(45L, "Fernanda", "López", "fernanda@example.com"));
+            compradores.add(new Comprador(46L, "Federico", "Sánchez", "federico@example.com"));
+            compradores.add(new Comprador(47L, "Silvana", "Torres", "silvana@example.com"));
 
 
             vendedores.add(new Vendedor(1L, "Juan", "Pérez", "juan@example.com"));
@@ -153,17 +163,17 @@ public class BaseDatos implements Serializable {
             vendedores.add(new Vendedor(28L, "Natalia", "Pérez", "natalia@example.com"));
             vendedores.add(new Vendedor(29L, "Sofía", "Moreno", "sofia@example.com"));
             vendedores.add(new Vendedor(30L, "Javier", "Soto", "javier@example.com"));
-            vendedores.add(new Vendedor(31L, "Juan", "Pérez", "juan@example.com"));
-            vendedores.add(new Vendedor(32L, "María", "García", "maria@example.com"));
-            vendedores.add(new Vendedor(33L, "Carlos", "López", "carlos@example.com"));
-            vendedores.add(new Vendedor(34L, "Ana", "Martínez", "ana@example.com"));
-            vendedores.add(new Vendedor(35L, "Pedro", "Sánchez", "pedro@example.com"));
+            vendedores.add(new Vendedor(31L, "Juan", "Pérez"));
+            vendedores.add(new Vendedor(32L, "María", "García"));
+            vendedores.add(new Vendedor(33L, "Carlos", "López"));
+            vendedores.add(new Vendedor(34L, "Ana", "Martínez"));
+            vendedores.add(new Vendedor(35L, "Pedro", "Sánchez"));
 
 
             
         
         vendedores.forEach(vendedor -> {
-            int cantidadPublicaciones = RandomUtils.nextInt(5, 11);
+            int cantidadPublicaciones = RandomUtils.nextInt(10, 20);
             IntStream.range(1, cantidadPublicaciones).forEach(i -> {
                 do {
                     try {

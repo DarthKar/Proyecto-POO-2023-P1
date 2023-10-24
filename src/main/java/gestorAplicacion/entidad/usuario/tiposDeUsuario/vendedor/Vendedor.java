@@ -17,6 +17,8 @@ import java.util.Optional;
 
 import baseDatos.impl.CompradorRepositorio;
 
+
+
 public class Vendedor extends Usuario {
 
 	private List<Publicacion> publicaciones;
@@ -29,9 +31,13 @@ public class Vendedor extends Usuario {
 		this.publicaciones = new ArrayList<>();
 		this.opinionesVendedor = new ArrayList<>();
 		this.compradores = new ArrayList<>(); // Nuevo array para verificar si el comprador que va a crear una opinion
-												// si ha comprado en esa tienda
+		this.resenadores = new ArrayList<>();										// si ha comprado en esa tienda
 
 	}
+
+	public Vendedor(long id,String nombre, String apellido){
+        this(id,nombre,apellido,nombre+"@example.com");
+    }
 
 	public List<Publicacion> getProductoVendedor() {
 		return publicaciones;
@@ -84,6 +90,14 @@ public class Vendedor extends Usuario {
 
 	public List<Comprador> getResenadores() {
 		return resenadores;
+	}
+
+	public void agregarComprador(Comprador comprador) {
+		this.compradores.add(comprador);
+	}
+	
+	public void agregarResenador(Comprador comprador){
+		this.resenadores.add(comprador);
 	}
 
 	public void crearPublicacion(Producto producto, int inventario, float precio) {
