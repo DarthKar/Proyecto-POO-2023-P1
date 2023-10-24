@@ -281,7 +281,6 @@ public class Comprador extends Usuario {
     }
     
     public static Membresia MembresiaMasComprada() {
-        int Ninguna = 0;
         int Oro = 0;
         int Plata = 0;
         int Bronce = 0;
@@ -290,9 +289,6 @@ public class Comprador extends Usuario {
         for (Comprador comprador : CompradorRepositorio.obtener()) {
             Membresia comparar = comprador.getMembresia();
             switch (comparar) {
-                case NINGUNA:
-                    Ninguna++;
-                    break;
                 case BASICA:
                     Basica++;
                     break;
@@ -309,8 +305,8 @@ public class Comprador extends Usuario {
         }
 
         // Encuentra la membresía más común
-        Membresia membresiaMasComun = Membresia.NINGUNA;
-        int maxCompras = Ninguna;
+        Membresia membresiaMasComun = null;
+        int maxCompras = 0;
 
         if (Basica > maxCompras) {
             membresiaMasComun = Membresia.BASICA;

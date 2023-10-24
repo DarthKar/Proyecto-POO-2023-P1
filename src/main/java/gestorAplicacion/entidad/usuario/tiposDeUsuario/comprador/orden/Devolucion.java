@@ -33,6 +33,10 @@ public class Devolucion extends Transaccion {
     public void modificarProducto(ProductoTransaccion productoTransaccion, int cantidad) {
         Publicacion publicacion = productoTransaccion.getPublicacion();
 
+        if (cantidad == productoTransaccion.getCantidad()){
+            return;
+        }
+
         if (cantidad == 0) {
             removerProducto(productoTransaccion);
             return;

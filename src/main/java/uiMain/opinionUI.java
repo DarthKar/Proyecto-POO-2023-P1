@@ -433,7 +433,7 @@ public class opinionUI extends Repositorio {
         List<Vendedor> bdV = baseDatos.getVendedores();
         System.out.println("---------------------------------------------------------------");
         System.out.println("Ingrese la id del usuario autor de la resena");
-        String id = scanner.nextLine();
+        String id = scanner.nextLine(); System.out.println("---------------------------------------------------------------");
         boolean resenadorExiste = false;
         long codigoNuevo = 0;
         long id1 = 0;
@@ -485,10 +485,12 @@ public class opinionUI extends Repositorio {
                                         System.out.println("La valoracion se mide del 1 al 5, digite un numero valido");
                                         System.out.println("---------------------------------------------------------------");
                                     }
+                                 
                                     
-                                }System.out.println(op.editarOpinion(co, vendedor, com, valoracion));
+                                }
+                                System.out.println(op.editarOpinion(co, vendedor, com, valoracion));
                                     System.out.println("---------------------------------------------------------------");
-
+                            
                             }
                         }
 
@@ -549,6 +551,7 @@ public class opinionUI extends Repositorio {
                                
                                if(opinionBorrar!=null){
                                 producto.getOpiniones().remove(opinionBorrar);
+                                producto.getResenadores().remove(comprador);
                                 System.out.println("Resena borrada con exito, volviendo al menu principal");
                                 System.out.println("---------------------------------------------------------------");
                                 break;
@@ -573,7 +576,7 @@ public class opinionUI extends Repositorio {
      
      
      private static void borrarOpinionVendedor(Scanner scanner){
-         System.out.println("Ingresa el codigo del producto del cual quieres elliminar una resena");
+         System.out.println("Ingresa el codigo del vendedor del cual quieres elliminar una resena");
          String codigo = scanner.nextLine();
          System.out.println("---------------------------------------------------------------");
          List<Vendedor> bdV = baseDatos.getVendedores();
@@ -615,6 +618,7 @@ public class opinionUI extends Repositorio {
                                
                                if(opinionBorrar!=null){
                                 vendedor.getOpinion().remove(opinionBorrar);
+                                vendedor.getResenadores().remove(comprador);
                                 System.out.println("Resena borrada con exito, volviendo al menu principal");
                                 System.out.println("---------------------------------------------------------------");
                                 break;
@@ -680,7 +684,7 @@ public class opinionUI extends Repositorio {
                  
      }
      private static void verOpinionVendedor(Scanner scanner){
-         System.out.println("Ingresa el codigo del producto del cual quieres ver opiniones");
+         System.out.println("Ingresa el codigo del vendedor del cual quieres ver opiniones");
          String codigo = scanner.nextLine();
          System.out.println("---------------------------------------------------------------");
          List<Vendedor> bdV = baseDatos.getVendedores();

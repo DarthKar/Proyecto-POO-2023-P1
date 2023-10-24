@@ -1,6 +1,7 @@
 package uiMain;
 
 import gestorAplicacion.entidad.producto.Producto;
+import gestorAplicacion.entidad.usuario.tiposDeUsuario.comprador.Transaccion;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Vendedor;
 import baseDatos.impl.UsuarioRepositorio;
 import gestorAplicacion.entidad.usuario.tiposDeUsuario.vendedor.Publicacion;
@@ -24,7 +25,7 @@ public class productosIU extends Validaciones {
             compradorActual = buscarComprador();
         } while (Objects.isNull(compradorActual));
         System.out.printf("Bienvenido %s %s%n", compradorActual.getNombre(), compradorActual.getApellido());
-        Carrito carrito = compradorActual.getCarrito();
+        Transaccion carrito = compradorActual.getCarrito();
         menuProductoLoop:
         do {
             System.out.println(pro());
@@ -131,7 +132,7 @@ public class productosIU extends Validaciones {
                         System.out.println("El carrito esta vacio no hay nada por eliminar,regresando al menu de compra");
                         continue menuProductoLoop;
                     }
-                    carrito.mostrarCarrito(carrito);
+                    ((Carrito)carrito).mostrarCarrito((Carrito)carrito);
                     System.out.println("\n");
                     System.out.println("Elija el producto que desea eliminar del carrito");
                     int select2 = Integer.parseInt(scanner.nextLine().trim());
@@ -156,7 +157,7 @@ public class productosIU extends Validaciones {
                         System.out.println("Carrito vacio");
                     }
                     else{
-                        carrito.mostrarCarrito(carrito);
+                        ((Carrito)carrito).mostrarCarrito((Carrito)carrito);
                         System.out.println("El total parcial es: "+carrito.calcularTotal());
                     }   
                     continue; 
@@ -171,7 +172,7 @@ public class productosIU extends Validaciones {
                                 System.out.println("No hay productos por modificar, el carrito esta vacio, volviendo al menu de compra");
                                 continue menuProductoLoop;
                             }
-                            carrito.mostrarCarrito(carrito);
+                            ((Carrito)carrito).mostrarCarrito((Carrito)carrito);
                             System.out.println("Seleccione que producto desea modificar");
                             int select3 = Integer.parseInt(scanner.nextLine().trim())-1;
                             System.out.println("¿Cuantas unidades desea comprar ahora?");

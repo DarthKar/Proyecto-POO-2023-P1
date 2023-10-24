@@ -24,7 +24,6 @@ public abstract class Transaccion implements Serializable, ITransaccion {
         productosTransaccion = new ArrayList<>();
     }
 
-
     public Comprador getComprador() {
         return comprador;
     }
