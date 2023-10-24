@@ -34,6 +34,11 @@ public class Comprador extends Usuario {
     private List<Opinion> resenasDeTiendas; //Se guardaran Rese�as De Productos
     private float saldo; //atributo para poder justificar el metodo de pago en la funcionalidad 1
 
+    public Comprador(){
+        this(999L,"Jhon", "Doe", "JhonDoe@example.com",Membresia.NINGUNA,0);
+
+    }
+
     public Comprador(long id, String nombre, String apellido, String correo, Membresia membresia,float saldo) {
         super(id, nombre, apellido, correo);
         this.membresia = membresia;
