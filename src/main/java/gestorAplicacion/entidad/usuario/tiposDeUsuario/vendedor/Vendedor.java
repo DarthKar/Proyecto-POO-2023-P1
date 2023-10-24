@@ -26,11 +26,6 @@ public class Vendedor extends Usuario {
 	private List<Comprador> compradores;
 	private List<Comprador> resenadores;
 
-
-	public Vendedor(){
-        this(999L,"Jhon", "Doe", "JhonDoe@example.com");
-    }
-
 	public Vendedor(long id, String nombre, String apellido, String correo) {
 		super(id, nombre, apellido, correo);
 		this.publicaciones = new ArrayList<>();
@@ -39,6 +34,10 @@ public class Vendedor extends Usuario {
 		this.resenadores = new ArrayList<>();										// si ha comprado en esa tienda
 
 	}
+
+	public Vendedor(long id,String nombre, String apellido){
+        this(id,nombre,apellido,nombre+"@example.com");
+    }
 
 	public List<Publicacion> getProductoVendedor() {
 		return publicaciones;

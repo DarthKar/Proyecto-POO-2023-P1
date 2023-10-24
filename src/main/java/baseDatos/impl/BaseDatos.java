@@ -121,7 +121,17 @@ public class BaseDatos implements Serializable {
             compradores.add(new Comprador(35L, "Luis", "Martínez", "luis@example.com", Membresia.PLATA,189));
             compradores.add(new Comprador(36L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
             compradores.add(new Comprador(37L, "Aristobulo", "Cachimbo", "aristi@example.com",Membresia.ORO,78));
-            
+            compradores.add(new Comprador(38L, "Roberto", "Gómez", "roberto@example.com"));
+            compradores.add(new Comprador(39L, "Luciana", "Hernández", "luciana@example.com"));
+            compradores.add(new Comprador(40L, "Carlos", "Pérez", "carlos@example.com"));
+            compradores.add(new Comprador(41L, "Elena", "Díaz", "elena@example.com"));
+            compradores.add(new Comprador(42L, "Gustavo", "Fernández", "gustavo@example.com"));
+            compradores.add(new Comprador(43L, "Verónica", "Martínez", "veronica@example.com"));
+            compradores.add(new Comprador(44L, "Jorge", "García", "jorge@example.com"));
+            compradores.add(new Comprador(45L, "Fernanda", "López", "fernanda@example.com"));
+            compradores.add(new Comprador(46L, "Federico", "Sánchez", "federico@example.com"));
+            compradores.add(new Comprador(47L, "Silvana", "Torres", "silvana@example.com"));
+
 
             vendedores.add(new Vendedor(1L, "Juan", "Pérez", "juan@example.com"));
             vendedores.add(new Vendedor(2L, "María", "López", "maria@example.com"));
@@ -153,11 +163,11 @@ public class BaseDatos implements Serializable {
             vendedores.add(new Vendedor(28L, "Natalia", "Pérez", "natalia@example.com"));
             vendedores.add(new Vendedor(29L, "Sofía", "Moreno", "sofia@example.com"));
             vendedores.add(new Vendedor(30L, "Javier", "Soto", "javier@example.com"));
-            vendedores.add(new Vendedor(31L, "Juan", "Pérez", "juan@example.com"));
-            vendedores.add(new Vendedor(32L, "María", "García", "maria@example.com"));
-            vendedores.add(new Vendedor(33L, "Carlos", "López", "carlos@example.com"));
-            vendedores.add(new Vendedor(34L, "Ana", "Martínez", "ana@example.com"));
-            vendedores.add(new Vendedor(35L, "Pedro", "Sánchez", "pedro@example.com"));
+            vendedores.add(new Vendedor(31L, "Juan", "Pérez"));
+            vendedores.add(new Vendedor(32L, "María", "García"));
+            vendedores.add(new Vendedor(33L, "Carlos", "López"));
+            vendedores.add(new Vendedor(34L, "Ana", "Martínez"));
+            vendedores.add(new Vendedor(35L, "Pedro", "Sánchez"));
 
 
             
